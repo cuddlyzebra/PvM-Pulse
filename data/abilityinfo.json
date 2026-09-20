@@ -1,0 +1,4487 @@
+[
+  {
+    "action": "Absorbative1",
+    "tag": "perk",
+    "icon": "absorbative1.webp"
+  },
+  {
+    "action": "Absorbative4",
+    "tag": "perk",
+    "icon": "absorbative4.webp"
+  },
+  {
+    "action": "Abyssal armour spikes",
+    "tag": "melee-gear",
+    "icon": "abyssalarmourspike.webp"
+  },
+  {
+    "action": "Abyssal orb",
+    "tag": "magic-gear",
+    "icon": "abyssalorb.webp"
+  },
+  {
+    "action": "Abyssal scourge",
+    "tag": "melee-gear",
+    "icon": "abyssalscourge.webp"
+  },
+  {
+    "action": "Abyssal vine whip",
+    "tag": "melee-gear",
+    "icon": "abyssalvinewhip.webp"
+  },
+  {
+    "action": "Abyssal wand",
+    "tag": "magic-gear",
+    "icon": "abyssalwand.webp"
+  },
+  {
+    "action": "Abyssal whip",
+    "tag": "melee-gear",
+    "icon": "abyssalwhip.webp"
+  },
+  {
+    "action": "Accelerated Decay",
+    "tag": "necromancy",
+    "icon": "accelerateddecay.webp"
+  },
+  {
+    "action": "Achto Primeval boots",
+    "tag": "magic-gear",
+    "icon": "achtoprimevalboots.webp"
+  },
+  {
+    "action": "Achto Primeval gloves",
+    "tag": "magic-gear",
+    "icon": "achtoprimevalgloves.webp"
+  },
+  {
+    "action": "Achto Primeval helm",
+    "tag": "magic-gear",
+    "icon": "achtoprimevalhelm.webp"
+  },
+  {
+    "action": "Achto Primeval legs",
+    "tag": "magic-gear",
+    "icon": "achtoprimevallegs.webp"
+  },
+  {
+    "action": "Achto Primeval robe top",
+    "tag": "magic-gear",
+    "icon": "achtoprimevaltop.webp"
+  },
+  {
+    "action": "Achto Tempest body",
+    "tag": "ranged-gear",
+    "icon": "achtotempestbody.webp"
+  },
+  {
+    "action": "Achto Tempest boots",
+    "tag": "ranged-gear",
+    "icon": "achtotempestboots.webp"
+  },
+  {
+    "action": "Achto Tempest gloves",
+    "tag": "ranged-gear",
+    "icon": "achtotempestgloves.webp"
+  },
+  {
+    "action": "Achto Tempest helm",
+    "tag": "ranged-gear",
+    "icon": "achtotempesthlem.webp"
+  },
+  {
+    "action": "Achto Teralith body",
+    "tag": "melee-gear",
+    "icon": "achtoteralithbody.webp"
+  },
+  {
+    "action": "Achto Teralith boots",
+    "tag": "melee-gear",
+    "icon": "achtoteralithboots.webp"
+  },
+  {
+    "action": "Achto Teralith gloves",
+    "tag": "melee-gear",
+    "icon": "achtoteralithgloves.webp"
+  },
+  {
+    "action": "Achto Teralith helm",
+    "tag": "melee-gear",
+    "icon": "achtoteralithhelm.webp"
+  },
+  {
+    "action": "Achto Teralith legs",
+    "tag": "melee-gear",
+    "icon": "achtoteralithlegs.webp"
+  },
+  {
+    "action": "Aftershock1",
+    "tag": "perk",
+    "icon": "as1.webp"
+  },
+  {
+    "action": "Aftershock4",
+    "tag": "perk",
+    "icon": "as4.webp"
+  },
+  {
+    "action": "Aggression",
+    "tag": "defence",
+    "icon": "aggression.webp"
+  },
+  {
+    "action": "Ahrim's book of magic",
+    "tag": "magic-gear",
+    "icon": "ahrimbook.webp"
+  },
+  {
+    "action": "Ahrim's staff",
+    "tag": "magic-gear",
+    "icon": "ahrimstaff.webp"
+  },
+  {
+    "action": "Ahrim's wand",
+    "tag": "magic-gear",
+    "icon": "ahrimwand.webp"
+  },
+  {
+    "action": "Air Strike",
+    "tag": "magic",
+    "icon": "airstrike.webp"
+  },
+  {
+    "action": "Air rune",
+    "tag": "magic-gear",
+    "icon": "airrune.webp"
+  },
+  {
+    "action": "Ancient ceremonial boots",
+    "tag": "magic-gear",
+    "icon": "ceremonialboots.webp"
+  },
+  {
+    "action": "Ancient ceremonial gloves",
+    "tag": "magic-gear",
+    "icon": "ceremonialgloves.webp"
+  },
+  {
+    "action": "Ancient ceremonial legs",
+    "tag": "magic-gear",
+    "icon": "ceremoniallegs.webp"
+  },
+  {
+    "action": "Ancient ceremonial mask",
+    "tag": "magic-gear",
+    "icon": "ceremonialmask.webp"
+  },
+  {
+    "action": "Ancient ceremonial top",
+    "tag": "magic-gear",
+    "icon": "ceremonialtop.webp"
+  },
+  {
+    "action": "Ancient defender",
+    "tag": "melee-gear",
+    "icon": "ancientdefender.webp"
+  },
+  {
+    "action": "Ancient lantern",
+    "tag": "magic-gear",
+    "icon": "ancientlantern.webp"
+  },
+  {
+    "action": "Ancient repriser",
+    "tag": "ranged-gear",
+    "icon": "ancientrepriser.webp"
+  },
+  {
+    "action": "Anima core body of Seren",
+    "tag": "magic-gear",
+    "icon": "animabodyseren.webp"
+  },
+  {
+    "action": "Anima core body of Zamorak",
+    "tag": "ranged-gear",
+    "icon": "animabodyzamorak.webp"
+  },
+  {
+    "action": "Anima core body of Zaros",
+    "tag": "melee-gear",
+    "icon": "animabodyzaros.webp"
+  },
+  {
+    "action": "Anima core helm of Seren",
+    "tag": "magic-gear",
+    "icon": "animahelmseren.webp"
+  },
+  {
+    "action": "Anima core helm of Zamorak",
+    "tag": "ranged-gear",
+    "icon": "animahelmzam.webp"
+  },
+  {
+    "action": "Anima core helm of Zaros",
+    "tag": "melee-gear",
+    "icon": "animahelmzaros.webp"
+  },
+  {
+    "action": "Anima core legs of Seren",
+    "tag": "magic-gear",
+    "icon": "animalegsseren.webp"
+  },
+  {
+    "action": "Anima core legs of Zamorak",
+    "tag": "ranged-gear",
+    "icon": "animalegsamorak.webp"
+  },
+  {
+    "action": "Anima core legs of Zaros",
+    "tag": "melee-gear",
+    "icon": "animalegszaros.webp"
+  },
+  {
+    "action": "Animate dead",
+    "tag": "magic",
+    "icon": "animatedead.webp"
+  },
+  {
+    "action": "Annihilation",
+    "tag": "melee-gear",
+    "icon": "annihilation.webp"
+  },
+  {
+    "action": "Anticipate",
+    "tag": "defence",
+    "icon": "anti.webp"
+  },
+  {
+    "action": "Anticipate clear headed",
+    "tag": "defence",
+    "icon": "anticlearheaded.webp"
+  },
+  {
+    "action": "Anticipate reflexes",
+    "tag": "defence",
+    "icon": "antireflexes.webp"
+  },
+  {
+    "action": "Antitheism",
+    "tag": "perk",
+    "icon": "antitheism.webp"
+  },
+  {
+    "action": "Araxyte arrow",
+    "tag": "ranged-gear",
+    "icon": "raxarrow.webp"
+  },
+  {
+    "action": "Arcane blood necklace",
+    "tag": "magic-gear",
+    "icon": "arcanebloodnecklace.webp"
+  },
+  {
+    "action": "Arcane spirit shield",
+    "tag": "magic-gear",
+    "icon": "arcanespiritshield.webp"
+  },
+  {
+    "action": "Armadyl battlestaff",
+    "tag": "magic-gear",
+    "icon": "armadylbattlestaff.webp"
+  },
+  {
+    "action": "Armadyl chainskirt",
+    "tag": "ranged-gear",
+    "icon": "armadyllegs.webp"
+  },
+  {
+    "action": "Armadyl chestplate",
+    "tag": "ranged-gear",
+    "icon": "armaplate.webp"
+  },
+  {
+    "action": "Armadyl crossbow",
+    "tag": "ranged-gear",
+    "icon": "acbmh.webp"
+  },
+  {
+    "action": "Armadyl gloves",
+    "tag": "ranged-gear",
+    "icon": "armagloves.webp"
+  },
+  {
+    "action": "Armadyl godsword",
+    "tag": "melee-gear",
+    "icon": "armagodsword.webp"
+  },
+  {
+    "action": "Armadyl helmet",
+    "tag": "ranged-gear",
+    "icon": "armadylhelmet.webp"
+  },
+  {
+    "action": "Armour spikes",
+    "tag": "melee-gear",
+    "icon": "armourspike.webp"
+  },
+  {
+    "action": "Armour spikes (alloy)",
+    "tag": "melee-gear",
+    "icon": "armourspikealloy.webp"
+  },
+  {
+    "action": "Ascendri bolts",
+    "tag": "ranged-gear",
+    "icon": "ascendribolt.webp"
+  },
+  {
+    "action": "Ascension crossbow",
+    "tag": "ranged-gear",
+    "icon": "ascmh.webp"
+  },
+  {
+    "action": "Ascension grips",
+    "tag": "ranged-gear",
+    "icon": "ascgrips.webp"
+  },
+  {
+    "action": "Asphyxiate",
+    "tag": "magic",
+    "icon": "asphyx.webp"
+  },
+  {
+    "action": "Assault",
+    "tag": "melee",
+    "icon": "assault.webp"
+  },
+  {
+    "action": "Astral rune",
+    "tag": "magic-gear",
+    "icon": "astralrune.webp"
+  },
+  {
+    "action": "Attack",
+    "tag": "melee",
+    "icon": "attack.webp"
+  },
+  {
+    "action": "Attuned crystal bow",
+    "tag": "ranged-gear",
+    "icon": "attunedcrystalbow.webp"
+  },
+  {
+    "action": "Attuned crystal dagger",
+    "tag": "melee-gear",
+    "icon": "attunedcrystaldagger.webp"
+  },
+  {
+    "action": "Attuned crystal halberd",
+    "tag": "melee-gear",
+    "icon": "attunedcrystalhalberd.webp"
+  },
+  {
+    "action": "Attuned crystal orb",
+    "tag": "magic-gear",
+    "icon": "attunedcrystalorb.webp"
+  },
+  {
+    "action": "Attuned crystal staff",
+    "tag": "magic-gear",
+    "icon": "attunedcrystalstaff.webp"
+  },
+  {
+    "action": "Attuned crystal wand",
+    "tag": "magic-gear",
+    "icon": "attunedcrystalwand.webp"
+  },
+  {
+    "action": "Augmented torva platebody",
+    "tag": "melee-gear",
+    "icon": "torvaplatebody.webp"
+  },
+  {
+    "action": "Backhand",
+    "tag": "melee",
+    "icon": "backhand.webp"
+  },
+  {
+    "action": "Backhand flank",
+    "tag": "melee",
+    "icon": "backhandflank.webp"
+  },
+  {
+    "action": "Balanced strike",
+    "tag": "melee",
+    "icon": "balancedstrike.webp"
+  },
+  {
+    "action": "Bandos boots",
+    "tag": "melee-gear",
+    "icon": "bandosboots.webp"
+  },
+  {
+    "action": "Bandos chestplate",
+    "tag": "melee-gear",
+    "icon": "bandoschest.webp"
+  },
+  {
+    "action": "Bandos gloves",
+    "tag": "melee-gear",
+    "icon": "bandosgloves.webp"
+  },
+  {
+    "action": "Bandos godsword",
+    "tag": "melee-gear",
+    "icon": "bandosgodsword.webp"
+  },
+  {
+    "action": "Bandos helmet",
+    "tag": "melee-gear",
+    "icon": "bandoshelm.webp"
+  },
+  {
+    "action": "Bandos tassets",
+    "tag": "melee-gear",
+    "icon": "bandostassets.webp"
+  },
+  {
+    "action": "Bane 2h sword",
+    "tag": "melee-gear",
+    "icon": "bane2h.webp"
+  },
+  {
+    "action": "Bane longsword",
+    "tag": "melee-gear",
+    "icon": "banelongswordmh.webp"
+  },
+  {
+    "action": "Barge",
+    "tag": "melee",
+    "icon": "barge.webp"
+  },
+  {
+    "action": "Barrage (blood)",
+    "tag": "magic",
+    "icon": "bloodbarrage.webp"
+  },
+  {
+    "action": "Barrage (ice)",
+    "tag": "magic",
+    "icon": "icebarrage.webp"
+  },
+  {
+    "action": "Barrage (shadow)",
+    "tag": "magic",
+    "icon": "shadowbarrage.webp"
+  },
+  {
+    "action": "Barrage (smoke)",
+    "tag": "magic",
+    "icon": "smokebarrage.webp"
+  },
+  {
+    "action": "Barricade",
+    "tag": "defence",
+    "icon": "cade.webp"
+  },
+  {
+    "action": "Barricade turtling",
+    "tag": "defence",
+    "icon": "cadeturtling.webp"
+  },
+  {
+    "action": "Bash",
+    "tag": "defence",
+    "icon": "bash.webp"
+  },
+  {
+    "action": "Binding shot",
+    "tag": "ranged",
+    "icon": "bindingshot.webp"
+  },
+  {
+    "action": "Binding shot flank",
+    "tag": "ranged",
+    "icon": "bindingshotflank.webp"
+  },
+  {
+    "action": "Biting2",
+    "tag": "perk",
+    "icon": "biting2.webp"
+  },
+  {
+    "action": "Biting3",
+    "tag": "perk",
+    "icon": "b3.webp"
+  },
+  {
+    "action": "Biting4",
+    "tag": "perk",
+    "icon": "biting4.webp"
+  },
+  {
+    "action": "Black stone arrows",
+    "tag": "ranged-gear",
+    "icon": "blackstonearrow.webp"
+  },
+  {
+    "action": "Blade of Avaryss",
+    "tag": "melee-gear",
+    "icon": "avaryssblade.webp"
+  },
+  {
+    "action": "Blade of Nymora",
+    "tag": "melee-gear",
+    "icon": "nymorablade.webp"
+  },
+  {
+    "action": "Bladed dive",
+    "tag": "melee",
+    "icon": "bd.webp"
+  },
+  {
+    "action": "Bladed dive mobile",
+    "tag": "melee",
+    "icon": "bdmobile.webp"
+  },
+  {
+    "action": "Blast diffusion boots",
+    "tag": "magic-gear",
+    "icon": "blastdiffusion.webp"
+  },
+  {
+    "action": "Blight bolts",
+    "tag": "ranged-gear",
+    "icon": "blightbolt.webp"
+  },
+  {
+    "action": "Blightbound crossbow",
+    "tag": "ranged-gear",
+    "icon": "bbc.webp"
+  },
+  {
+    "action": "Blighted rebounder",
+    "tag": "magic-gear",
+    "icon": "blightedrebounder.webp"
+  },
+  {
+    "action": "Blitz (blood)",
+    "tag": "magic",
+    "icon": "bloodblitz.webp"
+  },
+  {
+    "action": "Blitz (ice)",
+    "tag": "magic",
+    "icon": "iceblitz.webp"
+  },
+  {
+    "action": "Bloat",
+    "tag": "necromancy",
+    "icon": "bloat.webp"
+  },
+  {
+    "action": "Blood Siphon",
+    "tag": "necromancy",
+    "icon": "bloodsiphon.webp"
+  },
+  {
+    "action": "Blood rune",
+    "tag": "magic-gear",
+    "icon": "bloodrune.webp"
+  },
+  {
+    "action": "Blood tendrils",
+    "tag": "melee",
+    "icon": "bloodtendrils.webp"
+  },
+  {
+    "action": "Body rune",
+    "tag": "magic-gear",
+    "icon": "bodyrune.webp"
+  },
+  {
+    "action": "Bolas",
+    "tag": "ranged-gear",
+    "icon": "bolas.webp"
+  },
+  {
+    "action": "Bombard",
+    "tag": "ranged",
+    "icon": "bombard.webp"
+  },
+  {
+    "action": "Bone blowpipe",
+    "tag": "ranged-gear",
+    "icon": "boneblowpipe.webp"
+  },
+  {
+    "action": "Bone rune",
+    "tag": "necromancy-gear",
+    "icon": "bonerune.webp"
+  },
+  {
+    "action": "Boots of Tumeken's resplendence",
+    "tag": "magic-gear",
+    "icon": "tumekenboots.webp"
+  },
+  {
+    "action": "Boots of subjugation",
+    "tag": "magic-gear",
+    "icon": "bootsofsubjugation.webp"
+  },
+  {
+    "action": "Borrowed power",
+    "tag": "magic",
+    "icon": "borrowedpower.webp"
+  },
+  {
+    "action": "Bow of the Last Guardian",
+    "tag": "ranged-gear",
+    "icon": "bolg.webp"
+  },
+  {
+    "action": "Brawler's blood necklace",
+    "tag": "melee-gear",
+    "icon": "brawlersbloodnecklace.webp"
+  },
+  {
+    "action": "Bulwark",
+    "tag": "perk",
+    "icon": "bulwark.webp"
+  },
+  {
+    "action": "Bulwark4",
+    "tag": "perk",
+    "icon": "bulwark4.webp"
+  },
+  {
+    "action": "Burst (blood)",
+    "tag": "magic",
+    "icon": "bloodburst.webp"
+  },
+  {
+    "action": "Burst (ice)",
+    "tag": "magic",
+    "icon": "iceburst.webp"
+  },
+  {
+    "action": "Burst (shadow)",
+    "tag": "magic",
+    "icon": "shadowburst.webp"
+  },
+  {
+    "action": "Burst (smoke)",
+    "tag": "magic",
+    "icon": "smokeburst.webp"
+  },
+  {
+    "action": "Camel staff",
+    "tag": "magic-gear",
+    "icon": "camelstaff.webp"
+  },
+  {
+    "action": "Caroming1",
+    "tag": "perk",
+    "icon": "caroming1.webp"
+  },
+  {
+    "action": "Caroming2",
+    "tag": "perk",
+    "icon": "caroming2.webp"
+  },
+  {
+    "action": "Caroming4",
+    "tag": "perk",
+    "icon": "caroming4.webp"
+  },
+  {
+    "action": "Cease",
+    "tag": "defence",
+    "icon": "cease.webp"
+  },
+  {
+    "action": "Celestial handwraps",
+    "tag": "magic-gear",
+    "icon": "celestialhandwraps.webp"
+  },
+  {
+    "action": "Chain (caroming)",
+    "tag": "magic",
+    "icon": "chaincaroming.webp"
+  },
+  {
+    "action": "Chaos Roar ability codex",
+    "tag": "unlockable",
+    "icon": "chaosroarcodex.webp"
+  },
+  {
+    "action": "Chaos rune",
+    "tag": "magic-gear",
+    "icon": "chaosrune.webp"
+  },
+  {
+    "action": "Chaotic claw",
+    "tag": "melee-gear",
+    "icon": "chaoticclawmh.webp"
+  },
+  {
+    "action": "Chaotic crossbow",
+    "tag": "ranged-gear",
+    "icon": "chaoticcbowmh.webp"
+  },
+  {
+    "action": "Chaotic staff",
+    "tag": "magic-gear",
+    "icon": "chaoticstaff.webp"
+  },
+  {
+    "action": "City of Um Teleport",
+    "tag": "necromancy",
+    "icon": "umtele.webp"
+  },
+  {
+    "action": "Clear headed",
+    "tag": "perk",
+    "icon": "clearheaded.webp"
+  },
+  {
+    "action": "Clear headed4",
+    "tag": "perk",
+    "icon": "ch4.webp"
+  },
+  {
+    "action": "Cleave",
+    "tag": "melee",
+    "icon": "cleave.webp"
+  },
+  {
+    "action": "Codex of lost knowledge",
+    "tag": "unlockable",
+    "icon": "lostknowledgecodex.webp"
+  },
+  {
+    "action": "Combust (lunging)",
+    "tag": "magic",
+    "icon": "combustlunging.webp"
+  },
+  {
+    "action": "Command Armoured Phantom",
+    "tag": "necromancy",
+    "icon": "commandphantom.webp"
+  },
+  {
+    "action": "Command Putrid Zombie",
+    "tag": "necromancy",
+    "icon": "commandzombie.webp"
+  },
+  {
+    "action": "Command Skeleton Warrior",
+    "tag": "necromancy",
+    "icon": "commandskeleton.webp"
+  },
+  {
+    "action": "Command Vengeful Ghost",
+    "tag": "necromancy",
+    "icon": "commandghost.webp"
+  },
+  {
+    "action": "Conjure Armoured Phantom",
+    "tag": "necromancy",
+    "icon": "conjurephantom.webp"
+  },
+  {
+    "action": "Conjure Putrid Zombie",
+    "tag": "necromancy",
+    "icon": "conjurezombie.webp"
+  },
+  {
+    "action": "Conjure Skeleton Warrior",
+    "tag": "necromancy",
+    "icon": "conjureskeleton.webp"
+  },
+  {
+    "action": "Conjure Undead Army",
+    "tag": "necromancy",
+    "icon": "conjurearmy.webp"
+  },
+  {
+    "action": "Conjure Vengeful Ghost",
+    "tag": "necromancy",
+    "icon": "conjureghost.webp"
+  },
+  {
+    "action": "Consecrated keris",
+    "tag": "melee-gear",
+    "icon": "consecratedkeris.webp"
+  },
+  {
+    "action": "Constitution",
+    "tag": "defence",
+    "icon": "constitution.webp"
+  },
+  {
+    "action": "Corrupted defender",
+    "tag": "melee-gear",
+    "icon": "corrupteddefender.webp"
+  },
+  {
+    "action": "Corruption shot",
+    "tag": "ranged",
+    "icon": "corruptshot.webp"
+  },
+  {
+    "action": "Cosmic rune",
+    "tag": "magic-gear",
+    "icon": "cosmicrune.webp"
+  },
+  {
+    "action": "Crackling4",
+    "tag": "perk",
+    "icon": "crack4.webp"
+  },
+  {
+    "action": "Crown of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "firstnecrocrown.webp"
+  },
+  {
+    "action": "Crumble Undead",
+    "tag": "magic",
+    "icon": "crumbleundead.webp"
+  },
+  {
+    "action": "Cryptbloom boots",
+    "tag": "magic-gear",
+    "icon": "cryptbloomboots.webp"
+  },
+  {
+    "action": "Cryptbloom bottoms",
+    "tag": "magic-gear",
+    "icon": "cryptbloombottoms.webp"
+  },
+  {
+    "action": "Cryptbloom gloves",
+    "tag": "magic-gear",
+    "icon": "cryptbloomgloves.webp"
+  },
+  {
+    "action": "Cryptbloom helm",
+    "tag": "magic-gear",
+    "icon": "cryptbloomhelm.webp"
+  },
+  {
+    "action": "Cryptbloom top",
+    "tag": "magic-gear",
+    "icon": "cryptbloomtop.webp"
+  },
+  {
+    "action": "Crystal Mask",
+    "tag": "magic",
+    "icon": "crystalmask.webp"
+  },
+  {
+    "action": "Crystal bow",
+    "tag": "ranged-gear",
+    "icon": "crystalbow.webp"
+  },
+  {
+    "action": "Crystal dagger",
+    "tag": "melee-gear",
+    "icon": "crystaldaggermh.webp"
+  },
+  {
+    "action": "Crystal halberd",
+    "tag": "melee-gear",
+    "icon": "crystalhalberd.webp"
+  },
+  {
+    "action": "Crystal orb",
+    "tag": "magic-gear",
+    "icon": "crystalorb.webp"
+  },
+  {
+    "action": "Crystal shield1",
+    "tag": "perk",
+    "icon": "cs1.webp"
+  },
+  {
+    "action": "Crystal shield4",
+    "tag": "perk",
+    "icon": "crystalshield4.webp"
+  },
+  {
+    "action": "Crystal staff",
+    "tag": "magic-gear",
+    "icon": "crystalstaff.webp"
+  },
+  {
+    "action": "Crystal wand",
+    "tag": "magic-gear",
+    "icon": "crystalwand.webp"
+  },
+  {
+    "action": "Dark Shard of Leng",
+    "tag": "melee-gear",
+    "icon": "lengmh.webp"
+  },
+  {
+    "action": "Dark Sliver of Leng",
+    "tag": "melee-gear",
+    "icon": "lengoh.webp"
+  },
+  {
+    "action": "Dark bow",
+    "tag": "ranged-gear",
+    "icon": "dbow.webp"
+  },
+  {
+    "action": "Dark ice shard",
+    "tag": "melee-gear",
+    "icon": "darkiceshard.webp"
+  },
+  {
+    "action": "Dark ice sliver",
+    "tag": "melee-gear",
+    "icon": "darkicesliver.webp"
+  },
+  {
+    "action": "Darklight",
+    "tag": "melee-gear",
+    "icon": "darklight.webp"
+  },
+  {
+    "action": "Darkness",
+    "tag": "necromancy",
+    "icon": "darkness.webp"
+  },
+  {
+    "action": "Dazing shot",
+    "tag": "ranged",
+    "icon": "dazing.webp"
+  },
+  {
+    "action": "Deadshot (igneous)",
+    "tag": "ranged",
+    "icon": "deadshotigneous.webp"
+  },
+  {
+    "action": "Death Lotus chaps",
+    "tag": "ranged-gear",
+    "icon": "deathlotuschaps.webp"
+  },
+  {
+    "action": "Death Skulls",
+    "tag": "necromancy",
+    "icon": "deathskulls.webp"
+  },
+  {
+    "action": "Death Spark",
+    "tag": "necromancy",
+    "icon": "deathspark.webp"
+  },
+  {
+    "action": "Death Spark (charging)",
+    "tag": "necromancy",
+    "icon": "deathspark2.webp"
+  },
+  {
+    "action": "Death guard (tier 60)",
+    "tag": "necromancy-gear",
+    "icon": "deathguard60.webp"
+  },
+  {
+    "action": "Death guard (tier 70)",
+    "tag": "necromancy-gear",
+    "icon": "deathguard70.webp"
+  },
+  {
+    "action": "Death guard (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "deathguard80.webp"
+  },
+  {
+    "action": "Death guard (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "deathguard90.webp"
+  },
+  {
+    "action": "Death lotus chestplate",
+    "tag": "ranged-gear",
+    "icon": "deathlotus.webp"
+  },
+  {
+    "action": "Death lotus hood",
+    "tag": "ranged-gear",
+    "icon": "deathlotushood.webp"
+  },
+  {
+    "action": "Death rune",
+    "tag": "magic-gear",
+    "icon": "deathrune.webp"
+  },
+  {
+    "action": "Deathdealer boots (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "dealerboots80.webp"
+  },
+  {
+    "action": "Deathdealer gloves (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "dealergloves80.webp"
+  },
+  {
+    "action": "Deathdealer hood (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "dealerhood80.webp"
+  },
+  {
+    "action": "Deathdealer robe bottom (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "dealerlegs80.webp"
+  },
+  {
+    "action": "Deathdealer robe top (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "dealertop80.webp"
+  },
+  {
+    "action": "Deathspore arrows",
+    "tag": "ranged-gear",
+    "icon": "deathsporearrows.webp"
+  },
+  {
+    "action": "Deathwarden Nexus",
+    "tag": "necromancy-gear",
+    "icon": "deathwardennexus.webp"
+  },
+  {
+    "action": "Deathwarden boots (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "wardenboots80.webp"
+  },
+  {
+    "action": "Deathwarden boots (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "wardenboots90.webp"
+  },
+  {
+    "action": "Deathwarden gloves (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "wardengloves80.webp"
+  },
+  {
+    "action": "Deathwarden gloves (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "wardengloves90.webp"
+  },
+  {
+    "action": "Deathwarden hood (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "wardenhood80.webp"
+  },
+  {
+    "action": "Deathwarden hood (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "wardenhood90.webp"
+  },
+  {
+    "action": "Deathwarden robe bottom (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "wardenlegs80.webp"
+  },
+  {
+    "action": "Deathwarden robe bottom (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "wardenlegs90.webp"
+  },
+  {
+    "action": "Deathwarden robe top (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "wardentop80.webp"
+  },
+  {
+    "action": "Deathwarden robe top (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "wardentop90.webp"
+  },
+  {
+    "action": "Debilitate",
+    "tag": "defence",
+    "icon": "debil.webp"
+  },
+  {
+    "action": "Decay",
+    "tag": "necromancy",
+    "icon": "decay.webp"
+  },
+  {
+    "action": "Decimation",
+    "tag": "ranged-gear",
+    "icon": "decimation.webp"
+  },
+  {
+    "action": "Deep impact",
+    "tag": "magic",
+    "icon": "deep.webp"
+  },
+  {
+    "action": "Deep impact flank",
+    "tag": "magic",
+    "icon": "deepimpactflank.webp"
+  },
+  {
+    "action": "Defence",
+    "tag": "defence",
+    "icon": "defence.webp"
+  },
+  {
+    "action": "Deflect Necromancy",
+    "tag": "necromancy",
+    "icon": "deflectnecromancy.webp"
+  },
+  {
+    "action": "Demon Slayer ability codex",
+    "tag": "unlockable",
+    "icon": "demonslayercodex.webp"
+  },
+  {
+    "action": "Demon slayer (perk)",
+    "tag": "perk",
+    "icon": "demonslayerperk.webp"
+  },
+  {
+    "action": "Demon slayer ability",
+    "tag": "defence",
+    "icon": "demonslayer.webp"
+  },
+  {
+    "action": "Demoralise",
+    "tag": "ranged",
+    "icon": "demoralise.webp"
+  },
+  {
+    "action": "Destroy",
+    "tag": "melee",
+    "icon": "destroy.webp"
+  },
+  {
+    "action": "Detonate",
+    "tag": "magic",
+    "icon": "deto.webp"
+  },
+  {
+    "action": "Devoted2",
+    "tag": "perk",
+    "icon": "dev2.webp"
+  },
+  {
+    "action": "Devoted3",
+    "tag": "perk",
+    "icon": "dev3.webp"
+  },
+  {
+    "action": "Devoted4",
+    "tag": "perk",
+    "icon": "dev4.webp"
+  },
+  {
+    "action": "Devotion",
+    "tag": "defence",
+    "icon": "devo.webp"
+  },
+  {
+    "action": "Devourer's Guard",
+    "tag": "necromancy-gear",
+    "icon": "devourersguard.webp"
+  },
+  {
+    "action": "Dharok's greataxe",
+    "tag": "melee-gear",
+    "icon": "dharokaxe.webp"
+  },
+  {
+    "action": "Dharok's platebody",
+    "tag": "melee-gear",
+    "icon": "dharokbody.webp"
+  },
+  {
+    "action": "Disruption shield",
+    "tag": "magic",
+    "icon": "disrupt.webp"
+  },
+  {
+    "action": "Dive",
+    "tag": "melee",
+    "icon": "dive.webp"
+  },
+  {
+    "action": "Dive (mobile)",
+    "tag": "melee",
+    "icon": "divemobile.webp"
+  },
+  {
+    "action": "Divert",
+    "tag": "defence",
+    "icon": "divert.webp"
+  },
+  {
+    "action": "Divert codex",
+    "tag": "unlockable",
+    "icon": "divertcodex.webp"
+  },
+  {
+    "action": "Divine Rage prayer codex",
+    "tag": "unlockable",
+    "icon": "divineragecodex.webp"
+  },
+  {
+    "action": "Divine spirit shield",
+    "tag": "melee-gear",
+    "icon": "divinespiritshield.webp"
+  },
+  {
+    "action": "Double Escape codex",
+    "tag": "unlockable",
+    "icon": "escapecodex.webp"
+  },
+  {
+    "action": "Double Surge codex",
+    "tag": "unlockable",
+    "icon": "surgecodex.webp"
+  },
+  {
+    "action": "Dracolich Body",
+    "tag": "ranged-gear",
+    "icon": "dracolichbody.webp"
+  },
+  {
+    "action": "Dracolich Boots",
+    "tag": "ranged-gear",
+    "icon": "dracolichboots.webp"
+  },
+  {
+    "action": "Dracolich Chaps",
+    "tag": "ranged-gear",
+    "icon": "dracolichchaps.webp"
+  },
+  {
+    "action": "Dracolich Coif",
+    "tag": "ranged-gear",
+    "icon": "dracolichcoif.webp"
+  },
+  {
+    "action": "Dracolich Gloves",
+    "tag": "ranged-gear",
+    "icon": "dracolichgloves.webp"
+  },
+  {
+    "action": "Dragon 2h sword",
+    "tag": "melee-gear",
+    "icon": "dragon2hsword.webp"
+  },
+  {
+    "action": "Dragon Rider Lance",
+    "tag": "melee-gear",
+    "icon": "dragonriderlance.webp"
+  },
+  {
+    "action": "Dragon Slayer ability codex",
+    "tag": "unlockable",
+    "icon": "dragonslayercodex.webp"
+  },
+  {
+    "action": "Dragon battleaxe",
+    "tag": "melee-gear",
+    "icon": "dba.webp"
+  },
+  {
+    "action": "Dragon breath",
+    "tag": "magic",
+    "icon": "dbreath.webp"
+  },
+  {
+    "action": "Dragon claw",
+    "tag": "melee-gear",
+    "icon": "dragonclaw.webp"
+  },
+  {
+    "action": "Dragon dagger",
+    "tag": "melee-gear",
+    "icon": "dragondagger.webp"
+  },
+  {
+    "action": "Dragon halberd",
+    "tag": "melee-gear",
+    "icon": "dragonhalberd.webp"
+  },
+  {
+    "action": "Dragon hatchet",
+    "tag": "melee-gear",
+    "icon": "dhatchet.webp"
+  },
+  {
+    "action": "Dragon longsword",
+    "tag": "melee-gear",
+    "icon": "dragonlongsword.webp"
+  },
+  {
+    "action": "Dragon mace",
+    "tag": "melee-gear",
+    "icon": "dragonmace.webp"
+  },
+  {
+    "action": "Dragon scimitar",
+    "tag": "melee-gear",
+    "icon": "dragonscimitar.webp"
+  },
+  {
+    "action": "Dragon slayer (perk)",
+    "tag": "perk",
+    "icon": "dragonslayerperk.webp"
+  },
+  {
+    "action": "Dragon slayer ability",
+    "tag": "defence",
+    "icon": "dragonslayer.webp"
+  },
+  {
+    "action": "Drygore longsword",
+    "tag": "melee-gear",
+    "icon": "drygorelongmh.webp"
+  },
+  {
+    "action": "Drygore mace",
+    "tag": "melee-gear",
+    "icon": "augdrygoremacemh.webp"
+  },
+  {
+    "action": "Drygore rapier",
+    "tag": "melee-gear",
+    "icon": "drygorerapiermh.webp"
+  },
+  {
+    "action": "Dust rune",
+    "tag": "magic-gear",
+    "icon": "dustrune.webp"
+  },
+  {
+    "action": "Earth rune",
+    "tag": "magic-gear",
+    "icon": "earthrune.webp"
+  },
+  {
+    "action": "Eat Food",
+    "tag": "defence",
+    "icon": "eatfood.webp"
+  },
+  {
+    "action": "Ectoplasm",
+    "tag": "necromancy-gear",
+    "icon": "ectoplasm.webp"
+  },
+  {
+    "action": "Ek-ZekKil",
+    "tag": "melee-gear",
+    "icon": "ezk.webp"
+  },
+  {
+    "action": "Elder rune full helm +5",
+    "tag": "melee-gear",
+    "icon": "elderrunehelm5.webp"
+  },
+  {
+    "action": "Elder rune gauntlets +5",
+    "tag": "melee-gear",
+    "icon": "elderrunegauntlets5.webp"
+  },
+  {
+    "action": "Elder rune platelegs",
+    "tag": "melee-gear",
+    "icon": "elderruneplatelegs.webp"
+  },
+  {
+    "action": "Elder rune round shield",
+    "tag": "melee-gear",
+    "icon": "elderruneshield.webp"
+  },
+  {
+    "action": "Eldritch crossbow",
+    "tag": "ranged-gear",
+    "icon": "ecb.webp"
+  },
+  {
+    "action": "Elite Dracolich Body",
+    "tag": "ranged-gear",
+    "icon": "edracobody.webp"
+  },
+  {
+    "action": "Elite Dracolich Boots",
+    "tag": "ranged-gear",
+    "icon": "edracoboots.webp"
+  },
+  {
+    "action": "Elite Dracolich Chaps",
+    "tag": "ranged-gear",
+    "icon": "edracochaps.webp"
+  },
+  {
+    "action": "Elite Dracolich Coif",
+    "tag": "ranged-gear",
+    "icon": "edracocoif.webp"
+  },
+  {
+    "action": "Elite Dracolich Gloves",
+    "tag": "ranged-gear",
+    "icon": "edracogloves.webp"
+  },
+  {
+    "action": "Elite Robin Hood hat",
+    "tag": "ranged-gear",
+    "icon": "eliterobinhoodhat.webp"
+  },
+  {
+    "action": "Elite Robin Hood tights",
+    "tag": "ranged-gear",
+    "icon": "eliterobinhoodlegs.webp"
+  },
+  {
+    "action": "Elite ranger boots",
+    "tag": "ranged-gear",
+    "icon": "eliterangerboots.webp"
+  },
+  {
+    "action": "Elite robin hood tunic",
+    "tag": "ranged-gear",
+    "icon": "eliterobinhoodtop.webp"
+  },
+  {
+    "action": "Elite seasinger kiba",
+    "tag": "magic-gear",
+    "icon": "eliteseasingerwand.webp"
+  },
+  {
+    "action": "Elite seasinger makigai",
+    "tag": "magic-gear",
+    "icon": "eliteseasingerorb.webp"
+  },
+  {
+    "action": "Elite sirenic chaps",
+    "tag": "ranged-gear",
+    "icon": "elitesireniclegs.webp"
+  },
+  {
+    "action": "Elite sirenic hauberk",
+    "tag": "ranged-gear",
+    "icon": "elitesirenicbody.webp"
+  },
+  {
+    "action": "Elite sirenic mask",
+    "tag": "ranged-gear",
+    "icon": "elitesirenicmask.webp"
+  },
+  {
+    "action": "Elite tectonic mask",
+    "tag": "magic-gear",
+    "icon": "elitetectmask.webp"
+  },
+  {
+    "action": "Elite tectonic robe bottom",
+    "tag": "magic-gear",
+    "icon": "elitetectlegs.webp"
+  },
+  {
+    "action": "Elite tectonic robe top",
+    "tag": "magic-gear",
+    "icon": "elitetectbody.webp"
+  },
+  {
+    "action": "Elite tetsu katana",
+    "tag": "melee-gear",
+    "icon": "elitetetsumh.webp"
+  },
+  {
+    "action": "Elite tetsu wakizashi",
+    "tag": "melee-gear",
+    "icon": "elitetetsuoh.webp"
+  },
+  {
+    "action": "Elysian spirit shield",
+    "tag": "ranged-gear",
+    "icon": "elysianspiritshield.webp"
+  },
+  {
+    "action": "Emberkeen boots",
+    "tag": "melee-gear",
+    "icon": "emberkeen.webp"
+  },
+  {
+    "action": "Emerald Aurora",
+    "tag": "magic",
+    "icon": "emeraldaurora.webp"
+  },
+  {
+    "action": "Energising",
+    "tag": "perk",
+    "icon": "energising.webp"
+  },
+  {
+    "action": "Energising2",
+    "tag": "perk",
+    "icon": "energising2.webp"
+  },
+  {
+    "action": "Energising4",
+    "tag": "perk",
+    "icon": "energising4.webp"
+  },
+  {
+    "action": "Enfeeble",
+    "tag": "magic",
+    "icon": "enfeeble.webp"
+  },
+  {
+    "action": "Enhanced devoted4",
+    "tag": "perk",
+    "icon": "enhdev4.webp"
+  },
+  {
+    "action": "Enhanced excalibur",
+    "tag": "melee-gear",
+    "icon": "enhancedexcalibur.webp"
+  },
+  {
+    "action": "Entangle",
+    "tag": "magic",
+    "icon": "ent.webp"
+  },
+  {
+    "action": "Equilibrium cooldown",
+    "tag": "perk",
+    "icon": "equilibriumcooldown.webp"
+  },
+  {
+    "action": "Equilibrium2",
+    "tag": "perk",
+    "icon": "eq2.webp"
+  },
+  {
+    "action": "Equilibrium4",
+    "tag": "perk",
+    "icon": "eq4.webp"
+  },
+  {
+    "action": "Equillibrium",
+    "tag": "perk",
+    "icon": "equilibrium.webp"
+  },
+  {
+    "action": "Equillibrium1",
+    "tag": "perk",
+    "icon": "eq1.webp"
+  },
+  {
+    "action": "Eruptive",
+    "tag": "perk",
+    "icon": "eruptive.webp"
+  },
+  {
+    "action": "Eruptive2",
+    "tag": "perk",
+    "icon": "eruptive2.webp"
+  },
+  {
+    "action": "Eruptive4",
+    "tag": "perk",
+    "icon": "eruptive4.webp"
+  },
+  {
+    "action": "Escape",
+    "tag": "ranged",
+    "icon": "escape.webp"
+  },
+  {
+    "action": "Escape mobile",
+    "tag": "ranged",
+    "icon": "escapemobile.webp"
+  },
+  {
+    "action": "Essence of Finality (Ability)",
+    "tag": "defence",
+    "icon": "eofspec.webp"
+  },
+  {
+    "action": "Exsanguinate",
+    "tag": "magic",
+    "icon": "exsanguinate.webp"
+  },
+  {
+    "action": "Farsight blood necklace",
+    "tag": "ranged-gear",
+    "icon": "farsightbloodnecklace.webp"
+  },
+  {
+    "action": "Finger of Death",
+    "tag": "necromancy",
+    "icon": "fingerofdeath.webp"
+  },
+  {
+    "action": "Fire cape",
+    "tag": "melee-gear",
+    "icon": "firecape.webp"
+  },
+  {
+    "action": "Fire rune",
+    "tag": "magic-gear",
+    "icon": "firerune.webp"
+  },
+  {
+    "action": "Flanking icon",
+    "tag": "perk",
+    "icon": "flankicon.webp"
+  },
+  {
+    "action": "Flanking4",
+    "tag": "perk",
+    "icon": "flank4.webp"
+  },
+  {
+    "action": "Flarefrost boots",
+    "tag": "ranged-gear",
+    "icon": "flarefrost.webp"
+  },
+  {
+    "action": "Fleeting boots",
+    "tag": "ranged-gear",
+    "icon": "fleetingboots.webp"
+  },
+  {
+    "action": "Flesh rune",
+    "tag": "necromancy-gear",
+    "icon": "fleshrune.webp"
+  },
+  {
+    "action": "Flurry",
+    "tag": "melee",
+    "icon": "flurry.webp"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "firstnecroboots.webp"
+  },
+  {
+    "action": "Forceful backhand",
+    "tag": "melee",
+    "icon": "fbackhand.webp"
+  },
+  {
+    "action": "Forceful backhand flank",
+    "tag": "melee",
+    "icon": "fbackhandflank.webp"
+  },
+  {
+    "action": "Fractured Staff of Armadyl",
+    "tag": "magic-gear",
+    "icon": "fsoa.webp"
+  },
+  {
+    "action": "Fragmentation shot",
+    "tag": "ranged",
+    "icon": "frag.webp"
+  },
+  {
+    "action": "Fragmentation shot lunge",
+    "tag": "ranged",
+    "icon": "fragshotlunge.webp"
+  },
+  {
+    "action": "Freedom",
+    "tag": "defence",
+    "icon": "freedom.webp"
+  },
+  {
+    "action": "Frenzy",
+    "tag": "melee",
+    "icon": "frenzy.webp"
+  },
+  {
+    "action": "Fury",
+    "tag": "melee",
+    "icon": "fury.webp"
+  },
+  {
+    "action": "Ganodermic boots",
+    "tag": "magic-gear",
+    "icon": "ganoboots.webp"
+  },
+  {
+    "action": "Ganodermic gloves",
+    "tag": "magic-gear",
+    "icon": "ganogloves.webp"
+  },
+  {
+    "action": "Ganodermic leggings",
+    "tag": "magic-gear",
+    "icon": "ganolegs.webp"
+  },
+  {
+    "action": "Ganodermic poncho",
+    "tag": "magic-gear",
+    "icon": "ganobody.webp"
+  },
+  {
+    "action": "Ganodermic visor",
+    "tag": "magic-gear",
+    "icon": "ganohelm.webp"
+  },
+  {
+    "action": "Garb of subjugation",
+    "tag": "magic-gear",
+    "icon": "subjgarb.webp"
+  },
+  {
+    "action": "Genocidal",
+    "tag": "perk",
+    "icon": "genocidal.webp"
+  },
+  {
+    "action": "Gloomfire bow",
+    "tag": "ranged-gear",
+    "icon": "gloomfirebow.webp"
+  },
+  {
+    "action": "Gloves of Passage",
+    "tag": "melee-gear",
+    "icon": "glovesofpassage.webp"
+  },
+  {
+    "action": "Gloves of Tumeken's resplendence",
+    "tag": "magic-gear",
+    "icon": "tumekengloves.webp"
+  },
+  {
+    "action": "Gloves of subjugation",
+    "tag": "magic-gear",
+    "icon": "glovesofsubjugation.webp"
+  },
+  {
+    "action": "Gown of Subjugation",
+    "tag": "magic-gear",
+    "icon": "gownofsubjugation.webp"
+  },
+  {
+    "action": "Granite maul",
+    "tag": "melee-gear",
+    "icon": "gmaul.webp"
+  },
+  {
+    "action": "Grasping rune pouch",
+    "tag": "magic-gear",
+    "icon": "graspingpouch.webp"
+  },
+  {
+    "action": "Grasping rune pouch (black)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchblack.webp"
+  },
+  {
+    "action": "Grasping rune pouch (blue)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchblue.webp"
+  },
+  {
+    "action": "Grasping rune pouch (green)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchgreen.webp"
+  },
+  {
+    "action": "Grasping rune pouch (orange)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchorange.webp"
+  },
+  {
+    "action": "Grasping rune pouch (pink)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchpink.webp"
+  },
+  {
+    "action": "Grasping rune pouch (purple)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchpurple.webp"
+  },
+  {
+    "action": "Grasping rune pouch (red)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchred.webp"
+  },
+  {
+    "action": "Grasping rune pouch (yellow)",
+    "tag": "magic-gear",
+    "icon": "graspingpouchyellow.webp"
+  },
+  {
+    "action": "Greater Barge ability codex",
+    "tag": "unlockable",
+    "icon": "gbargecodex.webp"
+  },
+  {
+    "action": "Greater Bone Shield",
+    "tag": "necromancy",
+    "icon": "greaterboneshield.webp"
+  },
+  {
+    "action": "Greater Chain (caroming)",
+    "tag": "magic",
+    "icon": "gchaincaroming.webp"
+  },
+  {
+    "action": "Greater Chain codex",
+    "tag": "unlockable",
+    "icon": "gchaincodex.webp"
+  },
+  {
+    "action": "Greater Concentrated blast ability codex",
+    "tag": "unlockable",
+    "icon": "gconccodex.webp"
+  },
+  {
+    "action": "Greater Death's Swiftness",
+    "tag": "ranged",
+    "icon": "gdeathsswift.webp"
+  },
+  {
+    "action": "Greater Death's Swiftness ability codex",
+    "tag": "unlockable",
+    "icon": "gdeathsswiftcodex.webp"
+  },
+  {
+    "action": "Greater Flurry ability codex",
+    "tag": "unlockable",
+    "icon": "gflurrycodex.webp"
+  },
+  {
+    "action": "Greater Fury",
+    "tag": "melee",
+    "icon": "gfury.webp"
+  },
+  {
+    "action": "Greater Fury codex",
+    "tag": "unlockable",
+    "icon": "furycodex.webp"
+  },
+  {
+    "action": "Greater Richochet ability codex",
+    "tag": "unlockable",
+    "icon": "gricocodex.webp"
+  },
+  {
+    "action": "Greater Sonic wave ability codex",
+    "tag": "unlockable",
+    "icon": "gsoniccodex.webp"
+  },
+  {
+    "action": "Greater Sunshine",
+    "tag": "magic",
+    "icon": "gsunshine.webp"
+  },
+  {
+    "action": "Greater Sunshine ability codex",
+    "tag": "unlockable",
+    "icon": "gsunshinecodex.webp"
+  },
+  {
+    "action": "Greater barge",
+    "tag": "melee",
+    "icon": "gbarge.webp"
+  },
+  {
+    "action": "Greater barge mobile",
+    "tag": "melee",
+    "icon": "gbargemobile.webp"
+  },
+  {
+    "action": "Greater dazing Shot",
+    "tag": "ranged",
+    "icon": "mds.webp"
+  },
+  {
+    "action": "Greater flurry",
+    "tag": "melee",
+    "icon": "gflurry.webp"
+  },
+  {
+    "action": "Greater ricochet",
+    "tag": "ranged",
+    "icon": "grico.webp"
+  },
+  {
+    "action": "Greater ricochet (swift gloves)",
+    "tag": "ranged",
+    "icon": "gricoswift.webp"
+  },
+  {
+    "action": "Greater ricochet caroming",
+    "tag": "ranged",
+    "icon": "gricocaroming.webp"
+  },
+  {
+    "action": "Guthix blessing",
+    "tag": "defence",
+    "icon": "guthixsblessing.webp"
+  },
+  {
+    "action": "Guthix staff",
+    "tag": "magic-gear",
+    "icon": "gstaff.webp"
+  },
+  {
+    "action": "Hailfire boots",
+    "tag": "magic-gear",
+    "icon": "hailfire.webp"
+  },
+  {
+    "action": "Hand cannon",
+    "tag": "ranged-gear",
+    "icon": "handcannon.webp"
+  },
+  {
+    "action": "Hand of Doom",
+    "tag": "necromancy",
+    "icon": "handofdoom.webp"
+  },
+  {
+    "action": "Hand of Fate",
+    "tag": "necromancy",
+    "icon": "handoffate.webp"
+  },
+  {
+    "action": "Hand of Judgement",
+    "tag": "necromancy",
+    "icon": "handofjudgement.webp"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "firstnecrohandwrap.webp"
+  },
+  {
+    "action": "Hastened Decay",
+    "tag": "necromancy",
+    "icon": "hasteneddecay.webp"
+  },
+  {
+    "action": "Haunted",
+    "tag": "necromancy",
+    "icon": "haunted.webp"
+  },
+  {
+    "action": "Havoc",
+    "tag": "melee",
+    "icon": "havoc.webp"
+  },
+  {
+    "action": "Havoc (Gloves of passage)",
+    "tag": "melee",
+    "icon": "havocgop.webp"
+  },
+  {
+    "action": "Heal Group",
+    "tag": "magic",
+    "icon": "healgroup.webp"
+  },
+  {
+    "action": "Heal other",
+    "tag": "magic",
+    "icon": "healother.webp"
+  },
+  {
+    "action": "Hexhunter bow",
+    "tag": "ranged-gear",
+    "icon": "hexhunterbow.webp"
+  },
+  {
+    "action": "High Level Alchemy",
+    "tag": "magic",
+    "icon": "highalch.webp"
+  },
+  {
+    "action": "Hoarding",
+    "tag": "perk",
+    "icon": "hoarding.webp"
+  },
+  {
+    "action": "Hood of subjugation",
+    "tag": "magic-gear",
+    "icon": "hoodofsubjugation.webp"
+  },
+  {
+    "action": "Horror",
+    "tag": "magic",
+    "icon": "horror.webp"
+  },
+  {
+    "action": "Hurricane",
+    "tag": "melee",
+    "icon": "cane.webp"
+  },
+  {
+    "action": "Ibans Staff",
+    "tag": "magic-gear",
+    "icon": "ibansstaff.webp"
+  },
+  {
+    "action": "Ice asylum",
+    "tag": "defence",
+    "icon": "iceasylum.webp"
+  },
+  {
+    "action": "Igneous Death Skulls",
+    "tag": "necromancy",
+    "icon": "deathskullsigneous.webp"
+  },
+  {
+    "action": "Igneous Kal-Ket",
+    "tag": "melee-gear",
+    "icon": "igneouskalket.webp"
+  },
+  {
+    "action": "Igneous Kal-Mej",
+    "tag": "magic-gear",
+    "icon": "igneouskalmej.webp"
+  },
+  {
+    "action": "Igneous Kal-Mor",
+    "tag": "necromancy-gear",
+    "icon": "igneouskalmor.webp"
+  },
+  {
+    "action": "Igneous Kal-Xil",
+    "tag": "ranged-gear",
+    "icon": "igneouskalxil.webp"
+  },
+  {
+    "action": "Immortality",
+    "tag": "defence",
+    "icon": "immort.webp"
+  },
+  {
+    "action": "Impact",
+    "tag": "magic",
+    "icon": "impact.webp"
+  },
+  {
+    "action": "Impact flank",
+    "tag": "magic",
+    "icon": "impactflank.webp"
+  },
+  {
+    "action": "Impatient icon",
+    "tag": "perk",
+    "icon": "impatient.webp"
+  },
+  {
+    "action": "Impatient4",
+    "tag": "perk",
+    "icon": "imp4.webp"
+  },
+  {
+    "action": "Imperium core",
+    "tag": "magic-gear",
+    "icon": "impercore.webp"
+  },
+  {
+    "action": "Incantations",
+    "tag": "necromancy",
+    "icon": "incantations.webp"
+  },
+  {
+    "action": "Incendiary shot",
+    "tag": "ranged",
+    "icon": "incend.webp"
+  },
+  {
+    "action": "Incite",
+    "tag": "defence",
+    "icon": "incite.webp"
+  },
+  {
+    "action": "Incite fear",
+    "tag": "magic",
+    "icon": "incitefear.webp"
+  },
+  {
+    "action": "Ingenuity of the Humans",
+    "tag": "defence",
+    "icon": "ingen.webp"
+  },
+  {
+    "action": "Ingenuity of the Humans ability codex",
+    "tag": "unlockable",
+    "icon": "ingencodex.webp"
+  },
+  {
+    "action": "Inquisitor staff",
+    "tag": "magic-gear",
+    "icon": "inquisitorstaff.webp"
+  },
+  {
+    "action": "Intercept",
+    "tag": "magic",
+    "icon": "cept.webp"
+  },
+  {
+    "action": "Invention",
+    "tag": "perk",
+    "icon": "invention.webp"
+  },
+  {
+    "action": "Invigorating",
+    "tag": "perk",
+    "icon": "invigorating.webp"
+  },
+  {
+    "action": "Invigorating1",
+    "tag": "perk",
+    "icon": "invig1.webp"
+  },
+  {
+    "action": "Invigorating2",
+    "tag": "perk",
+    "icon": "invig2.webp"
+  },
+  {
+    "action": "Invigorating3",
+    "tag": "perk",
+    "icon": "invig3.webp"
+  },
+  {
+    "action": "Invigorating4",
+    "tag": "perk",
+    "icon": "invig4.webp"
+  },
+  {
+    "action": "Invoke Death",
+    "tag": "necromancy",
+    "icon": "invokedeath.webp"
+  },
+  {
+    "action": "Invoke Lord of Bones",
+    "tag": "necromancy",
+    "icon": "invokelordofbones.webp"
+  },
+  {
+    "action": "Invoke Lord of Bones incantation codex",
+    "tag": "unlockable",
+    "icon": "invokelordofbonesdex.webp"
+  },
+  {
+    "action": "Jas demonbane arrow",
+    "tag": "ranged-gear",
+    "icon": "jasdemonbanearrow.webp"
+  },
+  {
+    "action": "Jas dragonbane arrow",
+    "tag": "ranged-gear",
+    "icon": "jasdragonbanearrow.webp"
+  },
+  {
+    "action": "Jaws of the Abyss",
+    "tag": "melee-gear",
+    "icon": "jawsoftheabyss.webp"
+  },
+  {
+    "action": "Kalphite defender",
+    "tag": "melee-gear",
+    "icon": "kalphitedefender.webp"
+  },
+  {
+    "action": "Kalphite rebounder",
+    "tag": "magic-gear",
+    "icon": "kalphiterebounder.webp"
+  },
+  {
+    "action": "Kalphite repriser",
+    "tag": "ranged-gear",
+    "icon": "kalphiterepriser.webp"
+  },
+  {
+    "action": "Karil's Off-hand pistol crossbow",
+    "tag": "ranged-gear",
+    "icon": "karilcbowoh.webp"
+  },
+  {
+    "action": "Karil's crossbow",
+    "tag": "ranged-gear",
+    "icon": "karilcbow2h.webp"
+  },
+  {
+    "action": "Karil's pistol crossbow",
+    "tag": "ranged-gear",
+    "icon": "karilcbowmh.webp"
+  },
+  {
+    "action": "Kerapac's wrist wraps",
+    "tag": "magic-gear",
+    "icon": "kerapacswristwraps.webp"
+  },
+  {
+    "action": "Keris",
+    "tag": "melee-gear",
+    "icon": "keris.webp"
+  },
+  {
+    "action": "Khopesh of elidinis",
+    "tag": "melee-gear",
+    "icon": "khopeshoh.webp"
+  },
+  {
+    "action": "Khopesh of tumeken",
+    "tag": "melee-gear",
+    "icon": "khopeshmh.webp"
+  },
+  {
+    "action": "Kick",
+    "tag": "melee",
+    "icon": "kick.webp"
+  },
+  {
+    "action": "Korasi's Sword",
+    "tag": "melee-gear",
+    "icon": "korasissword.webp"
+  },
+  {
+    "action": "Laceration boots",
+    "tag": "melee-gear",
+    "icon": "laceration.webp"
+  },
+  {
+    "action": "Laniakea's spear",
+    "tag": "melee-gear",
+    "icon": "lanispear.webp"
+  },
+  {
+    "action": "Large rune pouch",
+    "tag": "magic-gear",
+    "icon": "runepouch.webp"
+  },
+  {
+    "action": "Large rune pouch (black)",
+    "tag": "magic-gear",
+    "icon": "blackpouch.webp"
+  },
+  {
+    "action": "Large rune pouch (blue)",
+    "tag": "magic-gear",
+    "icon": "bluepouch.webp"
+  },
+  {
+    "action": "Large rune pouch (green)",
+    "tag": "magic-gear",
+    "icon": "greenpouch.webp"
+  },
+  {
+    "action": "Large rune pouch (orange)",
+    "tag": "magic-gear",
+    "icon": "orangepouch.webp"
+  },
+  {
+    "action": "Large rune pouch (pink)",
+    "tag": "magic-gear",
+    "icon": "pinkpouch.webp"
+  },
+  {
+    "action": "Large rune pouch (purple)",
+    "tag": "magic-gear",
+    "icon": "purppouch.webp"
+  },
+  {
+    "action": "Large rune pouch (red)",
+    "tag": "magic-gear",
+    "icon": "redpouch.webp"
+  },
+  {
+    "action": "Large rune pouch (yellow)",
+    "tag": "magic-gear",
+    "icon": "yellowpouch.webp"
+  },
+  {
+    "action": "Lava rune",
+    "tag": "magic-gear",
+    "icon": "lavarune.webp"
+  },
+  {
+    "action": "Law rune",
+    "tag": "magic-gear",
+    "icon": "lawrune.webp"
+  },
+  {
+    "action": "Legatus's Emberstaff",
+    "tag": "magic-gear",
+    "icon": "legatusemberstaff.webp"
+  },
+  {
+    "action": "Lesser Bone Shield",
+    "tag": "necromancy",
+    "icon": "lesserboneshield.webp"
+  },
+  {
+    "action": "Lesser Concentrated blast",
+    "tag": "magic",
+    "icon": "lesserconc.webp"
+  },
+  {
+    "action": "Lesser Dazing Shot",
+    "tag": "ranged",
+    "icon": "lesserdazing.webp"
+  },
+  {
+    "action": "Lesser Havoc",
+    "tag": "melee",
+    "icon": "lesserhavoc.webp"
+  },
+  {
+    "action": "Lesser Needle Strike",
+    "tag": "ranged",
+    "icon": "lesserneedle.webp"
+  },
+  {
+    "action": "Life Transfer",
+    "tag": "necromancy",
+    "icon": "lifetransfer.webp"
+  },
+  {
+    "action": "Limitless",
+    "tag": "defence",
+    "icon": "limitless.webp"
+  },
+  {
+    "action": "Limitless ability codex",
+    "tag": "unlockable",
+    "icon": "limitlesscodex.webp"
+  },
+  {
+    "action": "Linza's hammer",
+    "tag": "melee-gear",
+    "icon": "linzahammer.webp"
+  },
+  {
+    "action": "Living Death",
+    "tag": "necromancy",
+    "icon": "livingdeath.webp"
+  },
+  {
+    "action": "Lucky2",
+    "tag": "perk",
+    "icon": "lucky2.webp"
+  },
+  {
+    "action": "Lucky6",
+    "tag": "perk",
+    "icon": "lucky6.webp"
+  },
+  {
+    "action": "Lunging perk",
+    "tag": "perk",
+    "icon": "lunging.webp"
+  },
+  {
+    "action": "Lunging4",
+    "tag": "perk",
+    "icon": "lunge4.webp"
+  },
+  {
+    "action": "Magic",
+    "tag": "magic",
+    "icon": "magic.webp"
+  },
+  {
+    "action": "Magic imbue",
+    "tag": "magic",
+    "icon": "magicimbue.webp"
+  },
+  {
+    "action": "Magic shieldbow",
+    "tag": "ranged-gear",
+    "icon": "magicshieldbow.webp"
+  },
+  {
+    "action": "Magic shortbow",
+    "tag": "ranged-gear",
+    "icon": "magicshortbow.webp"
+  },
+  {
+    "action": "Magma Tempest ability codex",
+    "tag": "unlockable",
+    "icon": "magmatempestcodex.webp"
+  },
+  {
+    "action": "Malevolent cuirass",
+    "tag": "melee-gear",
+    "icon": "malevbody.webp"
+  },
+  {
+    "action": "Malevolent greaves",
+    "tag": "melee-gear",
+    "icon": "malevlegs.webp"
+  },
+  {
+    "action": "Malevolent helm",
+    "tag": "melee-gear",
+    "icon": "malevhelm.webp"
+  },
+  {
+    "action": "Malevolent kiteshield",
+    "tag": "melee-gear",
+    "icon": "malevkite.webp"
+  },
+  {
+    "action": "Mask of Tumeken's resplendence",
+    "tag": "magic-gear",
+    "icon": "tumekenmask.webp"
+  },
+  {
+    "action": "Masterwork 2h sword",
+    "tag": "melee-gear",
+    "icon": "masterwork2hsword.webp"
+  },
+  {
+    "action": "Masterwork boots",
+    "tag": "melee-gear",
+    "icon": "masterworkboots.webp"
+  },
+  {
+    "action": "Masterwork bow",
+    "tag": "ranged-gear",
+    "icon": "masterworkbow.webp"
+  },
+  {
+    "action": "Masterwork gloves",
+    "tag": "melee-gear",
+    "icon": "masterworkglove.webp"
+  },
+  {
+    "action": "Masterwork helm",
+    "tag": "melee-gear",
+    "icon": "masterworkhelm.webp"
+  },
+  {
+    "action": "Masterwork magic boots",
+    "tag": "magic-gear",
+    "icon": "mwmboots.webp"
+  },
+  {
+    "action": "Masterwork magic gloves",
+    "tag": "magic-gear",
+    "icon": "mwmgloves.webp"
+  },
+  {
+    "action": "Masterwork magic hat",
+    "tag": "magic-gear",
+    "icon": "mwmhat.webp"
+  },
+  {
+    "action": "Masterwork magic robe bottom",
+    "tag": "magic-gear",
+    "icon": "mwmrobebottom.webp"
+  },
+  {
+    "action": "Masterwork magic robe top",
+    "tag": "magic-gear",
+    "icon": "mwmrobetop.webp"
+  },
+  {
+    "action": "Masterwork platebody",
+    "tag": "melee-gear",
+    "icon": "masterworkbody.webp"
+  },
+  {
+    "action": "Masterwork platelegs",
+    "tag": "melee-gear",
+    "icon": "masterworklegs.webp"
+  },
+  {
+    "action": "Masterwork ranged body",
+    "tag": "ranged-gear",
+    "icon": "mwrbody.webp"
+  },
+  {
+    "action": "Masterwork ranged boots",
+    "tag": "ranged-gear",
+    "icon": "mwrboots.webp"
+  },
+  {
+    "action": "Masterwork ranged chaps",
+    "tag": "ranged-gear",
+    "icon": "mwrchaps.webp"
+  },
+  {
+    "action": "Masterwork ranged cowl",
+    "tag": "ranged-gear",
+    "icon": "mwrcowl.webp"
+  },
+  {
+    "action": "Masterwork ranged vambraces",
+    "tag": "ranged-gear",
+    "icon": "mwrvambraces.webp"
+  },
+  {
+    "action": "Masterwork spear of annihilation",
+    "tag": "melee-gear",
+    "icon": "mwspear.webp"
+  },
+  {
+    "action": "Masterwork staff",
+    "tag": "magic-gear",
+    "icon": "masterworkstaff.webp"
+  },
+  {
+    "action": "Masuta's warspear",
+    "tag": "melee-gear",
+    "icon": "masutaspear.webp"
+  },
+  {
+    "action": "Mazcab ability codex",
+    "tag": "unlockable",
+    "icon": "mazcabcodex.webp"
+  },
+  {
+    "action": "Mechanised chinchompa",
+    "tag": "ranged-gear",
+    "icon": "mechchin.webp"
+  },
+  {
+    "action": "Melee",
+    "tag": "melee",
+    "icon": "melee.webp"
+  },
+  {
+    "action": "Merciless kiteshield",
+    "tag": "magic-gear",
+    "icon": "merciless.webp"
+  },
+  {
+    "action": "Metamorphosis",
+    "tag": "magic",
+    "icon": "meta.webp"
+  },
+  {
+    "action": "Miasma rune",
+    "tag": "necromancy-gear",
+    "icon": "miasmarune.webp"
+  },
+  {
+    "action": "Mind rune",
+    "tag": "magic-gear",
+    "icon": "mindrune.webp"
+  },
+  {
+    "action": "Mist rune",
+    "tag": "magic-gear",
+    "icon": "mistrune.webp"
+  },
+  {
+    "action": "Mizuyari",
+    "tag": "melee-gear",
+    "icon": "mizuyari.webp"
+  },
+  {
+    "action": "Mobile",
+    "tag": "perk",
+    "icon": "mob.webp"
+  },
+  {
+    "action": "Mud rune",
+    "tag": "magic-gear",
+    "icon": "mudrune.webp"
+  },
+  {
+    "action": "NPC Contact",
+    "tag": "magic",
+    "icon": "npccontact.webp"
+  },
+  {
+    "action": "Natural instinct",
+    "tag": "defence",
+    "icon": "naturalinstinct.webp"
+  },
+  {
+    "action": "Nature rune",
+    "tag": "magic-gear",
+    "icon": "naturerune.webp"
+  },
+  {
+    "action": "Necromancy",
+    "tag": "necromancy",
+    "icon": "necromancy.webp"
+  },
+  {
+    "action": "Necromancy (Auto)",
+    "tag": "necromancy",
+    "icon": "necroauto.webp"
+  },
+  {
+    "action": "Necromancy Basic",
+    "tag": "necromancy",
+    "icon": "necrobasic.webp"
+  },
+  {
+    "action": "Necrosis",
+    "tag": "necromancy",
+    "icon": "necrosis.webp"
+  },
+  {
+    "action": "Needle strike",
+    "tag": "ranged",
+    "icon": "needle.webp"
+  },
+  {
+    "action": "Nightmare gauntlets",
+    "tag": "ranged-gear",
+    "icon": "nightmaregauntlets.webp"
+  },
+  {
+    "action": "Noxious longbow",
+    "tag": "ranged-gear",
+    "icon": "noxbow.webp"
+  },
+  {
+    "action": "Noxious scythe",
+    "tag": "melee-gear",
+    "icon": "noxscythe.webp"
+  },
+  {
+    "action": "Noxious staff",
+    "tag": "magic-gear",
+    "icon": "noxstaff.webp"
+  },
+  {
+    "action": "OLD Deadshot igneous",
+    "tag": "ranged",
+    "icon": "OLDdeadshotigneous.webp"
+  },
+  {
+    "action": "OLD Death's swiftness",
+    "tag": "ranged",
+    "icon": "OLD deathsswift.webp"
+  },
+  {
+    "action": "OLD Death's swiftness planted feet",
+    "tag": "ranged",
+    "icon": "OLDdeathsswiftpf.webp"
+  },
+  {
+    "action": "OLD Ricochet caroming",
+    "tag": "ranged",
+    "icon": "OLDricocaroming.webp"
+  },
+  {
+    "action": "OLD Smash (Gloves of passage)",
+    "tag": "melee",
+    "icon": "OLDsmashgop.webp"
+  },
+  {
+    "action": "OLDChain",
+    "tag": "magic",
+    "icon": "OLDchain.webp"
+  },
+  {
+    "action": "OLDChain caroming",
+    "tag": "magic",
+    "icon": "OLDchaincaroming.webp"
+  },
+  {
+    "action": "OLDChaos Roar",
+    "tag": "melee",
+    "icon": "OLDchaosroar.webp"
+  },
+  {
+    "action": "OLDCombust",
+    "tag": "magic",
+    "icon": "OLDcomb.webp"
+  },
+  {
+    "action": "OLDCombust lunge",
+    "tag": "magic",
+    "icon": "OLDcombustlunge.webp"
+  },
+  {
+    "action": "OLDConcentrated blast",
+    "tag": "magic",
+    "icon": "OLDconc.webp"
+  },
+  {
+    "action": "OLDCorruption blast",
+    "tag": "magic",
+    "icon": "OLDcorruptblast.webp"
+  },
+  {
+    "action": "OLDDeadshot",
+    "tag": "ranged",
+    "icon": "OLDdeadshot.webp"
+  },
+  {
+    "action": "OLDDismember",
+    "tag": "melee",
+    "icon": "OLDdismember.webp"
+  },
+  {
+    "action": "OLDDismember lunge",
+    "tag": "melee",
+    "icon": "OLDdismemberlunge.webp"
+  },
+  {
+    "action": "OLDGreater Concentrated Blast",
+    "tag": "magic",
+    "icon": "OLDgconc.webp"
+  },
+  {
+    "action": "OLDGreater Sonic Wave",
+    "tag": "magic",
+    "icon": "OLDgsonicwave.webp"
+  },
+  {
+    "action": "OLDGreater chain",
+    "tag": "magic",
+    "icon": "OLDgchain.webp"
+  },
+  {
+    "action": "OLDGreater chain caroming",
+    "tag": "magic",
+    "icon": "OLDgchaincaroming.webp"
+  },
+  {
+    "action": "OLDLesser Smash",
+    "tag": "melee",
+    "icon": "OLDlessersmash.webp"
+  },
+  {
+    "action": "OLDLesser Sonic Wave",
+    "tag": "magic",
+    "icon": "OLDlessersonic.webp"
+  },
+  {
+    "action": "OLDMagma Tempest",
+    "tag": "magic",
+    "icon": "OLDmagmatempest.webp"
+  },
+  {
+    "action": "OLDMagma Tempest targeted",
+    "tag": "magic",
+    "icon": "OLDmagmatempesttarget.webp"
+  },
+  {
+    "action": "OLDMassacre",
+    "tag": "melee",
+    "icon": "OLDmassacre.webp"
+  },
+  {
+    "action": "OLDMeteor strike",
+    "tag": "melee",
+    "icon": "OLDmeteorstrike.webp"
+  },
+  {
+    "action": "OLDPiercing shot",
+    "tag": "ranged",
+    "icon": "OLDpiercing.webp"
+  },
+  {
+    "action": "OLDPiercing shot energising",
+    "tag": "ranged",
+    "icon": "OLDpiercingenergising.webp"
+  },
+  {
+    "action": "OLDRicochet",
+    "tag": "ranged",
+    "icon": "OLDricochet.webp"
+  },
+  {
+    "action": "OLDSlaughter",
+    "tag": "melee",
+    "icon": "OLDslaughter.webp"
+  },
+  {
+    "action": "OLDSmash",
+    "tag": "melee",
+    "icon": "OLDsmash.webp"
+  },
+  {
+    "action": "OLDSnap shot",
+    "tag": "ranged",
+    "icon": "OLDsnap.webp"
+  },
+  {
+    "action": "OLDSnipe",
+    "tag": "ranged",
+    "icon": "OLDsnipe.webp"
+  },
+  {
+    "action": "OLDSonic wave",
+    "tag": "magic",
+    "icon": "OLDsonicwave.webp"
+  },
+  {
+    "action": "OLDSunshine",
+    "tag": "magic",
+    "icon": "OLDsunshine.webp"
+  },
+  {
+    "action": "OLDSunshine planted feet",
+    "tag": "magic",
+    "icon": "OLDsunshinepf.webp"
+  },
+  {
+    "action": "Obliteration",
+    "tag": "magic-gear",
+    "icon": "obliteration.webp"
+  },
+  {
+    "action": "Obsidian mage helm",
+    "tag": "magic-gear",
+    "icon": "obsidianmagehelm.webp"
+  },
+  {
+    "action": "Obsidian ranger helm",
+    "tag": "ranged-gear",
+    "icon": "obsidianrangerhelm.webp"
+  },
+  {
+    "action": "Obsidian warrior helm",
+    "tag": "melee-gear",
+    "icon": "obsidianwarriorhelm.webp"
+  },
+  {
+    "action": "Occulist's Ring",
+    "tag": "necromancy-gear",
+    "icon": "occulistring.webp"
+  },
+  {
+    "action": "Occultist's blood necklace",
+    "tag": "necromancy-gear",
+    "icon": "occultistsbloodnecklace.webp"
+  },
+  {
+    "action": "Ode to Deceit",
+    "tag": "magic-gear",
+    "icon": "odetodeceit.webp"
+  },
+  {
+    "action": "Off-hand Armadyl crossbow",
+    "tag": "ranged-gear",
+    "icon": "acboh.webp"
+  },
+  {
+    "action": "Off-hand Dragon claw",
+    "tag": "melee-gear",
+    "icon": "dragonclawoh.webp"
+  },
+  {
+    "action": "Off-hand Drygore Longsword",
+    "tag": "melee-gear",
+    "icon": "drygorelongoh.webp"
+  },
+  {
+    "action": "Off-hand Shadow glaive",
+    "tag": "ranged-gear",
+    "icon": "glaiveoh.webp"
+  },
+  {
+    "action": "Off-hand ascension Crossbow",
+    "tag": "ranged-gear",
+    "icon": "ascoh.webp"
+  },
+  {
+    "action": "Off-hand attuned crystal dagger",
+    "tag": "melee-gear",
+    "icon": "attunedcrystaldaggeroh.webp"
+  },
+  {
+    "action": "Off-hand blightbound crossbow",
+    "tag": "ranged-gear",
+    "icon": "bbcoh.webp"
+  },
+  {
+    "action": "Off-hand chaotic claw",
+    "tag": "melee-gear",
+    "icon": "chaoticclawoh.webp"
+  },
+  {
+    "action": "Off-hand chaotic crossbow",
+    "tag": "ranged-gear",
+    "icon": "chaoticcbowoh.webp"
+  },
+  {
+    "action": "Off-hand crystal dagger",
+    "tag": "melee-gear",
+    "icon": "crystaldaggeroh.webp"
+  },
+  {
+    "action": "Off-hand drygore mace",
+    "tag": "melee-gear",
+    "icon": "maceoh.webp"
+  },
+  {
+    "action": "Off-hand drygore rapier",
+    "tag": "melee-gear",
+    "icon": "rapieroh.webp"
+  },
+  {
+    "action": "Off-hand ripper claw",
+    "tag": "melee-gear",
+    "icon": "ripperclawoh.webp"
+  },
+  {
+    "action": "Omni guard",
+    "tag": "necromancy-gear",
+    "icon": "omniguard.webp"
+  },
+  {
+    "action": "Omnipower",
+    "tag": "magic",
+    "icon": "omni.webp"
+  },
+  {
+    "action": "Omnipower igneous",
+    "tag": "magic",
+    "icon": "omnipowerigneous.webp"
+  },
+  {
+    "action": "Onslaught",
+    "tag": "defence",
+    "icon": "onsl.webp"
+  },
+  {
+    "action": "Overpower",
+    "tag": "melee",
+    "icon": "overpower.webp"
+  },
+  {
+    "action": "Overpower igneous",
+    "tag": "melee",
+    "icon": "overpowerigneous.webp"
+  },
+  {
+    "action": "Penance (aspect)",
+    "tag": "magic",
+    "icon": "penanceaspect.webp"
+  },
+  {
+    "action": "Penance Trident",
+    "tag": "magic-gear",
+    "icon": "penancetrident.webp"
+  },
+  {
+    "action": "Pernix Gloves",
+    "tag": "ranged-gear",
+    "icon": "pernixgloves.webp"
+  },
+  {
+    "action": "Pernix body",
+    "tag": "ranged-gear",
+    "icon": "pernixbody.webp"
+  },
+  {
+    "action": "Pernix chaps",
+    "tag": "ranged-gear",
+    "icon": "pernixchaps.webp"
+  },
+  {
+    "action": "Pernix cowl",
+    "tag": "ranged-gear",
+    "icon": "pernixcowl.webp"
+  },
+  {
+    "action": "Pernix head image",
+    "tag": "ranged-gear",
+    "icon": "pernixheadimage.webp"
+  },
+  {
+    "action": "Pernix's quiver",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiver.webp"
+  },
+  {
+    "action": "Pernix's quiver (black)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiverblack.webp"
+  },
+  {
+    "action": "Pernix's quiver (blue)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiverblue.webp"
+  },
+  {
+    "action": "Pernix's quiver (green)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquivergreen.webp"
+  },
+  {
+    "action": "Pernix's quiver (orange)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiverorange.webp"
+  },
+  {
+    "action": "Pernix's quiver (purple)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiverpurple.webp"
+  },
+  {
+    "action": "Pernix's quiver (red)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiverred.webp"
+  },
+  {
+    "action": "Pernix's quiver (yellow)",
+    "tag": "ranged-gear",
+    "icon": "pernixsquiveryellow.webp"
+  },
+  {
+    "action": "Planted Feet perk",
+    "tag": "perk",
+    "icon": "pf.webp"
+  },
+  {
+    "action": "Polypore Strike",
+    "tag": "magic",
+    "icon": "polyporestrike.webp"
+  },
+  {
+    "action": "Polypore staff",
+    "tag": "magic-gear",
+    "icon": "polyporestaff.webp"
+  },
+  {
+    "action": "Praesul codex",
+    "tag": "unlockable",
+    "icon": "pcodex.webp"
+  },
+  {
+    "action": "Precise",
+    "tag": "perk",
+    "icon": "precise.webp"
+  },
+  {
+    "action": "Precise1",
+    "tag": "perk",
+    "icon": "p1.webp"
+  },
+  {
+    "action": "Precise2",
+    "tag": "perk",
+    "icon": "p2.webp"
+  },
+  {
+    "action": "Precise4",
+    "tag": "perk",
+    "icon": "p4.webp"
+  },
+  {
+    "action": "Precise5",
+    "tag": "perk",
+    "icon": "p5.webp"
+  },
+  {
+    "action": "Precise6",
+    "tag": "perk",
+    "icon": "p6.webp"
+  },
+  {
+    "action": "Preparation",
+    "tag": "defence",
+    "icon": "prep.webp"
+  },
+  {
+    "action": "Primal abyssal armour spikes",
+    "tag": "melee-gear",
+    "icon": "primalabyssalarmourspikes.webp"
+  },
+  {
+    "action": "Primed keris",
+    "tag": "melee-gear",
+    "icon": "primedkeris.webp"
+  },
+  {
+    "action": "Prism of Loyalty",
+    "tag": "magic",
+    "icon": "prismofloyalty.webp"
+  },
+  {
+    "action": "Prism of Restorattion",
+    "tag": "magic",
+    "icon": "prismofrestoration.webp"
+  },
+  {
+    "action": "Prism of Salvation",
+    "tag": "magic",
+    "icon": "prismofsalvation.webp"
+  },
+  {
+    "action": "Protect from Necromancy",
+    "tag": "necromancy",
+    "icon": "protectfromnecro.webp"
+  },
+  {
+    "action": "Provoke",
+    "tag": "defence",
+    "icon": "voke.webp"
+  },
+  {
+    "action": "Pulverise",
+    "tag": "melee",
+    "icon": "pulverise.webp"
+  },
+  {
+    "action": "Punish",
+    "tag": "melee",
+    "icon": "punish.webp"
+  },
+  {
+    "action": "Quake",
+    "tag": "melee",
+    "icon": "quake.webp"
+  },
+  {
+    "action": "Ranged",
+    "tag": "ranged",
+    "icon": "range.webp"
+  },
+  {
+    "action": "Rapid fire",
+    "tag": "ranged",
+    "icon": "rapid.webp"
+  },
+  {
+    "action": "Razorback gauntlets",
+    "tag": "melee-gear",
+    "icon": "razorback.webp"
+  },
+  {
+    "action": "Red chinchompa",
+    "tag": "ranged-gear",
+    "icon": "redchin.webp"
+  },
+  {
+    "action": "Reflect",
+    "tag": "defence",
+    "icon": "reflect.webp"
+  },
+  {
+    "action": "Reflexes",
+    "tag": "perk",
+    "icon": "reflexes.webp"
+  },
+  {
+    "action": "Regenerate",
+    "tag": "defence",
+    "icon": "regenerate.webp"
+  },
+  {
+    "action": "Rejuvinate",
+    "tag": "defence",
+    "icon": "rejuvenate.webp"
+  },
+  {
+    "action": "Relentless 5",
+    "tag": "perk",
+    "icon": "relentless5.webp"
+  },
+  {
+    "action": "Remote Farm",
+    "tag": "magic",
+    "icon": "remotefarm.webp"
+  },
+  {
+    "action": "Rend (Gloves of passage)",
+    "tag": "melee",
+    "icon": "rendgop.webp"
+  },
+  {
+    "action": "Reprisal",
+    "tag": "defence",
+    "icon": "reprisal.webp"
+  },
+  {
+    "action": "Reprisal ability codex",
+    "tag": "unlockable",
+    "icon": "reprisalcodex.webp"
+  },
+  {
+    "action": "Residual Soul",
+    "tag": "necromancy",
+    "icon": "residualsoul.webp"
+  },
+  {
+    "action": "Resonance",
+    "tag": "defence",
+    "icon": "res.webp"
+  },
+  {
+    "action": "Revenge",
+    "tag": "defence",
+    "icon": "revenge.webp"
+  },
+  {
+    "action": "Ricochet (caroming)",
+    "tag": "ranged",
+    "icon": "ricochetcaroming.webp"
+  },
+  {
+    "action": "Ripper claw",
+    "tag": "melee-gear",
+    "icon": "ripperclaw.webp"
+  },
+  {
+    "action": "Roar of Awakening",
+    "tag": "magic-gear",
+    "icon": "roarofawakening.webp"
+  },
+  {
+    "action": "Robe bottom of Tumeken's resplendence",
+    "tag": "magic-gear",
+    "icon": "tumekenrobebottom.webp"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "firstnecrorobebottom.webp"
+  },
+  {
+    "action": "Robe top of Tumeken's resplendence",
+    "tag": "magic-gear",
+    "icon": "tumekenrobetop.webp"
+  },
+  {
+    "action": "Robe top of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "firstnecrorobetop.webp"
+  },
+  {
+    "action": "Rout",
+    "tag": "ranged",
+    "icon": "rout.webp"
+  },
+  {
+    "action": "Royal crossbow",
+    "tag": "ranged-gear",
+    "icon": "royalcrossbow.webp"
+  },
+  {
+    "action": "Ruby aurora",
+    "tag": "magic",
+    "icon": "rubyaurora.webp"
+  },
+  {
+    "action": "Ruination",
+    "tag": "necromancy",
+    "icon": "ruination.webp"
+  },
+  {
+    "action": "Rush (blood)",
+    "tag": "magic",
+    "icon": "bloodrush.webp"
+  },
+  {
+    "action": "Rush (ice)",
+    "tag": "magic",
+    "icon": "icerush.webp"
+  },
+  {
+    "action": "Rush (shadow)",
+    "tag": "magic",
+    "icon": "shadowrush.webp"
+  },
+  {
+    "action": "Rush (smoke)",
+    "tag": "magic",
+    "icon": "smokerush.webp"
+  },
+  {
+    "action": "Ruthless1",
+    "tag": "perk",
+    "icon": "ruthless1.webp"
+  },
+  {
+    "action": "Ruthless3",
+    "tag": "perk",
+    "icon": "ruthless3.webp"
+  },
+  {
+    "action": "Sacrifice",
+    "tag": "defence",
+    "icon": "sacrifice.webp"
+  },
+  {
+    "action": "Salt the wound",
+    "tag": "ranged",
+    "icon": "stw.webp"
+  },
+  {
+    "action": "Sanctity",
+    "tag": "necromancy",
+    "icon": "sanctity.webp"
+  },
+  {
+    "action": "Sapphire Aurora",
+    "tag": "magic",
+    "icon": "sapphireaurora.webp"
+  },
+  {
+    "action": "Saradomin bow",
+    "tag": "ranged-gear",
+    "icon": "saradominbow.webp"
+  },
+  {
+    "action": "Saradomin godsword",
+    "tag": "melee-gear",
+    "icon": "saragodsword.webp"
+  },
+  {
+    "action": "Saradomin sword",
+    "tag": "melee-gear",
+    "icon": "saradominsword.webp"
+  },
+  {
+    "action": "Saradomin's hiss",
+    "tag": "magic-gear",
+    "icon": "sarahiss.webp"
+  },
+  {
+    "action": "Saradomin's murmur",
+    "tag": "ranged-gear",
+    "icon": "saramurmur.webp"
+  },
+  {
+    "action": "Saradomin's whisper",
+    "tag": "melee-gear",
+    "icon": "sarawhisper.webp"
+  },
+  {
+    "action": "Scavenging",
+    "tag": "perk",
+    "icon": "scavenging.webp"
+  },
+  {
+    "action": "Scavenging 4",
+    "tag": "perk",
+    "icon": "scavenging4.webp"
+  },
+  {
+    "action": "Scrimshaw of aggression",
+    "tag": "magic-gear",
+    "icon": "aggressionscrim.webp"
+  },
+  {
+    "action": "Scrimshaw of sacrifice",
+    "tag": "magic-gear",
+    "icon": "sacrificescrim.webp"
+  },
+  {
+    "action": "Seasinger kiba",
+    "tag": "magic-gear",
+    "icon": "seasingerwand.webp"
+  },
+  {
+    "action": "Seasinger makigai",
+    "tag": "magic-gear",
+    "icon": "seasingerorb.webp"
+  },
+  {
+    "action": "Seasinger's hood",
+    "tag": "magic-gear",
+    "icon": "seasingershood.webp"
+  },
+  {
+    "action": "Seasinger's robe bottom",
+    "tag": "magic-gear",
+    "icon": "seasingersrobebottom.webp"
+  },
+  {
+    "action": "Seercull",
+    "tag": "ranged-gear",
+    "icon": "seercull.webp"
+  },
+  {
+    "action": "Seismic singularity",
+    "tag": "magic-gear",
+    "icon": "sing.webp"
+  },
+  {
+    "action": "Seismic wand",
+    "tag": "magic-gear",
+    "icon": "seiswand.webp"
+  },
+  {
+    "action": "Seren godbow",
+    "tag": "ranged-gear",
+    "icon": "sgb.webp"
+  },
+  {
+    "action": "Sever",
+    "tag": "melee",
+    "icon": "sever.webp"
+  },
+  {
+    "action": "Shadow glaive",
+    "tag": "ranged-gear",
+    "icon": "glaivemh.webp"
+  },
+  {
+    "action": "Shadow tendrils",
+    "tag": "ranged",
+    "icon": "shadowtend.webp"
+  },
+  {
+    "action": "Shatter",
+    "tag": "defence",
+    "icon": "shatter.webp"
+  },
+  {
+    "action": "Shield dome",
+    "tag": "magic",
+    "icon": "shielddome.webp"
+  },
+  {
+    "action": "Shock",
+    "tag": "magic",
+    "icon": "shock.webp"
+  },
+  {
+    "action": "Siphon",
+    "tag": "defence",
+    "icon": "siphon.webp"
+  },
+  {
+    "action": "Sirenic chaps",
+    "tag": "ranged-gear",
+    "icon": "sireniclegs.webp"
+  },
+  {
+    "action": "Sirenic hauberk",
+    "tag": "ranged-gear",
+    "icon": "sirenicbody.webp"
+  },
+  {
+    "action": "Sirenic mask",
+    "tag": "ranged-gear",
+    "icon": "sirenicmask.webp"
+  },
+  {
+    "action": "Skull lantern (tier 60)",
+    "tag": "necromancy-gear",
+    "icon": "skulllantern60.webp"
+  },
+  {
+    "action": "Skull lantern (tier 70)",
+    "tag": "necromancy-gear",
+    "icon": "skulllantern70.webp"
+  },
+  {
+    "action": "Skull lantern (tier 80)",
+    "tag": "necromancy-gear",
+    "icon": "skulllantern80.webp"
+  },
+  {
+    "action": "Skull lantern (tier 90)",
+    "tag": "necromancy-gear",
+    "icon": "skulllantern90.webp"
+  },
+  {
+    "action": "Slice",
+    "tag": "melee",
+    "icon": "slice.webp"
+  },
+  {
+    "action": "Slice energising",
+    "tag": "melee",
+    "icon": "sliceenergising.webp"
+  },
+  {
+    "action": "Small rune pouch (black)",
+    "tag": "magic-gear",
+    "icon": "blacksmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (blue)",
+    "tag": "magic-gear",
+    "icon": "bluesmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (green)",
+    "tag": "magic-gear",
+    "icon": "greensmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (orange)",
+    "tag": "magic-gear",
+    "icon": "orangesmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (pink)",
+    "tag": "magic-gear",
+    "icon": "pinksmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (purple)",
+    "tag": "magic-gear",
+    "icon": "purplesmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (red)",
+    "tag": "magic-gear",
+    "icon": "redsmallpouch.webp"
+  },
+  {
+    "action": "Small rune pouch (yellow)",
+    "tag": "magic-gear",
+    "icon": "yellowsmallpouch.webp"
+  },
+  {
+    "action": "Smoke cloud",
+    "tag": "magic",
+    "icon": "smokecloud.webp"
+  },
+  {
+    "action": "Smoke rune",
+    "tag": "magic-gear",
+    "icon": "smokerune.webp"
+  },
+  {
+    "action": "Smoke tendrils",
+    "tag": "magic",
+    "icon": "smoketendrils.webp"
+  },
+  {
+    "action": "Sorrow",
+    "tag": "necromancy",
+    "icon": "sorrow.webp"
+  },
+  {
+    "action": "Soul Sap",
+    "tag": "necromancy",
+    "icon": "soulsap.webp"
+  },
+  {
+    "action": "Soul Strike",
+    "tag": "necromancy",
+    "icon": "soulstrike.webp"
+  },
+  {
+    "action": "Soul Strike Flank",
+    "tag": "necromancy",
+    "icon": "soulstrikeflank.webp"
+  },
+  {
+    "action": "Soul rune",
+    "tag": "magic-gear",
+    "icon": "soulrune.webp"
+  },
+  {
+    "action": "Soulbound lantern",
+    "tag": "necromancy-gear",
+    "icon": "soulboundlantern.webp"
+  },
+  {
+    "action": "Special attack",
+    "tag": "defence",
+    "icon": "spec.webp"
+  },
+  {
+    "action": "Spectral Scythe (Cast 1)",
+    "tag": "necromancy",
+    "icon": "spectralscythe.webp"
+  },
+  {
+    "action": "Spectral Scythe (Cast 2)",
+    "tag": "necromancy",
+    "icon": "spectralscythe2.webp"
+  },
+  {
+    "action": "Spectral Scythe (Cast 3)",
+    "tag": "necromancy",
+    "icon": "spectralscythe3.webp"
+  },
+  {
+    "action": "Spectral spirit shield",
+    "tag": "necromancy-gear",
+    "icon": "spectralspiritshield.webp"
+  },
+  {
+    "action": "Spellbook swap",
+    "tag": "magic",
+    "icon": "sbs.webp"
+  },
+  {
+    "action": "Spellbook swap (Ancient)",
+    "tag": "magic",
+    "icon": "sbsancients.webp"
+  },
+  {
+    "action": "Spellbook swap (Lunar)",
+    "tag": "magic",
+    "icon": "sbslunars.webp"
+  },
+  {
+    "action": "Spellbook swap (Standard)",
+    "tag": "magic",
+    "icon": "sbsstandards.webp"
+  },
+  {
+    "action": "Spellcaster gloves",
+    "tag": "magic-gear",
+    "icon": "spellcaster.webp"
+  },
+  {
+    "action": "Spirit Pact I",
+    "tag": "necromancy",
+    "icon": "spiritpact1.webp"
+  },
+  {
+    "action": "Spirit Pact II",
+    "tag": "necromancy",
+    "icon": "spiritpact2.webp"
+  },
+  {
+    "action": "Spirit Pact III",
+    "tag": "necromancy",
+    "icon": "spiritpact3.webp"
+  },
+  {
+    "action": "Spirit rune",
+    "tag": "necromancy-gear",
+    "icon": "spiritrune.webp"
+  },
+  {
+    "action": "Spiritual Healing",
+    "tag": "magic",
+    "icon": "spiritualhealing.webp"
+  },
+  {
+    "action": "Splintering arrows",
+    "tag": "ranged-gear",
+    "icon": "splinteringarrows.webp"
+  },
+  {
+    "action": "Split Soul",
+    "tag": "necromancy",
+    "icon": "splitsoul.webp"
+  },
+  {
+    "action": "Staff of Light",
+    "tag": "magic-gear",
+    "icon": "staffoflight.webp"
+  },
+  {
+    "action": "Staff of Sliske",
+    "tag": "magic-gear",
+    "icon": "sos.webp"
+  },
+  {
+    "action": "Staff of darkness",
+    "tag": "magic-gear",
+    "icon": "staffofdarkness.webp"
+  },
+  {
+    "action": "Staff of limitless air",
+    "tag": "magic-gear",
+    "icon": "staffoflimitlessair.webp"
+  },
+  {
+    "action": "Stagger",
+    "tag": "magic",
+    "icon": "stagger.webp"
+  },
+  {
+    "action": "Statius's platebody",
+    "tag": "melee-gear",
+    "icon": "statiusbody.webp"
+  },
+  {
+    "action": "Steam rune",
+    "tag": "magic-gear",
+    "icon": "steamrune.webp"
+  },
+  {
+    "action": "Stomp",
+    "tag": "melee",
+    "icon": "stomp.webp"
+  },
+  {
+    "action": "Storm shard",
+    "tag": "defence",
+    "icon": "stormshards.webp"
+  },
+  {
+    "action": "Strength",
+    "tag": "melee",
+    "icon": "strength.webp"
+  },
+  {
+    "action": "Strength cape",
+    "tag": "melee-gear",
+    "icon": "strcape.webp"
+  },
+  {
+    "action": "Strength master cape",
+    "tag": "melee-gear",
+    "icon": "strmastercape.webp"
+  },
+  {
+    "action": "Strykebow",
+    "tag": "ranged-gear",
+    "icon": "strykebow.webp"
+  },
+  {
+    "action": "Superior Death Lotus chaps",
+    "tag": "ranged-gear",
+    "icon": "supdeathlotuschaps.webp"
+  },
+  {
+    "action": "Superior Death Lotus chestplate",
+    "tag": "ranged-gear",
+    "icon": "supdeathlotuschestplate.webp"
+  },
+  {
+    "action": "Superior Death Lotus hood",
+    "tag": "ranged-gear",
+    "icon": "supdeathlotushood.webp"
+  },
+  {
+    "action": "Superior Death Lotus tabi",
+    "tag": "ranged-gear",
+    "icon": "supdeathlotustabi.webp"
+  },
+  {
+    "action": "Superior Death Lotus tekoh",
+    "tag": "ranged-gear",
+    "icon": "supdeathlotustekoh.webp"
+  },
+  {
+    "action": "Superior Dragon claw",
+    "tag": "melee-gear",
+    "icon": "superiordragonclaw.webp"
+  },
+  {
+    "action": "Superior Dragon dagger",
+    "tag": "melee-gear",
+    "icon": "superiordragondagger.webp"
+  },
+  {
+    "action": "Superior Morrigan's javelin",
+    "tag": "ranged-gear",
+    "icon": "superiormorriganjav.webp"
+  },
+  {
+    "action": "Superior Morrigan's leather body",
+    "tag": "ranged-gear",
+    "icon": "superiormorrigansbody.webp"
+  },
+  {
+    "action": "Superior Morrigan's leather chaps",
+    "tag": "ranged-gear",
+    "icon": "superiormorriganschaps.webp"
+  },
+  {
+    "action": "Superior Morrigan's throwing axe",
+    "tag": "ranged-gear",
+    "icon": "superiormorriganaxe.webp"
+  },
+  {
+    "action": "Superior Statius's platebody",
+    "tag": "melee-gear",
+    "icon": "superiorstatiussbody.webp"
+  },
+  {
+    "action": "Superior Statius's platelegs",
+    "tag": "melee-gear",
+    "icon": "superiorstatiussplatelegs.webp"
+  },
+  {
+    "action": "Superior Vesta's chainbody",
+    "tag": "melee-gear",
+    "icon": "superiorvestasbody.webp"
+  },
+  {
+    "action": "Superior Vesta's plateskirt",
+    "tag": "melee-gear",
+    "icon": "superiorvestasplateskirt.webp"
+  },
+  {
+    "action": "Superior Zuriel's hood",
+    "tag": "magic-gear",
+    "icon": "superiorzurielhood.webp"
+  },
+  {
+    "action": "Superior Zuriel's robe bottom",
+    "tag": "magic-gear",
+    "icon": "superiorzurielsrobebottom.webp"
+  },
+  {
+    "action": "Superior Zuriel's robe top",
+    "tag": "magic-gear",
+    "icon": "superiorzurielstop.webp"
+  },
+  {
+    "action": "Superior Zuriel's staff",
+    "tag": "magic-gear",
+    "icon": "superiorzurielstaff.webp"
+  },
+  {
+    "action": "Superior off-hand Dragon claw",
+    "tag": "melee-gear",
+    "icon": "superiordragonclawoh.webp"
+  },
+  {
+    "action": "Superior seasinger aonori",
+    "tag": "magic-gear",
+    "icon": "superiorseasingeraonori.webp"
+  },
+  {
+    "action": "Superior seasinger asari",
+    "tag": "magic-gear",
+    "icon": "supseasingerasari.webp"
+  },
+  {
+    "action": "Superior seasinger's hood",
+    "tag": "magic-gear",
+    "icon": "supseasingershood.webp"
+  },
+  {
+    "action": "Superior seasinger's robe bottom",
+    "tag": "magic-gear",
+    "icon": "supseasingersrobebottom.webp"
+  },
+  {
+    "action": "Superior seasinger's robe top",
+    "tag": "magic-gear",
+    "icon": "supseasingersrobetop.webp"
+  },
+  {
+    "action": "Superior tetsu body",
+    "tag": "melee-gear",
+    "icon": "suptetsubody.webp"
+  },
+  {
+    "action": "Superior tetsu helm",
+    "tag": "melee-gear",
+    "icon": "suptetsuhelm.webp"
+  },
+  {
+    "action": "Superior tetsu kogake",
+    "tag": "melee-gear",
+    "icon": "suptetsukogake.webp"
+  },
+  {
+    "action": "Superior tetsu kote",
+    "tag": "melee-gear",
+    "icon": "superiortetsukote.webp"
+  },
+  {
+    "action": "Superior tetsu platelegs",
+    "tag": "melee-gear",
+    "icon": "suptetsuplatelegs.webp"
+  },
+  {
+    "action": "Surge",
+    "tag": "magic",
+    "icon": "surge.webp"
+  },
+  {
+    "action": "Surge (air)",
+    "tag": "magic",
+    "icon": "airsurge.webp"
+  },
+  {
+    "action": "Surge (fire)",
+    "tag": "magic",
+    "icon": "firesurge.webp"
+  },
+  {
+    "action": "Surge mobile",
+    "tag": "magic",
+    "icon": "surgemobile.webp"
+  },
+  {
+    "action": "Tainted repriser",
+    "tag": "ranged-gear",
+    "icon": "taintedrepriser.webp"
+  },
+  {
+    "action": "Tectonic mask",
+    "tag": "magic-gear",
+    "icon": "tectmask.webp"
+  },
+  {
+    "action": "Tectonic robe bottom",
+    "tag": "magic-gear",
+    "icon": "tectlegs.webp"
+  },
+  {
+    "action": "Tectonic robe top",
+    "tag": "magic-gear",
+    "icon": "tectbody.webp"
+  },
+  {
+    "action": "Telekenetic grab",
+    "tag": "magic",
+    "icon": "telekeneticgrab.webp"
+  },
+  {
+    "action": "Temporal Anomaly",
+    "tag": "magic",
+    "icon": "temporalanomaly.webp"
+  },
+  {
+    "action": "Terrasaur maul",
+    "tag": "melee-gear",
+    "icon": "terramaul.webp"
+  },
+  {
+    "action": "Tetsu body",
+    "tag": "melee-gear",
+    "icon": "tetsubody.webp"
+  },
+  {
+    "action": "Tetsu helm",
+    "tag": "melee-gear",
+    "icon": "tetsuhelm.webp"
+  },
+  {
+    "action": "Tetsu katana",
+    "tag": "melee-gear",
+    "icon": "tetsumh.webp"
+  },
+  {
+    "action": "Tetsu platelegs",
+    "tag": "melee-gear",
+    "icon": "tetsuplatelegs.webp"
+  },
+  {
+    "action": "Tetsu wakizashi",
+    "tag": "melee-gear",
+    "icon": "tetsuoh.webp"
+  },
+  {
+    "action": "The Devourer's Nexus",
+    "tag": "necromancy-gear",
+    "icon": "devourersnexus.webp"
+  },
+  {
+    "action": "Threads of Fate",
+    "tag": "necromancy",
+    "icon": "threadsoffate.webp"
+  },
+  {
+    "action": "Tight bindings",
+    "tag": "ranged",
+    "icon": "tight.webp"
+  },
+  {
+    "action": "Tight bindings flank",
+    "tag": "ranged",
+    "icon": "tightbindingsflank.webp"
+  },
+  {
+    "action": "Time rune",
+    "tag": "magic-gear",
+    "icon": "timerune.webp"
+  },
+  {
+    "action": "Tirannwn quiver 4",
+    "tag": "ranged-gear",
+    "icon": "quiver.webp"
+  },
+  {
+    "action": "TokHaar-Kal-Ket",
+    "tag": "melee-gear",
+    "icon": "kilnmelee.webp"
+  },
+  {
+    "action": "TokHaar-Kal-Mej",
+    "tag": "magic-gear",
+    "icon": "kilnmage.webp"
+  },
+  {
+    "action": "TokHaar-Kal-Mor",
+    "tag": "necromancy-gear",
+    "icon": "kilnnecro.webp"
+  },
+  {
+    "action": "TokHaar-Kal-Xil",
+    "tag": "ranged-gear",
+    "icon": "kilnranged.webp"
+  },
+  {
+    "action": "Torva full helm",
+    "tag": "melee-gear",
+    "icon": "torvahelm.webp"
+  },
+  {
+    "action": "Torva gloves",
+    "tag": "melee-gear",
+    "icon": "torvagloves.webp"
+  },
+  {
+    "action": "Torva platebody",
+    "tag": "melee-gear",
+    "icon": "torvabody.webp"
+  },
+  {
+    "action": "Torva platelegs",
+    "tag": "melee-gear",
+    "icon": "torvaplatelegs.webp"
+  },
+  {
+    "action": "Touch of Death",
+    "tag": "necromancy",
+    "icon": "touchofdeath.webp"
+  },
+  {
+    "action": "Transfigure",
+    "tag": "defence",
+    "icon": "transfigure.webp"
+  },
+  {
+    "action": "Trimmed masterwork boots",
+    "tag": "melee-gear",
+    "icon": "tmwboots.webp"
+  },
+  {
+    "action": "Trimmed masterwork gloves",
+    "tag": "melee-gear",
+    "icon": "tmwgloves.webp"
+  },
+  {
+    "action": "Trimmed masterwork helm",
+    "tag": "melee-gear",
+    "icon": "tmwhelm.webp"
+  },
+  {
+    "action": "Trimmed masterwork platebody",
+    "tag": "melee-gear",
+    "icon": "tmwbody.webp"
+  },
+  {
+    "action": "Trimmed masterwork platebody spiked",
+    "tag": "melee-gear",
+    "icon": "tmwbodyspiked.webp"
+  },
+  {
+    "action": "Trimmed masterwork platelegs",
+    "tag": "melee-gear",
+    "icon": "tmwlegs.webp"
+  },
+  {
+    "action": "Tsunami",
+    "tag": "magic",
+    "icon": "tsunami.webp"
+  },
+  {
+    "action": "Tsunami incite",
+    "tag": "magic",
+    "icon": "tsunamiincite.webp"
+  },
+  {
+    "action": "Tumeken's Light",
+    "tag": "melee-gear",
+    "icon": "tumekenslight.webp"
+  },
+  {
+    "action": "Turtling 3",
+    "tag": "perk",
+    "icon": "turtling3.webp"
+  },
+  {
+    "action": "Turtling 4",
+    "tag": "perk",
+    "icon": "turtling4.webp"
+  },
+  {
+    "action": "Tuskas wrath",
+    "tag": "defence",
+    "icon": "tuskas.webp"
+  },
+  {
+    "action": "Ultimatums 4",
+    "tag": "perk",
+    "icon": "ultimatums4.webp"
+  },
+  {
+    "action": "Undead Slayer ability codex",
+    "tag": "unlockable",
+    "icon": "undeadslayercodex.webp"
+  },
+  {
+    "action": "Undead slayer (perk)",
+    "tag": "perk",
+    "icon": "undeadslayerperk.webp"
+  },
+  {
+    "action": "Undead slayer ability",
+    "tag": "defence",
+    "icon": "undeadslayer.webp"
+  },
+  {
+    "action": "Unload",
+    "tag": "ranged",
+    "icon": "unload.webp"
+  },
+  {
+    "action": "Upgraded bone blowpipe",
+    "tag": "ranged-gear",
+    "icon": "upgradedboneblowpipe.webp"
+  },
+  {
+    "action": "Vampyrism (aspect)",
+    "tag": "magic",
+    "icon": "vampyrismaspect.webp"
+  },
+  {
+    "action": "Vampyrism gloves",
+    "tag": "melee-gear",
+    "icon": "vampyrismgloves.webp"
+  },
+  {
+    "action": "Vengance Other",
+    "tag": "magic",
+    "icon": "vengother.webp"
+  },
+  {
+    "action": "Vengeance",
+    "tag": "magic",
+    "icon": "veng.webp"
+  },
+  {
+    "action": "Vengeance Group",
+    "tag": "magic",
+    "icon": "venggroup.webp"
+  },
+  {
+    "action": "Vengeful kiteshield",
+    "tag": "ranged-gear",
+    "icon": "vengeful.webp"
+  },
+  {
+    "action": "Venomblood",
+    "tag": "perk",
+    "icon": "venomblood.webp"
+  },
+  {
+    "action": "Verac's brassard",
+    "tag": "melee-gear",
+    "icon": "veracbody.webp"
+  },
+  {
+    "action": "Verac's flail",
+    "tag": "melee-gear",
+    "icon": "veracflail.webp"
+  },
+  {
+    "action": "Verac's helm",
+    "tag": "melee-gear",
+    "icon": "verachelm.webp"
+  },
+  {
+    "action": "Veracs plateskirt",
+    "tag": "melee-gear",
+    "icon": "veraclegs.webp"
+  },
+  {
+    "action": "Vesta's spear",
+    "tag": "melee-gear",
+    "icon": "vestaspear.webp"
+  },
+  {
+    "action": "Vestments of havoc boots",
+    "tag": "melee-gear",
+    "icon": "vestmentsofhavocboots.webp"
+  },
+  {
+    "action": "Vestments of havoc hood",
+    "tag": "melee-gear",
+    "icon": "vestmentsofhavochood.webp"
+  },
+  {
+    "action": "Vestments of havoc robe bottom",
+    "tag": "melee-gear",
+    "icon": "vestmentsofhavocbottom.webp"
+  },
+  {
+    "action": "Vestments of havoc robe top",
+    "tag": "melee-gear",
+    "icon": "vestmentsofhavoctop.webp"
+  },
+  {
+    "action": "Virtus book",
+    "tag": "magic-gear",
+    "icon": "vbook.webp"
+  },
+  {
+    "action": "Virtus boots",
+    "tag": "magic-gear",
+    "icon": "virtusboots.webp"
+  },
+  {
+    "action": "Virtus mask",
+    "tag": "magic-gear",
+    "icon": "virtusmask.webp"
+  },
+  {
+    "action": "Virtus robe legs",
+    "tag": "magic-gear",
+    "icon": "virtusrobelegs.webp"
+  },
+  {
+    "action": "Virtus robe top",
+    "tag": "magic-gear",
+    "icon": "virtustop.webp"
+  },
+  {
+    "action": "Virtus wand",
+    "tag": "magic-gear",
+    "icon": "virtuswand.webp"
+  },
+  {
+    "action": "Visage of the First Necromancer",
+    "tag": "necromancy-gear",
+    "icon": "visageofthefirstnecromancer.webp"
+  },
+  {
+    "action": "Volley of Souls",
+    "tag": "necromancy",
+    "icon": "volleyofsouls.webp"
+  },
+  {
+    "action": "Wand of the Praesul",
+    "tag": "magic-gear",
+    "icon": "praeswand.webp"
+  },
+  {
+    "action": "Water rune",
+    "tag": "magic-gear",
+    "icon": "waterrune.webp"
+  },
+  {
+    "action": "Wild magic",
+    "tag": "magic",
+    "icon": "wm.webp"
+  },
+  {
+    "action": "Wrack",
+    "tag": "magic",
+    "icon": "wrack.webp"
+  },
+  {
+    "action": "Wrack and ruin",
+    "tag": "magic",
+    "icon": "wrackandruin.webp"
+  },
+  {
+    "action": "Wrack energising",
+    "tag": "magic",
+    "icon": "wrackenergising.webp"
+  },
+  {
+    "action": "Wyvern crossbow",
+    "tag": "ranged-gear",
+    "icon": "wyverncrossbow.webp"
+  },
+  {
+    "action": "Zamorak Bow",
+    "tag": "ranged-gear",
+    "icon": "zammybow.webp"
+  },
+  {
+    "action": "Zamorak godsword",
+    "tag": "melee-gear",
+    "icon": "zamorakgodsword.webp"
+  },
+  {
+    "action": "Zamorak staff",
+    "tag": "magic-gear",
+    "icon": "zamorakstaff.webp"
+  },
+  {
+    "action": "Zamorakian spear",
+    "tag": "melee-gear",
+    "icon": "zamorakianspear.webp"
+  },
+  {
+    "action": "Zaros godsword",
+    "tag": "melee-gear",
+    "icon": "zgs.webp"
+  },
+  {
+    "action": "Zaryte bow",
+    "tag": "ranged-gear",
+    "icon": "zarytebow.webp"
+  },
+  {
+    "action": "Zemouregal's nexus",
+    "tag": "necromancy-gear",
+    "icon": "zemouregalsnexus.webp"
+  },
+  {
+    "action": "Zuriel's robe top",
+    "tag": "magic-gear",
+    "icon": "zurieltop.webp"
+  },
+  {
+    "action": "Zuriel's staff",
+    "tag": "magic-gear",
+    "icon": "zurielsstaff.webp"
+  },
+  {
+    "action": "adaptive_strike",
+    "tag": "melee",
+    "icon": "adaptive_strike.webp"
+  },
+  {
+    "action": "bloodlust",
+    "tag": "melee",
+    "icon": "bloodlust.webp"
+  },
+  {
+    "action": "chain",
+    "tag": "magic",
+    "icon": "chain.webp"
+  },
+  {
+    "action": "chaos_roar",
+    "tag": "melee",
+    "icon": "chaos_roar.webp"
+  },
+  {
+    "action": "combust",
+    "tag": "magic",
+    "icon": "combust.webp"
+  },
+  {
+    "action": "conc",
+    "tag": "magic",
+    "icon": "conc.webp"
+  },
+  {
+    "action": "corruption_blast",
+    "tag": "magic",
+    "icon": "corruption_blast.webp"
+  },
+  {
+    "action": "deadshot",
+    "tag": "ranged",
+    "icon": "deadshot.webp"
+  },
+  {
+    "action": "deaths_swiftness",
+    "tag": "ranged",
+    "icon": "deaths_swiftness.webp"
+  },
+  {
+    "action": "dismember",
+    "tag": "melee",
+    "icon": "dismember.webp"
+  },
+  {
+    "action": "galeshot",
+    "tag": "ranged",
+    "icon": "galeshot.webp"
+  },
+  {
+    "action": "gchain",
+    "tag": "magic",
+    "icon": "gchain.webp"
+  },
+  {
+    "action": "gconc",
+    "tag": "magic",
+    "icon": "gconc.webp"
+  },
+  {
+    "action": "gsonic",
+    "tag": "magic",
+    "icon": "gsonic.webp"
+  },
+  {
+    "action": "imbue_shadows",
+    "tag": "ranged",
+    "icon": "imbue_shadows.webp"
+  },
+  {
+    "action": "magic_basic",
+    "tag": "magic",
+    "icon": "magic_basic.webp"
+  },
+  {
+    "action": "magma_tempest_target",
+    "tag": "magic",
+    "icon": "magma_tempest_target.webp"
+  },
+  {
+    "action": "magma_temptest",
+    "tag": "magic",
+    "icon": "magma_temptest.webp"
+  },
+  {
+    "action": "massacre",
+    "tag": "melee",
+    "icon": "massacre.webp"
+  },
+  {
+    "action": "melee_basic",
+    "tag": "melee",
+    "icon": "melee_basic.webp"
+  },
+  {
+    "action": "meteor_strike",
+    "tag": "melee",
+    "icon": "meteor_strike.webp"
+  },
+  {
+    "action": "piercing_shot",
+    "tag": "ranged",
+    "icon": "piercing_shot.webp"
+  },
+  {
+    "action": "ranged_basic",
+    "tag": "ranged",
+    "icon": "ranged_basic.webp"
+  },
+  {
+    "action": "rend",
+    "tag": "melee",
+    "icon": "rend.webp"
+  },
+  {
+    "action": "ricochet",
+    "tag": "ranged",
+    "icon": "ricochet.webp"
+  },
+  {
+    "action": "runic_charge",
+    "tag": "magic",
+    "icon": "runic_charge.webp"
+  },
+  {
+    "action": "slaughter",
+    "tag": "melee",
+    "icon": "slaughter.webp"
+  },
+  {
+    "action": "snapshot",
+    "tag": "ranged",
+    "icon": "snapshot.webp"
+  },
+  {
+    "action": "snipe",
+    "tag": "ranged",
+    "icon": "snipe.webp"
+  },
+  {
+    "action": "sonic",
+    "tag": "magic",
+    "icon": "sonic.webp"
+  },
+  {
+    "action": "sunshine",
+    "tag": "magic",
+    "icon": "sunshine.webp"
+  }
+]

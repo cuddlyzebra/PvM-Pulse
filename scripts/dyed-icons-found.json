@@ -1,0 +1,2288 @@
+[
+  {
+    "action": "Noxious scythe (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-shadow.png",
+    "sourceTitle": "Noxious scythe (shadow)"
+  },
+  {
+    "action": "Noxious scythe (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-soul.png",
+    "sourceTitle": "Noxious scythe (Soul)"
+  },
+  {
+    "action": "Noxious scythe (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-blood.png",
+    "sourceTitle": "Noxious scythe (blood)"
+  },
+  {
+    "action": "Noxious scythe (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-ice.png",
+    "sourceTitle": "Noxious scythe (ice)"
+  },
+  {
+    "action": "Noxious scythe (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-barrows.png",
+    "sourceTitle": "Noxious scythe (Barrows)"
+  },
+  {
+    "action": "Noxious scythe (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-aurora.png",
+    "sourceTitle": "Noxious scythe (Aurora)"
+  },
+  {
+    "action": "Noxious scythe (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/noxious-scythe-third-age.png",
+    "sourceTitle": "Noxious scythe (Third Age)"
+  },
+  {
+    "action": "Zaros godsword (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-shadow.png",
+    "sourceTitle": "Zaros godsword (shadow)"
+  },
+  {
+    "action": "Zaros godsword (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-soul.png",
+    "sourceTitle": "Zaros godsword (Soul)"
+  },
+  {
+    "action": "Zaros godsword (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-blood.png",
+    "sourceTitle": "Zaros godsword (blood)"
+  },
+  {
+    "action": "Zaros godsword (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-ice.png",
+    "sourceTitle": "Zaros godsword (ice)"
+  },
+  {
+    "action": "Zaros godsword (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-barrows.png",
+    "sourceTitle": "Zaros godsword (Barrows)"
+  },
+  {
+    "action": "Zaros godsword (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-aurora.png",
+    "sourceTitle": "Zaros godsword (Aurora)"
+  },
+  {
+    "action": "Zaros godsword (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/zaros-godsword-third-age.png",
+    "sourceTitle": "Zaros godsword (Third Age)"
+  },
+  {
+    "action": "Ek-ZekKil (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-shadow.png",
+    "sourceTitle": "Ek-ZekKil (shadow)"
+  },
+  {
+    "action": "Ek-ZekKil (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-soul.png",
+    "sourceTitle": "Ek-ZekKil (Soul)"
+  },
+  {
+    "action": "Ek-ZekKil (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-blood.png",
+    "sourceTitle": "Ek-ZekKil (blood)"
+  },
+  {
+    "action": "Ek-ZekKil (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-ice.png",
+    "sourceTitle": "Ek-ZekKil (ice)"
+  },
+  {
+    "action": "Ek-ZekKil (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-barrows.png",
+    "sourceTitle": "Ek-ZekKil (Barrows)"
+  },
+  {
+    "action": "Ek-ZekKil (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-aurora.png",
+    "sourceTitle": "Ek-ZekKil (Aurora)"
+  },
+  {
+    "action": "Ek-ZekKil (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/ek-zekkil-third-age.png",
+    "sourceTitle": "Ek-ZekKil (Third Age)"
+  },
+  {
+    "action": "Drygore longsword (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-shadow.png",
+    "sourceTitle": "Drygore longsword (shadow)"
+  },
+  {
+    "action": "Drygore longsword (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-soul.png",
+    "sourceTitle": "Drygore longsword (Soul)"
+  },
+  {
+    "action": "Drygore longsword (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-blood.png",
+    "sourceTitle": "Drygore longsword (blood)"
+  },
+  {
+    "action": "Drygore longsword (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-ice.png",
+    "sourceTitle": "Drygore longsword (ice)"
+  },
+  {
+    "action": "Drygore longsword (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-barrows.png",
+    "sourceTitle": "Drygore longsword (Barrows)"
+  },
+  {
+    "action": "Drygore longsword (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-aurora.png",
+    "sourceTitle": "Drygore longsword (Aurora)"
+  },
+  {
+    "action": "Drygore longsword (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-longsword-third-age.png",
+    "sourceTitle": "Drygore longsword (Third Age)"
+  },
+  {
+    "action": "Drygore mace (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-shadow.png",
+    "sourceTitle": "Drygore mace (shadow)"
+  },
+  {
+    "action": "Drygore mace (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-soul.png",
+    "sourceTitle": "Drygore mace (Soul)"
+  },
+  {
+    "action": "Drygore mace (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-blood.png",
+    "sourceTitle": "Drygore mace (blood)"
+  },
+  {
+    "action": "Drygore mace (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-ice.png",
+    "sourceTitle": "Drygore mace (ice)"
+  },
+  {
+    "action": "Drygore mace (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-barrows.png",
+    "sourceTitle": "Drygore mace (Barrows)"
+  },
+  {
+    "action": "Drygore mace (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-aurora.png",
+    "sourceTitle": "Drygore mace (Aurora)"
+  },
+  {
+    "action": "Drygore mace (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-mace-third-age.png",
+    "sourceTitle": "Drygore mace (Third Age)"
+  },
+  {
+    "action": "Drygore rapier (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-shadow.png",
+    "sourceTitle": "Drygore rapier (shadow)"
+  },
+  {
+    "action": "Drygore rapier (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-soul.png",
+    "sourceTitle": "Drygore rapier (Soul)"
+  },
+  {
+    "action": "Drygore rapier (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-blood.png",
+    "sourceTitle": "Drygore rapier (blood)"
+  },
+  {
+    "action": "Drygore rapier (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-ice.png",
+    "sourceTitle": "Drygore rapier (ice)"
+  },
+  {
+    "action": "Drygore rapier (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-barrows.png",
+    "sourceTitle": "Drygore rapier (Barrows)"
+  },
+  {
+    "action": "Drygore rapier (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-aurora.png",
+    "sourceTitle": "Drygore rapier (Aurora)"
+  },
+  {
+    "action": "Drygore rapier (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/drygore-rapier-third-age.png",
+    "sourceTitle": "Drygore rapier (Third Age)"
+  },
+  {
+    "action": "Khopesh of Tumeken (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-shadow.png",
+    "sourceTitle": "Khopesh of Tumeken (shadow)"
+  },
+  {
+    "action": "Khopesh of Tumeken (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-soul.png",
+    "sourceTitle": "Khopesh of Tumeken (Soul)"
+  },
+  {
+    "action": "Khopesh of Tumeken (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-blood.png",
+    "sourceTitle": "Khopesh of Tumeken (blood)"
+  },
+  {
+    "action": "Khopesh of Tumeken (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-ice.png",
+    "sourceTitle": "Khopesh of Tumeken (ice)"
+  },
+  {
+    "action": "Khopesh of Tumeken (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-barrows.png",
+    "sourceTitle": "Khopesh of Tumeken (Barrows)"
+  },
+  {
+    "action": "Khopesh of Tumeken (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-aurora.png",
+    "sourceTitle": "Khopesh of Tumeken (Aurora)"
+  },
+  {
+    "action": "Khopesh of Tumeken (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-tumeken-third-age.png",
+    "sourceTitle": "Khopesh of Tumeken (Third Age)"
+  },
+  {
+    "action": "Dark Shard of Leng (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-shadow.png",
+    "sourceTitle": "Dark Shard of Leng (shadow)"
+  },
+  {
+    "action": "Dark Shard of Leng (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-soul.png",
+    "sourceTitle": "Dark Shard of Leng (Soul)"
+  },
+  {
+    "action": "Dark Shard of Leng (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-blood.png",
+    "sourceTitle": "Dark Shard of Leng (blood)"
+  },
+  {
+    "action": "Dark Shard of Leng (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-ice.png",
+    "sourceTitle": "Dark Shard of Leng (ice)"
+  },
+  {
+    "action": "Dark Shard of Leng (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-aurora.png",
+    "sourceTitle": "Dark Shard of Leng (Aurora)"
+  },
+  {
+    "action": "Dark Shard of Leng (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-shard-of-leng-third-age.png",
+    "sourceTitle": "Dark Shard of Leng (Third Age)"
+  },
+  {
+    "action": "Off-hand drygore longsword (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-shadow.png",
+    "sourceTitle": "Off-hand drygore longsword (shadow)"
+  },
+  {
+    "action": "Off-hand drygore longsword (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-soul.png",
+    "sourceTitle": "Off-hand drygore longsword (Soul)"
+  },
+  {
+    "action": "Off-hand drygore longsword (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-blood.png",
+    "sourceTitle": "Off-hand drygore longsword (blood)"
+  },
+  {
+    "action": "Off-hand drygore longsword (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-ice.png",
+    "sourceTitle": "Off-hand drygore longsword (ice)"
+  },
+  {
+    "action": "Off-hand drygore longsword (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-barrows.png",
+    "sourceTitle": "Off-hand drygore longsword (Barrows)"
+  },
+  {
+    "action": "Off-hand drygore longsword (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-aurora.png",
+    "sourceTitle": "Off-hand drygore longsword (Aurora)"
+  },
+  {
+    "action": "Off-hand drygore longsword (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-longsword-third-age.png",
+    "sourceTitle": "Off-hand drygore longsword (Third Age)"
+  },
+  {
+    "action": "Off-hand drygore mace (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-shadow.png",
+    "sourceTitle": "Off-hand drygore mace (shadow)"
+  },
+  {
+    "action": "Off-hand drygore mace (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-soul.png",
+    "sourceTitle": "Off-hand drygore mace (Soul)"
+  },
+  {
+    "action": "Off-hand drygore mace (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-blood.png",
+    "sourceTitle": "Off-hand drygore mace (blood)"
+  },
+  {
+    "action": "Off-hand drygore mace (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-ice.png",
+    "sourceTitle": "Off-hand drygore mace (ice)"
+  },
+  {
+    "action": "Off-hand drygore mace (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-barrows.png",
+    "sourceTitle": "Off-hand drygore mace (Barrows)"
+  },
+  {
+    "action": "Off-hand drygore mace (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-aurora.png",
+    "sourceTitle": "Off-hand drygore mace (Aurora)"
+  },
+  {
+    "action": "Off-hand drygore mace (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-mace-third-age.png",
+    "sourceTitle": "Off-hand drygore mace (Third Age)"
+  },
+  {
+    "action": "Off-hand drygore rapier (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-shadow.png",
+    "sourceTitle": "Off-hand drygore rapier (shadow)"
+  },
+  {
+    "action": "Off-hand drygore rapier (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-soul.png",
+    "sourceTitle": "Off-hand drygore rapier (Soul)"
+  },
+  {
+    "action": "Off-hand drygore rapier (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-blood.png",
+    "sourceTitle": "Off-hand drygore rapier (blood)"
+  },
+  {
+    "action": "Off-hand drygore rapier (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-ice.png",
+    "sourceTitle": "Off-hand drygore rapier (ice)"
+  },
+  {
+    "action": "Off-hand drygore rapier (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-barrows.png",
+    "sourceTitle": "Off-hand drygore rapier (Barrows)"
+  },
+  {
+    "action": "Off-hand drygore rapier (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-aurora.png",
+    "sourceTitle": "Off-hand drygore rapier (Aurora)"
+  },
+  {
+    "action": "Off-hand drygore rapier (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/off-hand-drygore-rapier-third-age.png",
+    "sourceTitle": "Off-hand drygore rapier (Third Age)"
+  },
+  {
+    "action": "Khopesh of Elidinis (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-shadow.png",
+    "sourceTitle": "Khopesh of Elidinis (shadow)"
+  },
+  {
+    "action": "Khopesh of Elidinis (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-soul.png",
+    "sourceTitle": "Khopesh of Elidinis (Soul)"
+  },
+  {
+    "action": "Khopesh of Elidinis (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-blood.png",
+    "sourceTitle": "Khopesh of Elidinis (blood)"
+  },
+  {
+    "action": "Khopesh of Elidinis (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-ice.png",
+    "sourceTitle": "Khopesh of Elidinis (ice)"
+  },
+  {
+    "action": "Khopesh of Elidinis (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-barrows.png",
+    "sourceTitle": "Khopesh of Elidinis (Barrows)"
+  },
+  {
+    "action": "Khopesh of Elidinis (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-aurora.png",
+    "sourceTitle": "Khopesh of Elidinis (Aurora)"
+  },
+  {
+    "action": "Khopesh of Elidinis (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/khopesh-of-elidinis-third-age.png",
+    "sourceTitle": "Khopesh of Elidinis (Third Age)"
+  },
+  {
+    "action": "Dark Sliver of Leng (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-soul.png",
+    "sourceTitle": "Dark Sliver of Leng (Soul)"
+  },
+  {
+    "action": "Dark Sliver of Leng (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-blood.png",
+    "sourceTitle": "Dark Sliver of Leng (blood)"
+  },
+  {
+    "action": "Dark Sliver of Leng (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-ice.png",
+    "sourceTitle": "Dark Sliver of Leng (ice)"
+  },
+  {
+    "action": "Dark Sliver of Leng (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-barrows.png",
+    "sourceTitle": "Dark Sliver of Leng (Barrows)"
+  },
+  {
+    "action": "Dark Sliver of Leng (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-aurora.png",
+    "sourceTitle": "Dark Sliver of Leng (Aurora)"
+  },
+  {
+    "action": "Dark Sliver of Leng (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/dark-sliver-of-leng-third-age.png",
+    "sourceTitle": "Dark Sliver of Leng (Third Age)"
+  },
+  {
+    "action": "Noxious longbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-shadow.png",
+    "sourceTitle": "Noxious longbow (shadow)"
+  },
+  {
+    "action": "Noxious longbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-soul.png",
+    "sourceTitle": "Noxious longbow (Soul)"
+  },
+  {
+    "action": "Noxious longbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-blood.png",
+    "sourceTitle": "Noxious longbow (blood)"
+  },
+  {
+    "action": "Noxious longbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-ice.png",
+    "sourceTitle": "Noxious longbow (ice)"
+  },
+  {
+    "action": "Noxious longbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-barrows.png",
+    "sourceTitle": "Noxious longbow (Barrows)"
+  },
+  {
+    "action": "Noxious longbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-aurora.png",
+    "sourceTitle": "Noxious longbow (Aurora)"
+  },
+  {
+    "action": "Noxious longbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/noxious-longbow-third-age.png",
+    "sourceTitle": "Noxious longbow (Third Age)"
+  },
+  {
+    "action": "Eldritch crossbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-shadow.png",
+    "sourceTitle": "Eldritch crossbow (shadow)"
+  },
+  {
+    "action": "Eldritch crossbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-soul.png",
+    "sourceTitle": "Eldritch crossbow (Soul)"
+  },
+  {
+    "action": "Eldritch crossbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-blood.png",
+    "sourceTitle": "Eldritch crossbow (blood)"
+  },
+  {
+    "action": "Eldritch crossbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-ice.png",
+    "sourceTitle": "Eldritch crossbow (ice)"
+  },
+  {
+    "action": "Eldritch crossbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-barrows.png",
+    "sourceTitle": "Eldritch crossbow (barrows)"
+  },
+  {
+    "action": "Eldritch crossbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-aurora.png",
+    "sourceTitle": "Eldritch crossbow (Aurora)"
+  },
+  {
+    "action": "Eldritch crossbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/eldritch-crossbow-third-age.png",
+    "sourceTitle": "Eldritch crossbow (Third Age)"
+  },
+  {
+    "action": "Seren godbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-shadow.png",
+    "sourceTitle": "Seren godbow (shadow)"
+  },
+  {
+    "action": "Seren godbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-soul.png",
+    "sourceTitle": "Seren godbow (Soul)"
+  },
+  {
+    "action": "Seren godbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-blood.png",
+    "sourceTitle": "Seren godbow (blood)"
+  },
+  {
+    "action": "Seren godbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-ice.png",
+    "sourceTitle": "Seren godbow (ice)"
+  },
+  {
+    "action": "Seren godbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-barrows.png",
+    "sourceTitle": "Seren godbow (Barrows)"
+  },
+  {
+    "action": "Seren godbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-aurora.png",
+    "sourceTitle": "Seren godbow (Aurora)"
+  },
+  {
+    "action": "Seren godbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/seren-godbow-third-age.png",
+    "sourceTitle": "Seren godbow (Third Age)"
+  },
+  {
+    "action": "Bow of the Last Guardian (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/bow-of-the-last-guardian-soul.png",
+    "sourceTitle": "Bow of the Last Guardian (Soul)"
+  },
+  {
+    "action": "Bow of the Last Guardian (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/bow-of-the-last-guardian-barrows.png",
+    "sourceTitle": "Bow of the Last Guardian (Barrows)"
+  },
+  {
+    "action": "Bow of the Last Guardian (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/bow-of-the-last-guardian-aurora.png",
+    "sourceTitle": "Bow of the Last Guardian (Aurora)"
+  },
+  {
+    "action": "Bow of the Last Guardian (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/bow-of-the-last-guardian-third-age.png",
+    "sourceTitle": "Bow of the Last Guardian (Third Age)"
+  },
+  {
+    "action": "Ascension crossbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-shadow.png",
+    "sourceTitle": "Ascension crossbow (shadow)"
+  },
+  {
+    "action": "Ascension crossbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-soul.png",
+    "sourceTitle": "Ascension crossbow (Soul)"
+  },
+  {
+    "action": "Ascension crossbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-blood.png",
+    "sourceTitle": "Ascension crossbow (blood)"
+  },
+  {
+    "action": "Ascension crossbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-ice.png",
+    "sourceTitle": "Ascension crossbow (ice)"
+  },
+  {
+    "action": "Ascension crossbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-barrows.png",
+    "sourceTitle": "Ascension crossbow (Barrows)"
+  },
+  {
+    "action": "Ascension crossbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-aurora.png",
+    "sourceTitle": "Ascension crossbow (Aurora)"
+  },
+  {
+    "action": "Ascension crossbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/ascension-crossbow-third-age.png",
+    "sourceTitle": "Ascension crossbow (Third Age)"
+  },
+  {
+    "action": "Blightbound crossbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-shadow.png",
+    "sourceTitle": "Blightbound crossbow (shadow)"
+  },
+  {
+    "action": "Blightbound crossbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-soul.png",
+    "sourceTitle": "Blightbound crossbow (Soul)"
+  },
+  {
+    "action": "Blightbound crossbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-blood.png",
+    "sourceTitle": "Blightbound crossbow (blood)"
+  },
+  {
+    "action": "Blightbound crossbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-ice.png",
+    "sourceTitle": "Blightbound crossbow (ice)"
+  },
+  {
+    "action": "Blightbound crossbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-barrows.png",
+    "sourceTitle": "Blightbound crossbow (Barrows)"
+  },
+  {
+    "action": "Blightbound crossbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-aurora.png",
+    "sourceTitle": "Blightbound crossbow (Aurora)"
+  },
+  {
+    "action": "Blightbound crossbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/blightbound-crossbow-third-age.png",
+    "sourceTitle": "Blightbound crossbow (Third Age)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-shadow.png",
+    "sourceTitle": "Off-hand ascension crossbow (shadow)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-soul.png",
+    "sourceTitle": "Off-hand ascension crossbow (Soul)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-blood.png",
+    "sourceTitle": "Off-hand ascension crossbow (blood)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-ice.png",
+    "sourceTitle": "Off-hand ascension crossbow (ice)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-barrows.png",
+    "sourceTitle": "Off-hand ascension crossbow (Barrows)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-aurora.png",
+    "sourceTitle": "Off-hand ascension crossbow (Aurora)"
+  },
+  {
+    "action": "Off-hand ascension crossbow (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/off-hand-ascension-crossbow-third-age.png",
+    "sourceTitle": "Off-hand ascension crossbow (Third Age)"
+  },
+  {
+    "action": "Noxious staff (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-shadow.png",
+    "sourceTitle": "Noxious staff (shadow)"
+  },
+  {
+    "action": "Noxious staff (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-soul.png",
+    "sourceTitle": "Noxious staff (Soul)"
+  },
+  {
+    "action": "Noxious staff (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-ice.png",
+    "sourceTitle": "Noxious staff (ice)"
+  },
+  {
+    "action": "Noxious staff (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-barrows.png",
+    "sourceTitle": "Noxious staff (Barrows)"
+  },
+  {
+    "action": "Noxious staff (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-aurora.png",
+    "sourceTitle": "Noxious staff (Aurora)"
+  },
+  {
+    "action": "Noxious staff (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/noxious-staff-third-age.png",
+    "sourceTitle": "Noxious staff (Third Age)"
+  },
+  {
+    "action": "Staff of Sliske (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/staff-of-sliske-ice.png",
+    "sourceTitle": "Staff of Sliske (ice)"
+  },
+  {
+    "action": "Staff of Sliske (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/staff-of-sliske-third-age.png",
+    "sourceTitle": "Staff of Sliske (Third Age)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-shadow.png",
+    "sourceTitle": "Fractured Staff of Armadyl (shadow)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-soul.png",
+    "sourceTitle": "Fractured Staff of Armadyl (Soul)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-blood.png",
+    "sourceTitle": "Fractured Staff of Armadyl (blood)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-ice.png",
+    "sourceTitle": "Fractured Staff of Armadyl (ice)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-barrows.png",
+    "sourceTitle": "Fractured Staff of Armadyl (Barrows)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-aurora.png",
+    "sourceTitle": "Fractured Staff of Armadyl (Aurora)"
+  },
+  {
+    "action": "Fractured Staff of Armadyl (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/fractured-staff-of-armadyl-third-age.png",
+    "sourceTitle": "Fractured Staff of Armadyl (Third Age)"
+  },
+  {
+    "action": "Seismic wand (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-shadow.png",
+    "sourceTitle": "Seismic wand (shadow)"
+  },
+  {
+    "action": "Seismic wand (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-soul.png",
+    "sourceTitle": "Seismic wand (Soul)"
+  },
+  {
+    "action": "Seismic wand (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-blood.png",
+    "sourceTitle": "Seismic wand (blood)"
+  },
+  {
+    "action": "Seismic wand (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-ice.png",
+    "sourceTitle": "Seismic wand (ice)"
+  },
+  {
+    "action": "Seismic wand (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-barrows.png",
+    "sourceTitle": "Seismic wand (Barrows)"
+  },
+  {
+    "action": "Seismic wand (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-aurora.png",
+    "sourceTitle": "Seismic wand (Aurora)"
+  },
+  {
+    "action": "Seismic wand (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-wand-third-age.png",
+    "sourceTitle": "Seismic wand (Third Age)"
+  },
+  {
+    "action": "Wand of the praesul (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-shadow.png",
+    "sourceTitle": "Wand of the praesul (shadow)"
+  },
+  {
+    "action": "Wand of the praesul (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-soul.png",
+    "sourceTitle": "Wand of the praesul (Soul)"
+  },
+  {
+    "action": "Wand of the praesul (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-blood.png",
+    "sourceTitle": "Wand of the praesul (blood)"
+  },
+  {
+    "action": "Wand of the praesul (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-ice.png",
+    "sourceTitle": "Wand of the praesul (ice)"
+  },
+  {
+    "action": "Wand of the praesul (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-barrows.png",
+    "sourceTitle": "Wand of the praesul (Barrows)"
+  },
+  {
+    "action": "Wand of the praesul (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-aurora.png",
+    "sourceTitle": "Wand of the praesul (Aurora)"
+  },
+  {
+    "action": "Wand of the praesul (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/wand-of-the-praesul-third-age.png",
+    "sourceTitle": "Wand of the praesul (Third Age)"
+  },
+  {
+    "action": "Roar of Awakening (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-shadow.png",
+    "sourceTitle": "Roar of Awakening (Shadow)"
+  },
+  {
+    "action": "Roar of Awakening (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-soul.png",
+    "sourceTitle": "Roar of Awakening (Soul)"
+  },
+  {
+    "action": "Roar of Awakening (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-blood.png",
+    "sourceTitle": "Roar of Awakening (Blood)"
+  },
+  {
+    "action": "Roar of Awakening (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-ice.png",
+    "sourceTitle": "Roar of Awakening (Ice)"
+  },
+  {
+    "action": "Roar of Awakening (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-barrows.png",
+    "sourceTitle": "Roar of Awakening (Barrows)"
+  },
+  {
+    "action": "Roar of Awakening (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-aurora.png",
+    "sourceTitle": "Roar of Awakening (Aurora)"
+  },
+  {
+    "action": "Roar of Awakening (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/roar-of-awakening-third-age.png",
+    "sourceTitle": "Roar of Awakening (Third Age)"
+  },
+  {
+    "action": "Seismic singularity (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-shadow.png",
+    "sourceTitle": "Seismic singularity (shadow)"
+  },
+  {
+    "action": "Seismic singularity (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-soul.png",
+    "sourceTitle": "Seismic singularity (Soul)"
+  },
+  {
+    "action": "Seismic singularity (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-blood.png",
+    "sourceTitle": "Seismic singularity (blood)"
+  },
+  {
+    "action": "Seismic singularity (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-ice.png",
+    "sourceTitle": "Seismic singularity (ice)"
+  },
+  {
+    "action": "Seismic singularity (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-barrows.png",
+    "sourceTitle": "Seismic singularity (Barrows)"
+  },
+  {
+    "action": "Seismic singularity (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-aurora.png",
+    "sourceTitle": "Seismic singularity (Aurora)"
+  },
+  {
+    "action": "Seismic singularity (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/seismic-singularity-third-age.png",
+    "sourceTitle": "Seismic singularity (Third Age)"
+  },
+  {
+    "action": "Imperium core (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-shadow.png",
+    "sourceTitle": "Imperium core (shadow)"
+  },
+  {
+    "action": "Imperium core (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-soul.png",
+    "sourceTitle": "Imperium core (Soul)"
+  },
+  {
+    "action": "Imperium core (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-blood.png",
+    "sourceTitle": "Imperium core (blood)"
+  },
+  {
+    "action": "Imperium core (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-ice.png",
+    "sourceTitle": "Imperium core (ice)"
+  },
+  {
+    "action": "Imperium core (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-barrows.png",
+    "sourceTitle": "Imperium core (Barrows)"
+  },
+  {
+    "action": "Imperium core (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-aurora.png",
+    "sourceTitle": "Imperium core (Aurora)"
+  },
+  {
+    "action": "Imperium core (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/imperium-core-third-age.png",
+    "sourceTitle": "Imperium core (Third Age)"
+  },
+  {
+    "action": "Ode to Deceit (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-shadow.png",
+    "sourceTitle": "Ode to Deceit (Shadow)"
+  },
+  {
+    "action": "Ode to Deceit (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-soul.png",
+    "sourceTitle": "Ode to Deceit (Soul)"
+  },
+  {
+    "action": "Ode to Deceit (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-blood.png",
+    "sourceTitle": "Ode to Deceit (Blood)"
+  },
+  {
+    "action": "Ode to Deceit (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-ice.png",
+    "sourceTitle": "Ode to Deceit (Ice)"
+  },
+  {
+    "action": "Ode to Deceit (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-barrows.png",
+    "sourceTitle": "Ode to Deceit (Barrows)"
+  },
+  {
+    "action": "Ode to Deceit (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-aurora.png",
+    "sourceTitle": "Ode to Deceit (Aurora)"
+  },
+  {
+    "action": "Ode to Deceit (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/ode-to-deceit-third-age.png",
+    "sourceTitle": "Ode to Deceit (Third Age)"
+  },
+  {
+    "action": "Omni guard (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-shadow.png",
+    "sourceTitle": "Omni guard (Shadow)"
+  },
+  {
+    "action": "Omni guard (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-soul.png",
+    "sourceTitle": "Omni guard (Soul)"
+  },
+  {
+    "action": "Omni guard (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-blood.png",
+    "sourceTitle": "Omni guard (Blood)"
+  },
+  {
+    "action": "Omni guard (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-ice.png",
+    "sourceTitle": "Omni guard (Ice)"
+  },
+  {
+    "action": "Omni guard (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-barrows.png",
+    "sourceTitle": "Omni guard (Barrows)"
+  },
+  {
+    "action": "Omni guard (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-aurora.png",
+    "sourceTitle": "Omni guard (Aurora)"
+  },
+  {
+    "action": "Omni guard (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/omni-guard-third-age.png",
+    "sourceTitle": "Omni guard (Third Age)"
+  },
+  {
+    "action": "Soulbound lantern (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-shadow.png",
+    "sourceTitle": "Soulbound lantern (Shadow)"
+  },
+  {
+    "action": "Soulbound lantern (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-soul.png",
+    "sourceTitle": "Soulbound lantern (Soul)"
+  },
+  {
+    "action": "Soulbound lantern (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-blood.png",
+    "sourceTitle": "Soulbound lantern (Blood)"
+  },
+  {
+    "action": "Soulbound lantern (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-ice.png",
+    "sourceTitle": "Soulbound lantern (Ice)"
+  },
+  {
+    "action": "Soulbound lantern (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-barrows.png",
+    "sourceTitle": "Soulbound lantern (Barrows)"
+  },
+  {
+    "action": "Soulbound lantern (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-aurora.png",
+    "sourceTitle": "Soulbound lantern (Aurora)"
+  },
+  {
+    "action": "Soulbound lantern (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/soulbound-lantern-third-age.png",
+    "sourceTitle": "Soulbound lantern (Third Age)"
+  },
+  {
+    "action": "Malevolent cuirass (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-shadow.png",
+    "sourceTitle": "Malevolent cuirass (shadow)"
+  },
+  {
+    "action": "Malevolent cuirass (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-soul.png",
+    "sourceTitle": "Malevolent cuirass (Soul)"
+  },
+  {
+    "action": "Malevolent cuirass (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-blood.png",
+    "sourceTitle": "Malevolent cuirass (blood)"
+  },
+  {
+    "action": "Malevolent cuirass (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-ice.png",
+    "sourceTitle": "Malevolent cuirass (ice)"
+  },
+  {
+    "action": "Malevolent cuirass (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-barrows.png",
+    "sourceTitle": "Malevolent cuirass (Barrows)"
+  },
+  {
+    "action": "Malevolent cuirass (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-aurora.png",
+    "sourceTitle": "Malevolent cuirass (Aurora)"
+  },
+  {
+    "action": "Malevolent cuirass (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-cuirass-third-age.png",
+    "sourceTitle": "Malevolent cuirass (Third Age)"
+  },
+  {
+    "action": "Malevolent greaves (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-shadow.png",
+    "sourceTitle": "Malevolent greaves (shadow)"
+  },
+  {
+    "action": "Malevolent greaves (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-soul.png",
+    "sourceTitle": "Malevolent greaves (Soul)"
+  },
+  {
+    "action": "Malevolent greaves (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-blood.png",
+    "sourceTitle": "Malevolent greaves (blood)"
+  },
+  {
+    "action": "Malevolent greaves (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-ice.png",
+    "sourceTitle": "Malevolent greaves (ice)"
+  },
+  {
+    "action": "Malevolent greaves (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-barrows.png",
+    "sourceTitle": "Malevolent greaves (Barrows)"
+  },
+  {
+    "action": "Malevolent greaves (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-aurora.png",
+    "sourceTitle": "Malevolent greaves (Aurora)"
+  },
+  {
+    "action": "Malevolent greaves (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-greaves-third-age.png",
+    "sourceTitle": "Malevolent greaves (Third Age)"
+  },
+  {
+    "action": "Malevolent helm (shadow)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-shadow.png",
+    "sourceTitle": "Malevolent helm (shadow)"
+  },
+  {
+    "action": "Malevolent helm (soul)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-soul.png",
+    "sourceTitle": "Malevolent helm (Soul)"
+  },
+  {
+    "action": "Malevolent helm (blood)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-blood.png",
+    "sourceTitle": "Malevolent helm (blood)"
+  },
+  {
+    "action": "Malevolent helm (ice)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-ice.png",
+    "sourceTitle": "Malevolent helm (ice)"
+  },
+  {
+    "action": "Malevolent helm (barrows)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-barrows.png",
+    "sourceTitle": "Malevolent helm (Barrows)"
+  },
+  {
+    "action": "Malevolent helm (aurora)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-aurora.png",
+    "sourceTitle": "Malevolent helm (Aurora)"
+  },
+  {
+    "action": "Malevolent helm (third age)",
+    "tag": "melee-gear",
+    "icon": "dyed/malevolent-helm-third-age.png",
+    "sourceTitle": "Malevolent helm (Third Age)"
+  },
+  {
+    "action": "Sirenic chaps (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-shadow.png",
+    "sourceTitle": "Sirenic chaps (shadow)"
+  },
+  {
+    "action": "Sirenic chaps (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-soul.png",
+    "sourceTitle": "Sirenic chaps (Soul)"
+  },
+  {
+    "action": "Sirenic chaps (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-blood.png",
+    "sourceTitle": "Sirenic chaps (blood)"
+  },
+  {
+    "action": "Sirenic chaps (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-ice.png",
+    "sourceTitle": "Sirenic chaps (ice)"
+  },
+  {
+    "action": "Sirenic chaps (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-barrows.png",
+    "sourceTitle": "Sirenic chaps (Barrows)"
+  },
+  {
+    "action": "Sirenic chaps (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-aurora.png",
+    "sourceTitle": "Sirenic chaps (Aurora)"
+  },
+  {
+    "action": "Sirenic chaps (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-chaps-third-age.png",
+    "sourceTitle": "Sirenic chaps (Third Age)"
+  },
+  {
+    "action": "Sirenic hauberk (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-shadow.png",
+    "sourceTitle": "Sirenic hauberk (shadow)"
+  },
+  {
+    "action": "Sirenic hauberk (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-soul.png",
+    "sourceTitle": "Sirenic hauberk (Soul)"
+  },
+  {
+    "action": "Sirenic hauberk (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-blood.png",
+    "sourceTitle": "Sirenic hauberk (blood)"
+  },
+  {
+    "action": "Sirenic hauberk (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-ice.png",
+    "sourceTitle": "Sirenic hauberk (ice)"
+  },
+  {
+    "action": "Sirenic hauberk (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-barrows.png",
+    "sourceTitle": "Sirenic hauberk (Barrows)"
+  },
+  {
+    "action": "Sirenic hauberk (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-aurora.png",
+    "sourceTitle": "Sirenic hauberk (Aurora)"
+  },
+  {
+    "action": "Sirenic hauberk (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-hauberk-third-age.png",
+    "sourceTitle": "Sirenic hauberk (Third Age)"
+  },
+  {
+    "action": "Sirenic mask (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-shadow.png",
+    "sourceTitle": "Sirenic mask (shadow)"
+  },
+  {
+    "action": "Sirenic mask (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-soul.png",
+    "sourceTitle": "Sirenic mask (Soul)"
+  },
+  {
+    "action": "Sirenic mask (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-blood.png",
+    "sourceTitle": "Sirenic mask (blood)"
+  },
+  {
+    "action": "Sirenic mask (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-ice.png",
+    "sourceTitle": "Sirenic mask (ice)"
+  },
+  {
+    "action": "Sirenic mask (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-barrows.png",
+    "sourceTitle": "Sirenic mask (Barrows)"
+  },
+  {
+    "action": "Sirenic mask (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-aurora.png",
+    "sourceTitle": "Sirenic mask (Aurora)"
+  },
+  {
+    "action": "Sirenic mask (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/sirenic-mask-third-age.png",
+    "sourceTitle": "Sirenic mask (Third Age)"
+  },
+  {
+    "action": "Elite sirenic chaps (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-shadow.png",
+    "sourceTitle": "Elite sirenic chaps (shadow)"
+  },
+  {
+    "action": "Elite sirenic chaps (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-soul.png",
+    "sourceTitle": "Elite sirenic chaps (Soul)"
+  },
+  {
+    "action": "Elite sirenic chaps (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-blood.png",
+    "sourceTitle": "Elite sirenic chaps (blood)"
+  },
+  {
+    "action": "Elite sirenic chaps (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-ice.png",
+    "sourceTitle": "Elite sirenic chaps (ice)"
+  },
+  {
+    "action": "Elite sirenic chaps (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-barrows.png",
+    "sourceTitle": "Elite sirenic chaps (Barrows)"
+  },
+  {
+    "action": "Elite sirenic chaps (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-aurora.png",
+    "sourceTitle": "Elite sirenic chaps (Aurora)"
+  },
+  {
+    "action": "Elite sirenic chaps (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-chaps-third-age.png",
+    "sourceTitle": "Elite sirenic chaps (Third Age)"
+  },
+  {
+    "action": "Elite sirenic hauberk (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-shadow.png",
+    "sourceTitle": "Elite sirenic hauberk (shadow)"
+  },
+  {
+    "action": "Elite sirenic hauberk (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-soul.png",
+    "sourceTitle": "Elite sirenic hauberk (Soul)"
+  },
+  {
+    "action": "Elite sirenic hauberk (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-blood.png",
+    "sourceTitle": "Elite sirenic hauberk (blood)"
+  },
+  {
+    "action": "Elite sirenic hauberk (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-ice.png",
+    "sourceTitle": "Elite sirenic hauberk (ice)"
+  },
+  {
+    "action": "Elite sirenic hauberk (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-barrows.png",
+    "sourceTitle": "Elite sirenic hauberk (Barrows)"
+  },
+  {
+    "action": "Elite sirenic hauberk (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-aurora.png",
+    "sourceTitle": "Elite sirenic hauberk (Aurora)"
+  },
+  {
+    "action": "Elite sirenic hauberk (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-hauberk-third-age.png",
+    "sourceTitle": "Elite sirenic hauberk (Third Age)"
+  },
+  {
+    "action": "Elite sirenic mask (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-shadow.png",
+    "sourceTitle": "Elite sirenic mask (shadow)"
+  },
+  {
+    "action": "Elite sirenic mask (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-soul.png",
+    "sourceTitle": "Elite sirenic mask (Soul)"
+  },
+  {
+    "action": "Elite sirenic mask (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-blood.png",
+    "sourceTitle": "Elite sirenic mask (blood)"
+  },
+  {
+    "action": "Elite sirenic mask (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-ice.png",
+    "sourceTitle": "Elite sirenic mask (ice)"
+  },
+  {
+    "action": "Elite sirenic mask (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-barrows.png",
+    "sourceTitle": "Elite sirenic mask (Barrows)"
+  },
+  {
+    "action": "Elite sirenic mask (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-aurora.png",
+    "sourceTitle": "Elite sirenic mask (Aurora)"
+  },
+  {
+    "action": "Elite sirenic mask (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-sirenic-mask-third-age.png",
+    "sourceTitle": "Elite sirenic mask (Third Age)"
+  },
+  {
+    "action": "Elite Dracolich boots (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-shadow.png",
+    "sourceTitle": "Elite Dracolich boots (Shadow)"
+  },
+  {
+    "action": "Elite Dracolich boots (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-soul.png",
+    "sourceTitle": "Elite Dracolich boots (Soul)"
+  },
+  {
+    "action": "Elite Dracolich boots (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-blood.png",
+    "sourceTitle": "Elite Dracolich boots (Blood)"
+  },
+  {
+    "action": "Elite Dracolich boots (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-ice.png",
+    "sourceTitle": "Elite Dracolich boots (Ice)"
+  },
+  {
+    "action": "Elite Dracolich boots (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-barrows.png",
+    "sourceTitle": "Elite Dracolich boots (Barrows)"
+  },
+  {
+    "action": "Elite Dracolich boots (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-aurora.png",
+    "sourceTitle": "Elite Dracolich boots (Aurora)"
+  },
+  {
+    "action": "Elite Dracolich boots (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-boots-third-age.png",
+    "sourceTitle": "Elite Dracolich boots (Third Age)"
+  },
+  {
+    "action": "Elite Dracolich chaps (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-shadow.png",
+    "sourceTitle": "Elite Dracolich chaps (Shadow)"
+  },
+  {
+    "action": "Elite Dracolich chaps (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-soul.png",
+    "sourceTitle": "Elite Dracolich chaps (Soul)"
+  },
+  {
+    "action": "Elite Dracolich chaps (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-blood.png",
+    "sourceTitle": "Elite Dracolich chaps (Blood)"
+  },
+  {
+    "action": "Elite Dracolich chaps (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-ice.png",
+    "sourceTitle": "Elite Dracolich chaps (Ice)"
+  },
+  {
+    "action": "Elite Dracolich chaps (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-barrows.png",
+    "sourceTitle": "Elite Dracolich chaps (Barrows)"
+  },
+  {
+    "action": "Elite Dracolich chaps (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-aurora.png",
+    "sourceTitle": "Elite Dracolich chaps (Aurora)"
+  },
+  {
+    "action": "Elite Dracolich chaps (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-chaps-third-age.png",
+    "sourceTitle": "Elite Dracolich chaps (Third Age)"
+  },
+  {
+    "action": "Elite Dracolich coif (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-shadow.png",
+    "sourceTitle": "Elite Dracolich coif (Shadow)"
+  },
+  {
+    "action": "Elite Dracolich coif (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-soul.png",
+    "sourceTitle": "Elite Dracolich coif (Soul)"
+  },
+  {
+    "action": "Elite Dracolich coif (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-blood.png",
+    "sourceTitle": "Elite Dracolich coif (Blood)"
+  },
+  {
+    "action": "Elite Dracolich coif (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-ice.png",
+    "sourceTitle": "Elite Dracolich coif (Ice)"
+  },
+  {
+    "action": "Elite Dracolich coif (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-barrows.png",
+    "sourceTitle": "Elite Dracolich coif (Barrows)"
+  },
+  {
+    "action": "Elite Dracolich coif (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-aurora.png",
+    "sourceTitle": "Elite Dracolich coif (Aurora)"
+  },
+  {
+    "action": "Elite Dracolich coif (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-coif-third-age.png",
+    "sourceTitle": "Elite Dracolich coif (Third Age)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-shadow.png",
+    "sourceTitle": "Elite Dracolich hauberk (Shadow)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-soul.png",
+    "sourceTitle": "Elite Dracolich hauberk (Soul)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-blood.png",
+    "sourceTitle": "Elite Dracolich hauberk (Blood)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-ice.png",
+    "sourceTitle": "Elite Dracolich hauberk (Ice)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-barrows.png",
+    "sourceTitle": "Elite Dracolich hauberk (Barrows)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-aurora.png",
+    "sourceTitle": "Elite Dracolich hauberk (Aurora)"
+  },
+  {
+    "action": "Elite Dracolich hauberk (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-hauberk-third-age.png",
+    "sourceTitle": "Elite Dracolich hauberk (Third Age)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (shadow)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-shadow.png",
+    "sourceTitle": "Elite Dracolich vambraces (Shadow)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (soul)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-soul.png",
+    "sourceTitle": "Elite Dracolich vambraces (Soul)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (blood)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-blood.png",
+    "sourceTitle": "Elite Dracolich vambraces (Blood)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (ice)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-ice.png",
+    "sourceTitle": "Elite Dracolich vambraces (Ice)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (barrows)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-barrows.png",
+    "sourceTitle": "Elite Dracolich vambraces (Barrows)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (aurora)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-aurora.png",
+    "sourceTitle": "Elite Dracolich vambraces (Aurora)"
+  },
+  {
+    "action": "Elite Dracolich vambraces (third age)",
+    "tag": "ranged-gear",
+    "icon": "dyed/elite-dracolich-vambraces-third-age.png",
+    "sourceTitle": "Elite Dracolich vambraces (Third Age)"
+  },
+  {
+    "action": "Tectonic mask (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-shadow.png",
+    "sourceTitle": "Tectonic mask (shadow)"
+  },
+  {
+    "action": "Tectonic mask (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-soul.png",
+    "sourceTitle": "Tectonic mask (Soul)"
+  },
+  {
+    "action": "Tectonic mask (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-blood.png",
+    "sourceTitle": "Tectonic mask (blood)"
+  },
+  {
+    "action": "Tectonic mask (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-ice.png",
+    "sourceTitle": "Tectonic mask (ice)"
+  },
+  {
+    "action": "Tectonic mask (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-barrows.png",
+    "sourceTitle": "Tectonic mask (Barrows)"
+  },
+  {
+    "action": "Tectonic mask (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-aurora.png",
+    "sourceTitle": "Tectonic mask (Aurora)"
+  },
+  {
+    "action": "Tectonic mask (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-mask-third-age.png",
+    "sourceTitle": "Tectonic mask (Third Age)"
+  },
+  {
+    "action": "Tectonic robe bottom (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-shadow.png",
+    "sourceTitle": "Tectonic robe bottom (shadow)"
+  },
+  {
+    "action": "Tectonic robe bottom (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-soul.png",
+    "sourceTitle": "Tectonic robe bottom (Soul)"
+  },
+  {
+    "action": "Tectonic robe bottom (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-blood.png",
+    "sourceTitle": "Tectonic robe bottom (blood)"
+  },
+  {
+    "action": "Tectonic robe bottom (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-ice.png",
+    "sourceTitle": "Tectonic robe bottom (ice)"
+  },
+  {
+    "action": "Tectonic robe bottom (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-barrows.png",
+    "sourceTitle": "Tectonic robe bottom (Barrows)"
+  },
+  {
+    "action": "Tectonic robe bottom (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-aurora.png",
+    "sourceTitle": "Tectonic robe bottom (Aurora)"
+  },
+  {
+    "action": "Tectonic robe bottom (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-bottom-third-age.png",
+    "sourceTitle": "Tectonic robe bottom (Third Age)"
+  },
+  {
+    "action": "Tectonic robe top (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-shadow.png",
+    "sourceTitle": "Tectonic robe top (shadow)"
+  },
+  {
+    "action": "Tectonic robe top (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-soul.png",
+    "sourceTitle": "Tectonic robe top (Soul)"
+  },
+  {
+    "action": "Tectonic robe top (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-blood.png",
+    "sourceTitle": "Tectonic robe top (blood)"
+  },
+  {
+    "action": "Tectonic robe top (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-ice.png",
+    "sourceTitle": "Tectonic robe top (ice)"
+  },
+  {
+    "action": "Tectonic robe top (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-barrows.png",
+    "sourceTitle": "Tectonic robe top (Barrows)"
+  },
+  {
+    "action": "Tectonic robe top (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-aurora.png",
+    "sourceTitle": "Tectonic robe top (Aurora)"
+  },
+  {
+    "action": "Tectonic robe top (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/tectonic-robe-top-third-age.png",
+    "sourceTitle": "Tectonic robe top (Third Age)"
+  },
+  {
+    "action": "Elite tectonic mask (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-shadow.png",
+    "sourceTitle": "Elite tectonic mask (shadow)"
+  },
+  {
+    "action": "Elite tectonic mask (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-soul.png",
+    "sourceTitle": "Elite tectonic mask (Soul)"
+  },
+  {
+    "action": "Elite tectonic mask (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-blood.png",
+    "sourceTitle": "Elite tectonic mask (blood)"
+  },
+  {
+    "action": "Elite tectonic mask (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-ice.png",
+    "sourceTitle": "Elite tectonic mask (ice)"
+  },
+  {
+    "action": "Elite tectonic mask (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-barrows.png",
+    "sourceTitle": "Elite tectonic mask (Barrows)"
+  },
+  {
+    "action": "Elite tectonic mask (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-aurora.png",
+    "sourceTitle": "Elite tectonic mask (Aurora)"
+  },
+  {
+    "action": "Elite tectonic mask (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-mask-third-age.png",
+    "sourceTitle": "Elite tectonic mask (Third Age)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-shadow.png",
+    "sourceTitle": "Elite tectonic robe bottom (shadow)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-soul.png",
+    "sourceTitle": "Elite tectonic robe bottom (Soul)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-blood.png",
+    "sourceTitle": "Elite tectonic robe bottom (blood)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-ice.png",
+    "sourceTitle": "Elite tectonic robe bottom (ice)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-barrows.png",
+    "sourceTitle": "Elite tectonic robe bottom (Barrows)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-aurora.png",
+    "sourceTitle": "Elite tectonic robe bottom (Aurora)"
+  },
+  {
+    "action": "Elite tectonic robe bottom (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-bottom-third-age.png",
+    "sourceTitle": "Elite tectonic robe bottom (Third Age)"
+  },
+  {
+    "action": "Elite tectonic robe top (shadow)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-shadow.png",
+    "sourceTitle": "Elite tectonic robe top (shadow)"
+  },
+  {
+    "action": "Elite tectonic robe top (soul)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-soul.png",
+    "sourceTitle": "Elite tectonic robe top (Soul)"
+  },
+  {
+    "action": "Elite tectonic robe top (blood)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-blood.png",
+    "sourceTitle": "Elite tectonic robe top (blood)"
+  },
+  {
+    "action": "Elite tectonic robe top (ice)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-ice.png",
+    "sourceTitle": "Elite tectonic robe top (ice)"
+  },
+  {
+    "action": "Elite tectonic robe top (barrows)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-barrows.png",
+    "sourceTitle": "Elite tectonic robe top (Barrows)"
+  },
+  {
+    "action": "Elite tectonic robe top (aurora)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-aurora.png",
+    "sourceTitle": "Elite tectonic robe top (Aurora)"
+  },
+  {
+    "action": "Elite tectonic robe top (third age)",
+    "tag": "magic-gear",
+    "icon": "dyed/elite-tectonic-robe-top-third-age.png",
+    "sourceTitle": "Elite tectonic robe top (Third Age)"
+  },
+  {
+    "action": "Crown of the First Necromancer (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-shadow.png",
+    "sourceTitle": "Crown of the First Necromancer (Shadow)"
+  },
+  {
+    "action": "Crown of the First Necromancer (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-soul.png",
+    "sourceTitle": "Crown of the First Necromancer (Soul)"
+  },
+  {
+    "action": "Crown of the First Necromancer (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-blood.png",
+    "sourceTitle": "Crown of the First Necromancer (Blood)"
+  },
+  {
+    "action": "Crown of the First Necromancer (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-ice.png",
+    "sourceTitle": "Crown of the First Necromancer (Ice)"
+  },
+  {
+    "action": "Crown of the First Necromancer (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-barrows.png",
+    "sourceTitle": "Crown of the First Necromancer (Barrows)"
+  },
+  {
+    "action": "Crown of the First Necromancer (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-aurora.png",
+    "sourceTitle": "Crown of the First Necromancer (Aurora)"
+  },
+  {
+    "action": "Crown of the First Necromancer (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/crown-of-the-first-necromancer-third-age.png",
+    "sourceTitle": "Crown of the First Necromancer (Third Age)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-shadow.png",
+    "sourceTitle": "Robe top of the First Necromancer (Shadow)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-soul.png",
+    "sourceTitle": "Robe top of the First Necromancer (Soul)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-blood.png",
+    "sourceTitle": "Robe top of the First Necromancer (Blood)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-ice.png",
+    "sourceTitle": "Robe top of the First Necromancer (Ice)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-barrows.png",
+    "sourceTitle": "Robe top of the First Necromancer (Barrows)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-aurora.png",
+    "sourceTitle": "Robe top of the First Necromancer (Aurora)"
+  },
+  {
+    "action": "Robe top of the First Necromancer (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-top-of-the-first-necromancer-third-age.png",
+    "sourceTitle": "Robe top of the First Necromancer (Third Age)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-shadow.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Shadow)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-soul.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Soul)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-blood.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Blood)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-ice.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Ice)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-barrows.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Barrows)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-aurora.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Aurora)"
+  },
+  {
+    "action": "Robe bottom of the First Necromancer (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/robe-bottom-of-the-first-necromancer-third-age.png",
+    "sourceTitle": "Robe bottom of the First Necromancer (Third Age)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-shadow.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Shadow)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-soul.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Soul)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-blood.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Blood)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-ice.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Ice)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-barrows.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Barrows)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-aurora.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Aurora)"
+  },
+  {
+    "action": "Hand wrap of the First Necromancer (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/hand-wrap-of-the-first-necromancer-third-age.png",
+    "sourceTitle": "Hand wrap of the First Necromancer (Third Age)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (shadow)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-shadow.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Shadow)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (soul)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-soul.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Soul)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (blood)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-blood.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Blood)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (ice)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-ice.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Ice)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (barrows)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-barrows.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Barrows)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (aurora)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-aurora.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Aurora)"
+  },
+  {
+    "action": "Foot wraps of the First Necromancer (third age)",
+    "tag": "necromancy-gear",
+    "icon": "dyed/foot-wraps-of-the-first-necromancer-third-age.png",
+    "sourceTitle": "Foot wraps of the First Necromancer (Third Age)"
+  }
+]

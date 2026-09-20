@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: transparent;
+  overflow: hidden;
+}
+
+.tracker {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  width: max-content;
+}
+
+.tracker-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(20, 20, 24, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #ddd;
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+
+  opacity: 0;
+  transform: scale(0.6);
+  animation: tracker-pop-in 180ms ease-out forwards;
+}
+
+@keyframes tracker-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tracker-icon.leaving {
+  animation: tracker-pop-out 160ms ease-in forwards;
+}
+
+@keyframes tracker-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5) translateX(20px);
+  }
+}

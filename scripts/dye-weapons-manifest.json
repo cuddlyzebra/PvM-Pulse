@@ -1,0 +1,79 @@
+{
+  "_comment": "The tier-90+ dyeable weapons (from the user-supplied dye table) and armour pieces (piece names confirmed from https://runescape.wiki/w/Category:Dyeable_equipment). fetch-dyed-icons.js fetches both lists the same way.",
+  "weapons": [
+    { "action": "Noxious scythe", "tag": "melee-gear" },
+    { "action": "Zaros godsword", "tag": "melee-gear" },
+    { "action": "Ek-ZekKil", "tag": "melee-gear" },
+    { "action": "Drygore longsword", "tag": "melee-gear" },
+    { "action": "Drygore mace", "tag": "melee-gear" },
+    { "action": "Drygore rapier", "tag": "melee-gear" },
+    { "action": "Khopesh of Tumeken", "tag": "melee-gear" },
+    { "action": "Dark Shard of Leng", "tag": "melee-gear" },
+    { "action": "Off-hand drygore longsword", "tag": "melee-gear" },
+    { "action": "Off-hand drygore mace", "tag": "melee-gear" },
+    { "action": "Off-hand drygore rapier", "tag": "melee-gear" },
+    { "action": "Khopesh of Elidinis", "tag": "melee-gear" },
+    { "action": "Dark Sliver of Leng", "tag": "melee-gear" },
+
+    { "action": "Noxious longbow", "tag": "ranged-gear" },
+    { "action": "Eldritch crossbow", "tag": "ranged-gear" },
+    { "action": "Seren godbow", "tag": "ranged-gear" },
+    { "action": "Bow of the Last Guardian", "tag": "ranged-gear" },
+    { "action": "Ascension crossbow", "tag": "ranged-gear" },
+    { "action": "Blightbound crossbow", "tag": "ranged-gear" },
+    { "action": "Off-hand ascension crossbow", "tag": "ranged-gear" },
+    { "action": "Off-hand Blightbound crossbow", "tag": "ranged-gear" },
+
+    { "action": "Noxious staff", "tag": "magic-gear" },
+    { "action": "Staff of Sliske", "tag": "magic-gear" },
+    { "action": "Fractured Staff of Armadyl", "tag": "magic-gear" },
+    { "action": "Seismic wand", "tag": "magic-gear" },
+    { "action": "Wand of the praesul", "tag": "magic-gear" },
+    { "action": "Roar of Awakening", "tag": "magic-gear" },
+    { "action": "Seismic singularity", "tag": "magic-gear" },
+    { "action": "Imperium core", "tag": "magic-gear" },
+    { "action": "Ode to Deceit", "tag": "magic-gear" },
+
+    { "action": "Omni guard", "tag": "necromancy-gear" },
+    { "action": "Soulbound lantern", "tag": "necromancy-gear" }
+  ],
+  "armour": [
+    { "action": "Malevolent cuirass", "tag": "melee-gear" },
+    { "action": "Malevolent greaves", "tag": "melee-gear" },
+    { "action": "Malevolent helm", "tag": "melee-gear" },
+
+    { "action": "Sirenic chaps", "tag": "ranged-gear" },
+    { "action": "Sirenic hauberk", "tag": "ranged-gear" },
+    { "action": "Sirenic mask", "tag": "ranged-gear" },
+    { "action": "Elite sirenic chaps", "tag": "ranged-gear" },
+    { "action": "Elite sirenic hauberk", "tag": "ranged-gear" },
+    { "action": "Elite sirenic mask", "tag": "ranged-gear" },
+    { "action": "Elite Dracolich boots", "tag": "ranged-gear" },
+    { "action": "Elite Dracolich chaps", "tag": "ranged-gear" },
+    { "action": "Elite Dracolich coif", "tag": "ranged-gear" },
+    { "action": "Elite Dracolich hauberk", "tag": "ranged-gear" },
+    { "action": "Elite Dracolich vambraces", "tag": "ranged-gear" },
+
+    { "action": "Tectonic mask", "tag": "magic-gear" },
+    { "action": "Tectonic robe bottom", "tag": "magic-gear" },
+    { "action": "Tectonic robe top", "tag": "magic-gear" },
+    { "action": "Elite tectonic mask", "tag": "magic-gear" },
+    { "action": "Elite tectonic robe bottom", "tag": "magic-gear" },
+    { "action": "Elite tectonic robe top", "tag": "magic-gear" },
+
+    { "action": "Crown of the First Necromancer", "tag": "necromancy-gear" },
+    { "action": "Robe top of the First Necromancer", "tag": "necromancy-gear" },
+    { "action": "Robe bottom of the First Necromancer", "tag": "necromancy-gear" },
+    { "action": "Hand wrap of the First Necromancer", "tag": "necromancy-gear" },
+    { "action": "Foot wraps of the First Necromancer", "tag": "necromancy-gear" }
+  ],
+  "dyeColorCasings": {
+    "shadow": ["shadow", "Shadow"],
+    "soul": ["soul", "Soul"],
+    "blood": ["blood", "Blood"],
+    "ice": ["ice", "Ice"],
+    "barrows": ["barrows", "Barrows"],
+    "aurora": ["aurora", "Aurora"],
+    "third age": ["third age", "Third Age", "Third age"]
+  }
+}

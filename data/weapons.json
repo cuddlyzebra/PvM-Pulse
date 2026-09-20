@@ -1,0 +1,57 @@
+{
+	"weapon_profiles": [
+		{ "weapon_type": "2h_melee",
+		  "weapons": [
+			"Masterwork Spear of Annihilation",
+			"Noxious Scythe",
+			"Zaros Godsword",
+			"Statiuss Warhammer",
+			"Ek-ZekKil"
+		]},
+		{ "weapon_type": "dw_melee",
+		  "weapons": [
+			"Drygore Mace",
+			"Drygore Rapier",
+			"Drygore Longsword",
+			"Dark Shard of Leng",
+			"Khopesh of Tumeken",
+			"Abyssal Scourge"
+		]},
+		{ "weapon_type": "dw_range",
+		  "weapons": [
+			"Blightbound Crossbow",
+			"Ascension Crossbow",
+			"Shadow Glaive",
+			"Mechanised Chinchompa"
+		]},
+		{ "weapon_type": "2h_range",
+		  "weapons": [
+			"Decimation",
+			"Noxious Longbow",
+			"Seren Godbow",
+			"Strykebow",
+			"Eldritch Crossbow",
+			"Wyvern Crossbow"
+		]},
+		{ "weapon_type": "dw_magic",
+		  "weapons": [
+			"Wand of the Praesul",
+			"Seismic Wand"
+		]},
+		{ "weapon_type": "2h_magic",
+		  "weapons": [
+			"Fractured Staff of Armadyl",
+			"Staff of Sliske",
+			"Noxious Staff"
+		]},
+		{ "weapon_type": "2h_necro",
+		  "weapons": [
+		]},
+		{ "weapon_type": "dw_necro",
+		  "weapons": [
+			"Omni guard",
+			"Death guard"
+		]}
+
+	]
+}
