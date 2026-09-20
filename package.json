@@ -1,6 +1,6 @@
 {
   "name": "pvm-pulse",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "description": "A modern, cross-platform ability tracker overlay for combat content creators. Inspired by LeMageTank's RS3 Ability Tracker, rebuilt for simpler setup and a live OBS overlay.",
   "main": "electron/main.js",
   "author": "",
