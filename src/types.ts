@@ -92,7 +92,10 @@ declare global {
   interface Window {
     tracker: {
       getProfile: () => Promise<Profile>;
-      saveProfile: (profile: Profile) => Promise<{ ok: boolean }>;
+      saveProfile: (
+        profile: Profile,
+        profileId: string | null
+      ) => Promise<{ ok: boolean; stale?: boolean }>;
       getOverlayUrl: () => Promise<string>;
       listAbilities: () => Promise<AbilityInfo[]>;
       pause: () => Promise<void>;

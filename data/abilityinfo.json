@@ -115,6 +115,11 @@
     "icon": "achtoteralithlegs.webp"
   },
   {
+    "action": "Aegis aura",
+    "tag": "pocket",
+    "icon": "aegis.webp"
+  },
+  {
     "action": "Aftershock1",
     "tag": "perk",
     "icon": "as1.webp"
@@ -540,6 +545,11 @@
     "icon": "berserk.webp"
   },
   {
+    "action": "Berserker blood essence",
+    "tag": "pocket",
+    "icon": "berserkerbloodess.webp"
+  },
+  {
     "action": "Berserker ring",
     "tag": "jewellery",
     "icon": "berserkerring.webp"
@@ -675,6 +685,41 @@
     "icon": "bonerune.webp"
   },
   {
+    "action": "Book (Ancient)(Zaros)",
+    "tag": "pocket",
+    "icon": "zarosbook.webp"
+  },
+  {
+    "action": "Book of Death",
+    "tag": "pocket",
+    "icon": "bookofdeath.webp"
+  },
+  {
+    "action": "Book of balance (Guthix)",
+    "tag": "pocket",
+    "icon": "guthixbook.webp"
+  },
+  {
+    "action": "Book of chaos (Zamorak)",
+    "tag": "pocket",
+    "icon": "zambook.webp"
+  },
+  {
+    "action": "Book of law (Armadyl)",
+    "tag": "pocket",
+    "icon": "armabook.webp"
+  },
+  {
+    "action": "Book of war (Bandos)",
+    "tag": "pocket",
+    "icon": "bandosbook.webp"
+  },
+  {
+    "action": "Book of wisdom (Saradomin)",
+    "tag": "pocket",
+    "icon": "sarabook.webp"
+  },
+  {
     "action": "Boots of Tumeken's resplendence",
     "tag": "magic-gear",
     "icon": "tumekenboots.webp"
@@ -798,6 +843,11 @@
     "action": "Chaotic crossbow",
     "tag": "ranged-gear",
     "icon": "chaoticcbowmh.webp"
+  },
+  {
+    "action": "Chaotic grimoire",
+    "tag": "pocket",
+    "icon": "chaoticgrimoire.webp"
   },
   {
     "action": "Chaotic staff",
@@ -993,6 +1043,11 @@
     "action": "Crystal wand",
     "tag": "magic-gear",
     "icon": "crystalwand.webp"
+  },
+  {
+    "action": "Dark Magic aura",
+    "tag": "pocket",
+    "icon": "darkmagic.webp"
   },
   {
     "action": "Dark Shard of Leng",
@@ -1660,6 +1715,11 @@
     "icon": "ent.webp"
   },
   {
+    "action": "Equilibrium aura",
+    "tag": "pocket",
+    "icon": "equilibriumaura.webp"
+  },
+  {
     "action": "Equilibrium cooldown",
     "tag": "perk",
     "icon": "equilibriumcooldown.webp"
@@ -1683,6 +1743,11 @@
     "action": "Equillibrium1",
     "tag": "perk",
     "icon": "eq1.webp"
+  },
+  {
+    "action": "Erethdor's grimoire",
+    "tag": "pocket",
+    "icon": "grim.webp"
   },
   {
     "action": "Eruptive",
@@ -2275,6 +2340,11 @@
     "icon": "inquisitorstaff.webp"
   },
   {
+    "action": "Inspiration aura",
+    "tag": "pocket",
+    "icon": "inspiration.webp"
+  },
+  {
     "action": "Intercept",
     "tag": "magic",
     "icon": "cept.webp"
@@ -2283,6 +2353,11 @@
     "action": "Invention",
     "tag": "perk",
     "icon": "invention.webp"
+  },
+  {
+    "action": "Invigorate aura",
+    "tag": "pocket",
+    "icon": "invigaura.webp"
   },
   {
     "action": "Invigorating",
@@ -2575,6 +2650,11 @@
     "icon": "magmatempestcodex.webp"
   },
   {
+    "action": "Mahjarrat aura",
+    "tag": "pocket",
+    "icon": "mahj.webp"
+  },
+  {
     "action": "Malevolent cuirass",
     "tag": "melee-gear",
     "icon": "malevbody.webp"
@@ -2593,6 +2673,11 @@
     "action": "Malevolent kiteshield",
     "tag": "melee-gear",
     "icon": "malevkite.webp"
+  },
+  {
+    "action": "Maniacal aura",
+    "tag": "pocket",
+    "icon": "mani.webp"
   },
   {
     "action": "Mask of Tumeken's resplendence",
@@ -3125,6 +3210,11 @@
     "icon": "overpowerigneous.webp"
   },
   {
+    "action": "Pantheon aura",
+    "tag": "pocket",
+    "icon": "pantheonaura.webp"
+  },
+  {
     "action": "Penance (aspect)",
     "tag": "magic",
     "icon": "penanceaspect.webp"
@@ -3133,6 +3223,11 @@
     "action": "Penance Trident",
     "tag": "magic-gear",
     "icon": "penancetrident.webp"
+  },
+  {
+    "action": "Penance aura",
+    "tag": "pocket",
+    "icon": "penanceaura.webp"
   },
   {
     "action": "Pernix Gloves",
@@ -3345,6 +3440,11 @@
     "icon": "reaverring.webp"
   },
   {
+    "action": "Reckless aura",
+    "tag": "pocket",
+    "icon": "reckless.webp"
+  },
+  {
     "action": "Red chinchompa",
     "tag": "ranged-gear",
     "icon": "redchin.webp"
@@ -3545,6 +3645,11 @@
     "icon": "saradominbow.webp"
   },
   {
+    "action": "Saradomin brew",
+    "tag": "consumable",
+    "icon": "brew.webp"
+  },
+  {
     "action": "Saradomin godsword",
     "tag": "melee-gear",
     "icon": "saragodsword.webp"
@@ -3585,9 +3690,49 @@
     "icon": "aggressionscrim.webp"
   },
   {
+    "action": "Scrimshaw of cruelty",
+    "tag": "pocket",
+    "icon": "cruelty.webp"
+  },
+  {
     "action": "Scrimshaw of sacrifice",
     "tag": "magic-gear",
     "icon": "sacrificescrim.webp"
+  },
+  {
+    "action": "Scrimshaw of the elements",
+    "tag": "pocket",
+    "icon": "elementsscrim.webp"
+  },
+  {
+    "action": "Scrimshaw of vampyrism",
+    "tag": "pocket",
+    "icon": "vampscrim.webp"
+  },
+  {
+    "action": "Scripture of Amascut",
+    "tag": "pocket",
+    "icon": "scriptureofamascut.webp"
+  },
+  {
+    "action": "Scripture of Bik",
+    "tag": "pocket",
+    "icon": "scriptureofbik.webp"
+  },
+  {
+    "action": "Scripture of Ful",
+    "tag": "pocket",
+    "icon": "scriptureofful.webp"
+  },
+  {
+    "action": "Scripture of Jas",
+    "tag": "pocket",
+    "icon": "scriptureofjas.webp"
+  },
+  {
+    "action": "Scripture of Wen",
+    "tag": "pocket",
+    "icon": "scriptureofwen.webp"
   },
   {
     "action": "Seasinger kiba",
@@ -3965,6 +4110,16 @@
     "icon": "strykebow.webp"
   },
   {
+    "action": "Summoning",
+    "tag": "consumable",
+    "icon": "summoning.webp"
+  },
+  {
+    "action": "Super saradomin Brew",
+    "tag": "consumable",
+    "icon": "supersara.webp"
+  },
+  {
     "action": "Superior Death Lotus chaps",
     "tag": "ranged-gear",
     "icon": "supdeathlotuschaps.webp"
@@ -4113,6 +4268,16 @@
     "action": "Superior tetsu platelegs",
     "tag": "melee-gear",
     "icon": "suptetsuplatelegs.webp"
+  },
+  {
+    "action": "Supreme brawler aura",
+    "tag": "pocket",
+    "icon": "brawler.webp"
+  },
+  {
+    "action": "Supreme sharpshooter aura",
+    "tag": "pocket",
+    "icon": "sharp.webp"
   },
   {
     "action": "Surge",
@@ -4360,6 +4525,11 @@
     "icon": "undeadslayer.webp"
   },
   {
+    "action": "Underworld Grimoire 4",
+    "tag": "pocket",
+    "icon": "underworldgrimoire4.webp"
+  },
+  {
     "action": "Unload",
     "tag": "ranged",
     "icon": "unload.webp"
@@ -4370,9 +4540,19 @@
     "icon": "upgradedboneblowpipe.webp"
   },
   {
+    "action": "Vampyric blood essence",
+    "tag": "pocket",
+    "icon": "vampbloodess.webp"
+  },
+  {
     "action": "Vampyrism (aspect)",
     "tag": "magic",
     "icon": "vampyrismaspect.webp"
+  },
+  {
+    "action": "Vampyrism aura",
+    "tag": "pocket",
+    "icon": "vampaura.webp"
   },
   {
     "action": "Vampyrism gloves",

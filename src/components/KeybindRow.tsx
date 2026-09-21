@@ -6,14 +6,36 @@ import { formatKeyLabel, normalizeCapturedKey } from '../keyNormalize';
 interface Props {
   keybind: Keybind;
   icon: string | null;
+  // profile.keybinds' index for this row - used only to tag the row's DOM
+  // node (data-keybind-index) so App.tsx can scroll a just-added row into
+  // view; not used for anything else here.
+  rowIndex: number;
   onChange: (patch: Partial<Keybind>) => void;
   onRemove: () => void;
+  // Requests swapping this row's ability without touching its key/modifier/
+  // shared setting - see requestChangeAbility in App.tsx.
+  onRequestChangeAbility: () => void;
   // Only relevant once at least one style bar exists - see App.tsx. When
   // true, shows a checkbox for whether this keybind is "shared" (active no
   // matter which style bar is live) or specific to whichever bar is
   // currently being edited (activeBarId).
   showStyleControls?: boolean;
   activeBarId?: string | null;
+  // Move-up/move-down reordering, within whichever rows are currently
+  // visible (App.tsx's moveKeybindInView) - a precise one-step nudge,
+  // alongside the drag handle below for longer moves.
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  canMoveUp: boolean;
+  canMoveDown: boolean;
+  // Drag-and-drop reordering, for moving a row a long way in one motion -
+  // the ▲/▼ buttons above stay for fine, one-step adjustments. See
+  // reorderKeybindTo in App.tsx for how the drop position is resolved.
+  onDragStart: () => void;
+  onDragEnd: () => void;
+  onDragEnter: () => void;
+  onDropOnto: () => void;
+  draggedOver: boolean;
 }
 
 const MODIFIERS: Array<Keybind['modifier']> = [null, 'shift', 'ctrl', 'alt'];
@@ -27,10 +49,21 @@ const MODIFIERS: Array<Keybind['modifier']> = [null, 'shift', 'ctrl', 'alt'];
 export default function KeybindRow({
   keybind,
   icon,
+  rowIndex,
   onChange,
   onRemove,
+  onRequestChangeAbility,
   showStyleControls,
-  activeBarId
+  activeBarId,
+  onMoveUp,
+  onMoveDown,
+  canMoveUp,
+  canMoveDown,
+  onDragStart,
+  onDragEnd,
+  onDragEnter,
+  onDropOnto,
+  draggedOver
 }: Props) {
   const [capturing, setCapturing] = useState(false);
   const resolvedIconUrl = iconUrl(icon);
@@ -60,12 +93,62 @@ export default function KeybindRow({
   }
 
   return (
-    <div className="keybind-row">
-      {resolvedIconUrl ? (
-        <img className="keybind-icon" src={resolvedIconUrl} alt="" title={keybind.ability} />
-      ) : (
-        <span className="keybind-icon keybind-icon-blank" aria-hidden="true" />
-      )}
+    <div
+      className={`keybind-row ${draggedOver ? 'drag-over' : ''}`}
+      data-keybind-index={rowIndex}
+      onDragOver={(e) => {
+        e.preventDefault();
+        onDragEnter();
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        onDropOnto();
+      }}
+    >
+      <span
+        className="keybind-drag-handle"
+        draggable
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        title="Drag to move this row a long way - or use ▲▼ for one step at a time"
+        aria-hidden="true"
+      >
+        ⠿
+      </span>
+      <div className="keybind-reorder">
+        <button
+          type="button"
+          className="keybind-reorder-button"
+          onClick={onMoveUp}
+          disabled={!canMoveUp}
+          aria-label="Move up"
+          title="Move up"
+        >
+          ▲
+        </button>
+        <button
+          type="button"
+          className="keybind-reorder-button"
+          onClick={onMoveDown}
+          disabled={!canMoveDown}
+          aria-label="Move down"
+          title="Move down"
+        >
+          ▼
+        </button>
+      </div>
+      <button
+        type="button"
+        className="keybind-icon-button"
+        onClick={onRequestChangeAbility}
+        title="Change this row's ability - keeps the same keybind"
+      >
+        {resolvedIconUrl ? (
+          <img className="keybind-icon" src={resolvedIconUrl} alt="" />
+        ) : (
+          <span className="keybind-icon keybind-icon-blank" aria-hidden="true" />
+        )}
+      </button>
       <span className="keybind-ability-name">{keybind.ability}</span>
 
       <select

@@ -21,8 +21,9 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - **Live overlay, not a polled image.** A local WebSocket server pushes
   every cast to the overlay the instant you press the key - no flicker, no
   lag waiting for OBS to notice a changed file.
-- **950+ bindable items**: every current combat ability across all styles,
-  plus weapons, armour, jewellery, and Invention perks - sourced from
+- **986+ bindable items**: every current combat ability across all styles,
+  plus weapons, armour, jewellery, book-slot items, and Invention perks -
+  sourced from
   [RotationMaster](https://github.com/cuddlyzebra/RotationMaster), which is
   actively maintained and reflects the post-"Combat Style Modernisation"
   (March 2026) roster.
@@ -75,8 +76,10 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    the overlay goes blank until you reopen the app). A tray icon appears
    either way - right-click it for Show/Quit, or just left-click to bring
    the window back. Only one copy of PvM Pulse runs at a time; opening it
-   again while it's already running just brings the existing window
-   forward instead of starting a second copy.
+   again while it's already running (e.g. double-clicking the .exe a second
+   time) shows a prompt asking whether to bring the existing window forward,
+   instead of silently starting - or silently refusing to start - a second
+   copy.
 
 ## Quick start
 
@@ -85,11 +88,19 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    searchable the same way as abilities.
 2. **Bind a key.** Click the "+" next to an ability to add it to your
    keybind list, then click "Press key…" and press the actual key you use
-   in-game for it. Pick a modifier (shift/ctrl/alt) from the dropdown if
-   your bind uses one.
-3. **That's live immediately** - no save button to remember. (There's
-   still a manual "Save Profile" button next to the profile switcher if you
-   want one, but the app auto-saves shortly after every change.)
+   in-game for it (any key works now, including symbols like `/`, `;`, `-`,
+   `[`, `]`). Pick a modifier (shift/ctrl/alt) from the dropdown if your
+   bind uses one. Reorder your list with the ▲/▼ buttons for a one-step
+   nudge, or drag a row by the handle (⠿) on its left for a longer move -
+   purely for your own organization, it doesn't change how anything's
+   matched. Changed your mind about which ability a row should be? Click its icon,
+   search for the replacement, and click it - the keybind stays put, only
+   the ability changes. A newly added row scrolls into view automatically
+   so you don't have to go hunting for it.
+3. **That's live immediately** - no save button to remember. The app
+   auto-saves shortly after every change, quietly, with no "Saving…"
+   indicator to distract you. There's still a manual "Save Profile" button
+   next to the profile switcher if you want to trigger one yourself.
 4. **Add the overlay to OBS**: copy the URL shown under "3. Overlay" in
    the app, then in OBS: **Add Source → Browser Source**, paste it in.
    Background is transparent by default.
@@ -213,19 +224,20 @@ was actually pressed doesn't claim an accuracy the app can't back up.
 
 ## Ability, weapon & perk data
 
-`data/abilityinfo.json` (950 items) and `data/icons/` are both built from
+`data/abilityinfo.json` (986 items) and `data/icons/` are both built from
 [RotationMaster](https://github.com/cuddlyzebra/RotationMaster)'s bundled
 icon library via `scripts/build-ability-data.py`. Every entry - ability,
-weapon, jewellery, or perk - is treated the same way by the app: a name, a
-category tag, an icon, bindable to any key.
+weapon, jewellery, book, or perk - is treated the same way by the app: a
+name, a category tag, an icon, bindable to any key.
 
 | Tag | Count | What |
 |---|---|---|
 | `melee` / `ranged` / `magic` / `necromancy` / `defence` / `unlockable` | 342 | Combat abilities |
 | `melee-gear` / `ranged-gear` / `magic-gear` / `necromancy-gear` | 489 | Weapons & armour (undyed base items) |
 | `jewellery` | 48 | Rings, amulets & necklaces (Reaver's/Stalker's/Champion's ring, Essence of Finality, Am-hej, etc.) |
+| `pocket` | 33 | Book-slot items, scriptures, scrimshaws, grimoires & auras (Books of Zaros/Death/Guthix/Zamorak/Armadyl/Bandos/Saradomin, Scripture of Ful/Wen/Jas/Bik/Amascut, Erethdor's grimoire, etc.) |
 | `perk` | 70 | Invention perks |
-| `consumable` | 1 | Combat-support consumables (currently just Vulnerability bomb - see [Roadmap](#roadmap--not-built-yet)) |
+| `consumable` | 4 | Combat-support consumables & single-button actions (Vulnerability bomb, Saradomin brew, Super saradomin Brew, the generic Summoning special-attack trigger - see [Roadmap](#roadmap--not-built-yet)) |
 
 RotationMaster is actively maintained and already reflects RuneScape's
 March 2026 "Combat Style Modernisation" rework (many old abilities removed,
@@ -340,11 +352,15 @@ Community-requested features, roughly in priority order:
   (`Essence of Finality (blue/green/pink)`, `... amulet (red)`) - worth
   relabelling for consistency once someone can confirm the actual in-game
   colour each one is.
-- **`consumable` tag is sparse** - only `Vulnerability bomb` so far
-  (RotationMaster's much larger "Consumables, Currencies, and Combat
-  Support Items" category isn't pulled in wholesale, since most of it -
-  potions, currency - isn't really a "press key, cast it" item); extend
-  `scripts/ability-category-overrides.json` per-item as more are wanted.
+- **`consumable` tag is a hand-picked shortlist** - Vulnerability bomb,
+  Saradomin brew, Super saradomin Brew, and the generic Summoning
+  special-attack trigger so far (RotationMaster's much larger
+  "Consumables, Currencies, and Combat Support Items" and "Summoning"
+  categories aren't pulled in wholesale, since most of that - regular
+  potions, currency, familiar pouches/scrolls themselves - isn't really a
+  "press key mid-fight, see it on the overlay" item the way these are);
+  extend `scripts/ability-category-overrides.json` per-item as more are
+  wanted.
 
 Have an idea, or want to pick one of these up? Open an issue or a PR - see
 [Contributing](#contributing--building-from-source) below.

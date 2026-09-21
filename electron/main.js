@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, dialog, screen } = require('electron');
 const path = require('path');
 const fs = require('fs/promises');
 
@@ -41,18 +41,44 @@ if (!gotSingleInstanceLock) {
   app.quit();
 } else {
   app.on('second-instance', () => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) mainWindow.restore();
-      if (!mainWindow.isVisible()) mainWindow.show();
-      mainWindow.focus();
-    }
+    if (!mainWindow) return;
+    // Fires in THIS (the original, already-running) process whenever
+    // someone tries to launch another copy - that second copy just quits
+    // itself immediately (see gotSingleInstanceLock above), so this is the
+    // only place a message can actually be shown about it.
+    dialog
+      .showMessageBox(mainWindow, {
+        type: 'info',
+        buttons: ['Open PvM Pulse', 'Cancel'],
+        defaultId: 0,
+        cancelId: 1,
+        title: 'PvM Pulse is already running',
+        message: 'PvM Pulse is already running.',
+        detail: 'Only one copy can run at a time - it keeps tracking your keybinds in the background even when minimized to the tray. Open the existing window?'
+      })
+      .then(({ response }) => {
+        if (response !== 0) return;
+        if (mainWindow.isMinimized()) mainWindow.restore();
+        if (!mainWindow.isVisible()) mainWindow.show();
+        mainWindow.focus();
+      });
   });
 }
 
 function createMainWindow() {
+  // 980x700 (the old default) was tight enough that the three-panel layout
+  // (see src/styles.css's .app-grid, max-width 1200px) routinely needed the
+  // window itself to scroll just to see everything, on top of the ability
+  // and keybind lists' own intentional internal scrollbars. Sized relative
+  // to the screen instead of a fixed guess, so it opens comfortably full on
+  // a normal monitor without being clipped on a smaller one.
+  const { width: screenWidth, height: screenHeight } = screen.getPrimaryDisplay().workAreaSize;
+  const width = Math.min(1280, screenWidth - 80);
+  const height = Math.min(900, screenHeight - 80);
+
   mainWindow = new BrowserWindow({
-    width: 980,
-    height: 700,
+    width,
+    height,
     minWidth: 760,
     minHeight: 560,
     title: 'PvM Pulse',
@@ -140,6 +166,29 @@ function createTray() {
   }
 }
 
+// Every handler below reads and mutates the SAME `profile`/`activeProfileId`
+// variables (in bootstrap()) after at least one `await` (disk I/O). Without
+// this, two calls arriving close together - e.g. the renderer's 400ms
+// debounced auto-save landing while a profile switch/create/duplicate is
+// still mid-flight - can interleave: one call's `await` yields the event
+// loop, the other call runs to completion and changes activeProfileId, then
+// the first call resumes and finishes its own write using now-stale
+// assumptions. That's how one profile's content ends up saved into a
+// DIFFERENT profile's file (surfaced as "I switched profiles and came back
+// and everything was gone" - the reported bug this fixes). Queuing every
+// profile-mutating handler through this so only one is ever in flight at a
+// time closes off that whole class of interleaving, not just one instance
+// of it.
+let profileOpQueue = Promise.resolve();
+function serializeProfileOp(fn) {
+  const result = profileOpQueue.then(fn, fn); // run after the previous op settles, even if it rejected
+  profileOpQueue = result.then(
+    () => undefined,
+    () => undefined
+  ); // never let a rejection break the chain for the next queued op
+  return result;
+}
+
 async function bootstrap() {
   // activeProfileId identifies which *saved* profile (see
   // electron/profileStore.js) is currently loaded - separate from `profile`
@@ -171,17 +220,34 @@ async function bootstrap() {
   inputListener.start();
 
   ipcMain.handle('profile:get', () => profile);
-  ipcMain.handle('profile:save', async (_event, nextProfile) => {
-    await saveActiveProfile(activeProfileId, nextProfile);
-    // Keep the outer `profile` reference in sync too - style-bar-changed
-    // events mutate `profile.activeStyleBarId` directly (see above), which
-    // would otherwise be mutating a stale object once the renderer has
-    // saved a newer one.
-    profile = nextProfile;
-    inputListener.updateProfile(nextProfile);
-    overlay.broadcastProfileMeta(nextProfile.settings);
-    return { ok: true };
-  });
+  ipcMain.handle('profile:save', (_event, nextProfile, forProfileId) =>
+    serializeProfileOp(async () => {
+      // forProfileId is which profile the RENDERER believed was active when
+      // this save was queued (App.tsx's debounced auto-save passes its own
+      // activeProfileId along). Even with the queue above preventing
+      // mid-flight interleaving, a save can still have been *scheduled*
+      // against an old profile shortly before the person switched away from
+      // it - the queue only stops the two calls from stomping on each
+      // other's half-finished work, it doesn't know this save is now
+      // outdated. Compare against whichever profile is active by the time
+      // this actually runs, and skip rather than guess if they've diverged.
+      if (forProfileId && forProfileId !== activeProfileId) {
+        console.warn(
+          `profile:save ignored - was queued for profile ${forProfileId}, but ${activeProfileId} is active now`
+        );
+        return { ok: false, stale: true };
+      }
+      await saveActiveProfile(activeProfileId, nextProfile);
+      // Keep the outer `profile` reference in sync too - style-bar-changed
+      // events mutate `profile.activeStyleBarId` directly (see above), which
+      // would otherwise be mutating a stale object once the renderer has
+      // saved a newer one.
+      profile = nextProfile;
+      inputListener.updateProfile(nextProfile);
+      overlay.broadcastProfileMeta(nextProfile.settings);
+      return { ok: true };
+    })
+  );
   // Export/import: lets a player move a profile to another machine, or
   // just keep a backup, without digging through AppData/Library/.config by
   // hand. Exports whatever's currently live in the app (including unsaved
@@ -201,38 +267,40 @@ async function bootstrap() {
     await fs.writeFile(filePath, JSON.stringify(profile, null, 2), 'utf-8');
     return { ok: true, path: filePath };
   });
-  ipcMain.handle('profile:import', async () => {
-    const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
-      title: 'Import PvM Pulse profile',
-      properties: ['openFile'],
-      filters: [{ name: 'PvM Pulse profile', extensions: ['json'] }]
-    });
-    if (canceled || !filePaths?.[0]) return { ok: false, canceled: true };
-    let imported;
-    try {
-      const raw = await fs.readFile(filePaths[0], 'utf-8');
-      const parsed = JSON.parse(raw);
-      if (!parsed || !Array.isArray(parsed.keybinds)) {
-        // Catches "picked the wrong file entirely" (not a profile at all)
-        // early with a clear message, rather than the app silently ending
-        // up with a keybind list of undefined further down the line.
-        throw new Error('That file does not look like a PvM Pulse profile (no keybinds array).');
+  ipcMain.handle('profile:import', () =>
+    serializeProfileOp(async () => {
+      const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
+        title: 'Import PvM Pulse profile',
+        properties: ['openFile'],
+        filters: [{ name: 'PvM Pulse profile', extensions: ['json'] }]
+      });
+      if (canceled || !filePaths?.[0]) return { ok: false, canceled: true };
+      let imported;
+      try {
+        const raw = await fs.readFile(filePaths[0], 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (!parsed || !Array.isArray(parsed.keybinds)) {
+          // Catches "picked the wrong file entirely" (not a profile at all)
+          // early with a clear message, rather than the app silently ending
+          // up with a keybind list of undefined further down the line.
+          throw new Error('That file does not look like a PvM Pulse profile (no keybinds array).');
+        }
+        // Same merge as loading a profile from disk - an export made on an
+        // older version of the app is missing newer fields entirely (style
+        // bars, cycleBarKey, etc.), not just empty ones, so this fills them
+        // in with defaults instead of the importing profile ending up with
+        // undefined settings.
+        imported = normalizeProfile(parsed);
+      } catch (err) {
+        return { ok: false, error: err.message };
       }
-      // Same merge as loading a profile from disk - an export made on an
-      // older version of the app is missing newer fields entirely (style
-      // bars, cycleBarKey, etc.), not just empty ones, so this fills them
-      // in with defaults instead of the importing profile ending up with
-      // undefined settings.
-      imported = normalizeProfile(parsed);
-    } catch (err) {
-      return { ok: false, error: err.message };
-    }
-    await saveActiveProfile(activeProfileId, imported);
-    profile = imported;
-    inputListener.updateProfile(imported);
-    overlay.broadcastProfileMeta(imported.settings);
-    return { ok: true, profile: imported };
-  });
+      await saveActiveProfile(activeProfileId, imported);
+      profile = imported;
+      inputListener.updateProfile(imported);
+      overlay.broadcastProfileMeta(imported.settings);
+      return { ok: true, profile: imported };
+    })
+  );
   // In-app saved-profile management (separate from the file-based
   // export/import above): lets a player keep several named profiles - one
   // per character, one per boss loadout, whatever - and switch between
@@ -241,48 +309,58 @@ async function bootstrap() {
   // broadcast metadata all in sync with each other, the same as
   // profile:save above.
   ipcMain.handle('profiles:list', () => listProfiles());
-  ipcMain.handle('profiles:switch', async (_event, id) => {
-    if (id === activeProfileId) return profile; // already active - no-op
-    profile = await switchActiveProfile(id);
-    activeProfileId = id;
-    inputListener.updateProfile(profile);
-    overlay.broadcastProfileMeta(profile.settings);
-    return profile;
-  });
-  ipcMain.handle('profiles:create', async (_event, name) => {
-    const created = await createProfile(name);
-    activeProfileId = created.id;
-    profile = created.profile;
-    inputListener.updateProfile(profile);
-    overlay.broadcastProfileMeta(profile.settings);
-    return created;
-  });
-  ipcMain.handle('profiles:duplicate', async (_event, { id, name }) => {
-    const created = await duplicateProfile(id, name);
-    activeProfileId = created.id;
-    profile = created.profile;
-    inputListener.updateProfile(profile);
-    overlay.broadcastProfileMeta(profile.settings);
-    return created;
-  });
-  ipcMain.handle('profiles:rename', async (_event, { id, name }) => {
-    await renameProfile(id, name);
-    return { ok: true };
-  });
-  ipcMain.handle('profiles:delete', async (_event, id) => {
-    // Only non-null if the deleted profile was the active one, in which
-    // case deleteProfile already picked another to switch to (it refuses
-    // to delete the last remaining profile in the first place, so there's
-    // always one left to fall back to).
-    const switched = await deleteProfile(id);
-    if (switched) {
-      activeProfileId = switched.id;
-      profile = switched.profile;
+  ipcMain.handle('profiles:switch', (_event, id) =>
+    serializeProfileOp(async () => {
+      if (id === activeProfileId) return profile; // already active - no-op
+      profile = await switchActiveProfile(id);
+      activeProfileId = id;
       inputListener.updateProfile(profile);
       overlay.broadcastProfileMeta(profile.settings);
-    }
-    return switched;
-  });
+      return profile;
+    })
+  );
+  ipcMain.handle('profiles:create', (_event, name) =>
+    serializeProfileOp(async () => {
+      const created = await createProfile(name);
+      activeProfileId = created.id;
+      profile = created.profile;
+      inputListener.updateProfile(profile);
+      overlay.broadcastProfileMeta(profile.settings);
+      return created;
+    })
+  );
+  ipcMain.handle('profiles:duplicate', (_event, { id, name }) =>
+    serializeProfileOp(async () => {
+      const created = await duplicateProfile(id, name);
+      activeProfileId = created.id;
+      profile = created.profile;
+      inputListener.updateProfile(profile);
+      overlay.broadcastProfileMeta(profile.settings);
+      return created;
+    })
+  );
+  ipcMain.handle('profiles:rename', (_event, { id, name }) =>
+    serializeProfileOp(async () => {
+      await renameProfile(id, name);
+      return { ok: true };
+    })
+  );
+  ipcMain.handle('profiles:delete', (_event, id) =>
+    serializeProfileOp(async () => {
+      // Only non-null if the deleted profile was the active one, in which
+      // case deleteProfile already picked another to switch to (it refuses
+      // to delete the last remaining profile in the first place, so there's
+      // always one left to fall back to).
+      const switched = await deleteProfile(id);
+      if (switched) {
+        activeProfileId = switched.id;
+        profile = switched.profile;
+        inputListener.updateProfile(profile);
+        overlay.broadcastProfileMeta(profile.settings);
+      }
+      return switched;
+    })
+  );
   ipcMain.handle('overlay:get-url', () => overlay.overlayUrl);
   // Read fresh (not just from the renderer's own build) so dyed items
   // fetched after the app was last built/packaged still show up on next

@@ -50,6 +50,7 @@ CATEGORY_TAGS = {
     "Necromancy Gear": "necromancy-gear",
     "Invention Perks": "perk",
     "Jewellery": "jewellery",
+    "Auras and Pocket slot": "pocket",
 }
 
 # A handful of entries RotationMaster only has under a garbled auto-generated

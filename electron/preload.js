@@ -2,7 +2,12 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('tracker', {
   getProfile: () => ipcRenderer.invoke('profile:get'),
-  saveProfile: (profile) => ipcRenderer.invoke('profile:save', profile),
+  // profileId is which saved profile the renderer believed was active when
+  // this save was queued - see the staleness check in electron/main.js's
+  // profile:save handler for why that matters (a debounced auto-save can
+  // otherwise land after a profile switch and get applied to the wrong
+  // profile).
+  saveProfile: (profile, profileId) => ipcRenderer.invoke('profile:save', profile, profileId),
   getOverlayUrl: () => ipcRenderer.invoke('overlay:get-url'),
   listAbilities: () => ipcRenderer.invoke('abilities:list'),
   pause: () => ipcRenderer.invoke('tracker:pause'),

@@ -353,6 +353,36 @@ body {
   color: white;
 }
 
+.replace-banner {
+  margin: 0 0 8px;
+  background: rgba(255, 200, 0, 0.1);
+  border: 1px solid rgba(255, 200, 0, 0.35);
+  color: var(--text);
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.replace-banner-cancel {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.replace-banner-cancel:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
 .ability-list {
   list-style: none;
   margin: 0;
@@ -421,13 +451,73 @@ body {
 
 .keybind-row {
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto auto;
+  grid-template-columns: auto auto auto auto 1fr auto auto auto auto;
   align-items: center;
   gap: 6px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 6px 8px;
+  border-top: 2px solid transparent; /* reserves space so drag-over doesn't shift layout */
+}
+
+.keybind-row.drag-over {
+  border-top-color: var(--accent);
+}
+
+.keybind-drag-handle {
+  cursor: grab;
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 0 2px;
+  line-height: 1;
+  user-select: none;
+}
+
+.keybind-drag-handle:active {
+  cursor: grabbing;
+}
+
+.keybind-reorder {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.keybind-reorder-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 9px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.keybind-reorder-button:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.keybind-reorder-button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.keybind-icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 5px;
+}
+
+.keybind-icon-button:hover .keybind-icon,
+.keybind-icon-button:hover .keybind-icon-blank {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 .shared-toggle {

@@ -137,8 +137,9 @@ export default function ProfileSwitcher({
         className="save-button"
         onClick={onSave}
         disabled={saveState === 'saving'}
+        title="Profiles also save automatically as you edit - this is just a manual nudge"
       >
-        {saveState === 'saved' ? 'Saved ✓' : saveState === 'saving' ? 'Saving…' : 'Save Profile'}
+        Save Profile
       </button>
 
       <button

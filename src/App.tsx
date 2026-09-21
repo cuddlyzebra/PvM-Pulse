@@ -19,6 +19,14 @@ function makeStyleBarId() {
   return `bar-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
+// Upper bound of the "icons shown on overlay" setting (see the icon-count
+// control near the bottom of the render, which clamps to this same value).
+// The recentCasts buffer below is kept at this size too - it used to be
+// hardcoded to 8, which meant raising the setting past 8 had nothing left
+// in the buffer to actually show, even though OBS (fed separately over the
+// WebSocket, not from this buffer) displayed the correct count fine.
+const MAX_ICON_COUNT = 14;
+
 export default function App() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [overlayUrl, setOverlayUrl] = useState('');
@@ -57,7 +65,7 @@ export default function App() {
       setSavedProfiles(profiles);
     });
     const unsubscribeCasts = window.tracker.onCastEvent((event) => {
-      setRecentCasts((prev) => [event, ...prev].slice(0, 8));
+      setRecentCasts((prev) => [event, ...prev].slice(0, MAX_ICON_COUNT));
     });
     // The active style bar can change from outside this window - a
     // weapon-trigger keybind fired in-game, or the cycle key - so mirror
@@ -89,13 +97,18 @@ export default function App() {
       return;
     }
     setSaveState('saving');
+    // Captures activeProfileId as of *this* render (the profile this edit
+    // was actually made against) so the main process can tell, once this
+    // arrives, whether the person has since switched to a different profile
+    // - see the staleness check in electron/main.js's profile:save handler.
+    const savingForProfileId = activeProfileId;
     const timeout = setTimeout(async () => {
-      await window.tracker.saveProfile(profile);
+      await window.tracker.saveProfile(profile, savingForProfileId);
       setSaveState('saved');
       setTimeout(() => setSaveState('idle'), 900);
     }, 400);
     return () => clearTimeout(timeout);
-  }, [profile]);
+  }, [profile, activeProfileId]);
 
   // Undo/redo for profile edits (keybinds, style bars, settings) - added
   // because a misclick that's easy to make without noticing, like ticking
@@ -251,8 +264,28 @@ export default function App() {
     );
   }, [profile, keybindSearch, viewingShared]);
 
+  // Clicking a keybind row's icon requests swapping which ability that row
+  // points at, without touching its key/modifier/shared setting - see
+  // requestChangeAbility below. Non-null while that's in progress: the
+  // ability list (panel 1) shows a banner and the next ability clicked there
+  // fills in here instead of creating a new keybind.
+  const [replacingKeybindIndex, setReplacingKeybindIndex] = useState<number | null>(null);
+
+  // Set right after a genuinely new keybind is added, so the list can
+  // scroll it into view - new rows land at the end of profile.keybinds,
+  // which with a long list otherwise means it's added below the fold with
+  // no indication anything happened short of manually scrolling down to
+  // check. Cleared once the scroll has been performed (see the effect near
+  // the render below).
+  const [lastAddedKeybindIndex, setLastAddedKeybindIndex] = useState<number | null>(null);
+
   function addKeybind(ability: string) {
     if (!profile) return;
+    if (replacingKeybindIndex !== null) {
+      updateKeybind(replacingKeybindIndex, { ability });
+      setReplacingKeybindIndex(null);
+      return;
+    }
     const nextKeybinds: Keybind[] = [
       ...profile.keybinds,
       // New keybinds default to whichever bar is currently selected - or
@@ -267,6 +300,7 @@ export default function App() {
       }
     ];
     applyProfileChange({ ...profile, keybinds: nextKeybinds });
+    setLastAddedKeybindIndex(nextKeybinds.length - 1);
   }
 
   function updateKeybind(index: number, patch: Partial<Keybind>) {
@@ -280,10 +314,116 @@ export default function App() {
     applyProfileChange({ ...profile, keybinds: profile.keybinds.filter((_, i) => i !== index) });
   }
 
+  // Lets a keybind's ability be swapped out while keeping everything else
+  // about it (key, modifier, shared/bar assignment) exactly as it was -
+  // clicking a row's icon jumps focus over to the ability list with a
+  // banner explaining what's happening; clicking an ability there fills it
+  // in via addKeybind's replacingKeybindIndex branch above instead of
+  // adding a new row.
+  function requestChangeAbility(index: number) {
+    setReplacingKeybindIndex(index);
+    setKeybindSearch('');
+  }
+
+  function cancelChangeAbility() {
+    setReplacingKeybindIndex(null);
+  }
+
+  // Reorder-for-organization within the CURRENTLY VISIBLE list (whichever
+  // bar's tab, or Shared, or a keybind search is narrowing it down right
+  // now) - order has no effect on how keybinds are matched at runtime
+  // (electron/inputListener.js resolves by key + active style bar, never by
+  // position). "Visible" matters here because profile.keybinds is one flat
+  // array holding every bar's keybinds interleaved - swapping two ADJACENT
+  // entries in that raw array could easily mean swapping a visible row with
+  // an invisible one belonging to a different bar, which would silently do
+  // nothing on screen. Operating on filteredKeybinds' own order instead (and
+  // writing the result back into the same underlying array slots the
+  // visible rows occupied) guarantees "move up/down" always swaps with
+  // whichever row is visibly adjacent to it, exactly as it looks.
+  function moveKeybindInView(originalIndex: number, direction: -1 | 1) {
+    if (!profile) return;
+    const order = filteredKeybinds.map((f) => f.index);
+    const pos = order.indexOf(originalIndex);
+    const swapWithPos = pos + direction;
+    if (pos === -1 || swapWithPos < 0 || swapWithPos >= order.length) return;
+    const newOrder = [...order];
+    [newOrder[pos], newOrder[swapWithPos]] = [newOrder[swapWithPos], newOrder[pos]];
+    const slots = [...order].sort((a, b) => a - b);
+    const reorderedItems = newOrder.map((i) => profile.keybinds[i]);
+    const nextKeybinds = [...profile.keybinds];
+    slots.forEach((slot, i) => {
+      nextKeybinds[slot] = reorderedItems[i];
+    });
+    applyProfileChange({ ...profile, keybinds: nextKeybinds });
+  }
+
+  // Drag-and-drop reordering, alongside the ▲/▼ buttons above - the buttons
+  // are precise but slow for a long jump (moving something 20 spots means
+  // 20 clicks), dragging covers that case in one motion. Tracked in a ref,
+  // not state, since it doesn't need to trigger a re-render on its own -
+  // only draggedOverIndex (for the drop-target highlight) does.
+  const dragSourceIndexRef = useRef<number | null>(null);
+  const [draggedOverIndex, setDraggedOverIndex] = useState<number | null>(null);
+
+  function startKeybindDrag(originalIndex: number) {
+    dragSourceIndexRef.current = originalIndex;
+  }
+
+  function endKeybindDrag() {
+    dragSourceIndexRef.current = null;
+    setDraggedOverIndex(null);
+  }
+
+  // Drops whatever's being dragged onto the row at targetOriginalIndex,
+  // within the CURRENTLY VISIBLE order (see moveKeybindInView above for why
+  // that matters). Uses each row's *pre-move* visible position for both the
+  // removal and the insertion, which is what makes the result match what a
+  // player would expect regardless of drag direction: dragging a row down
+  // past others inserts it right after the row it's dropped on, dragging it
+  // up inserts it right before - there's no "drag one way, then have to drag
+  // it back the other way to land where intended" the way a naive same-index
+  // swap could produce.
+  function reorderKeybindTo(targetOriginalIndex: number) {
+    if (!profile) return;
+    const fromOriginalIndex = dragSourceIndexRef.current;
+    endKeybindDrag();
+    if (fromOriginalIndex === null || fromOriginalIndex === targetOriginalIndex) return;
+
+    const order = filteredKeybinds.map((f) => f.index);
+    const fromPos = order.indexOf(fromOriginalIndex);
+    const toPos = order.indexOf(targetOriginalIndex);
+    if (fromPos === -1 || toPos === -1) return;
+
+    const newOrder = [...order];
+    const [moved] = newOrder.splice(fromPos, 1);
+    newOrder.splice(toPos, 0, moved);
+
+    const slots = [...order].sort((a, b) => a - b);
+    const reorderedItems = newOrder.map((i) => profile.keybinds[i]);
+    const nextKeybinds = [...profile.keybinds];
+    slots.forEach((slot, i) => {
+      nextKeybinds[slot] = reorderedItems[i];
+    });
+    applyProfileChange({ ...profile, keybinds: nextKeybinds });
+  }
+
+  // Scrolls a just-added keybind row into view - see lastAddedKeybindIndex
+  // above. Runs after render (the DOM node only exists once React has
+  // committed the new row), and is a no-op if the row isn't actually
+  // present (e.g. a keybind search filter is hiding it) rather than
+  // throwing.
+  useEffect(() => {
+    if (lastAddedKeybindIndex === null) return;
+    const row = document.querySelector(`[data-keybind-index="${lastAddedKeybindIndex}"]`);
+    row?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setLastAddedKeybindIndex(null);
+  }, [lastAddedKeybindIndex]);
+
   async function save() {
     if (!profile) return;
     setSaveState('saving');
-    await window.tracker.saveProfile(profile);
+    await window.tracker.saveProfile(profile, activeProfileId);
     setSaveState('saved');
     setTimeout(() => setSaveState('idle'), 1200);
   }
@@ -543,6 +683,16 @@ export default function App() {
               keeps happening, please report it as a bug.
             </p>
           )}
+          {replacingKeybindIndex !== null && (
+            <p className="replace-banner">
+              Choose a replacement for{' '}
+              <strong>{profile.keybinds[replacingKeybindIndex]?.ability}</strong> - its key stays
+              bound.{' '}
+              <button type="button" className="replace-banner-cancel" onClick={cancelChangeAbility}>
+                Cancel
+              </button>
+            </p>
+          )}
           <input
             className="search-input"
             placeholder="Search abilities, weapons, perks…"
@@ -564,7 +714,11 @@ export default function App() {
           <ul className="ability-list">
             {filteredAbilities.map((ability) => (
               <li key={ability.action}>
-                <button className="ability-pill" onClick={() => addKeybind(ability.action)}>
+                <button
+                  className="ability-pill"
+                  onClick={() => addKeybind(ability.action)}
+                  title={replacingKeybindIndex !== null ? `Use ${ability.action} for this keybind instead` : undefined}
+                >
                   {iconUrl(ability.icon) ? (
                     <img className="ability-icon" src={iconUrl(ability.icon)!} alt="" />
                   ) : (
@@ -572,7 +726,7 @@ export default function App() {
                   )}
                   <span className="ability-tag">{ability.tag}</span>
                   {ability.action}
-                  <span className="ability-add">+</span>
+                  <span className="ability-add">{replacingKeybindIndex !== null ? '↺' : '+'}</span>
                 </button>
               </li>
             ))}
@@ -592,7 +746,10 @@ export default function App() {
               </span>
             )}
           </h2>
-          <p className="hint">Click "Press key…" then hit the key on your keyboard. That's it.</p>
+          <p className="hint">
+            Click "Press key…" then hit the key on your keyboard. That's it. Click a row's icon to
+            swap its ability without losing the keybind, or use ▲▼ to reorder.
+          </p>
           {profile.keybinds.length > 0 && (
             <input
               className="search-input"
@@ -614,15 +771,26 @@ export default function App() {
                     : 'Nothing bound to this style bar yet - add an ability on the left to get started.'}
               </p>
             )}
-            {filteredKeybinds.map(({ kb, index }) => (
+            {filteredKeybinds.map(({ kb, index }, viewPos) => (
               <KeybindRow
                 key={`${kb.ability}-${index}`}
+                rowIndex={index}
                 keybind={kb}
                 icon={abilityIconByName[kb.ability] ?? null}
                 onChange={(patch) => updateKeybind(index, patch)}
                 onRemove={() => removeKeybind(index)}
+                onRequestChangeAbility={() => requestChangeAbility(index)}
                 showStyleControls={profile.styleBars.length > 0}
                 activeBarId={profile.activeStyleBarId}
+                onMoveUp={() => moveKeybindInView(index, -1)}
+                onMoveDown={() => moveKeybindInView(index, 1)}
+                canMoveUp={viewPos > 0}
+                canMoveDown={viewPos < filteredKeybinds.length - 1}
+                onDragStart={() => startKeybindDrag(index)}
+                onDragEnd={endKeybindDrag}
+                onDragEnter={() => setDraggedOverIndex(index)}
+                onDropOnto={() => reorderKeybindTo(index)}
+                draggedOver={draggedOverIndex === index}
               />
             ))}
           </div>
@@ -633,14 +801,14 @@ export default function App() {
           <OverlayLinkPanel overlayUrl={overlayUrl} />
           <LivePreview casts={recentCasts} iconCount={profile.settings.iconCount} />
           <label className="icon-count-control">
-            Icons shown on overlay (4–14)
+            Icons shown on overlay (4–{MAX_ICON_COUNT})
             <input
               type="number"
               min={4}
-              max={14}
+              max={MAX_ICON_COUNT}
               value={profile.settings.iconCount}
               onChange={(e) => {
-                const clamped = Math.min(14, Math.max(4, Number(e.target.value) || 4));
+                const clamped = Math.min(MAX_ICON_COUNT, Math.max(4, Number(e.target.value) || 4));
                 applyProfileChange({
                   ...profile,
                   settings: { ...profile.settings, iconCount: clamped }
