@@ -65,10 +65,10 @@
       ]
     },
     "mac": {
-      "target": "dmg",
+      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }],
       "icon": "build/icon.png",
       "identity": null,
-      "artifactName": "${productName} ${version}.${ext}"
+      "artifactName": "${productName} ${version}-${arch}.${ext}"
     },
     "linux": { "target": "AppImage", "icon": "build/icon.png" }
   }

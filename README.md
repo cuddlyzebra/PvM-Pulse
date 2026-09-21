@@ -74,9 +74,16 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 ### macOS
 
-1. Grab **`PvM Pulse <version>.dmg`** from the
-   [latest release](../../releases/latest), open it, and drag **PvM Pulse**
-   into your **Applications** folder.
+1. Grab the right **`.dmg`** from the [latest release](../../releases/latest)
+   - two are published, one per Mac chip type:
+   - **`PvM Pulse <version>-arm64.dmg`** - Apple Silicon Macs (M1/M2/M3/M4 -
+     most Macs sold since late 2020).
+   - **`PvM Pulse <version>-x64.dmg`** - older Intel Macs.
+   - Not sure which you have? **Apple menu (top-left) → About This Mac** -
+     it'll say either "Chip: Apple M___" (get the arm64 one) or
+     "Processor: Intel ___" (get the x64 one).
+   - Open the `.dmg` and drag **PvM Pulse** into your **Applications**
+     folder.
 2. macOS will refuse to open it the normal way and say it's "damaged" or
    from an "unidentified developer" - it isn't damaged, it's just not
    signed with a paid Apple Developer certificate (same reasoning as the
