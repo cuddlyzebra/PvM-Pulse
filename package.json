@@ -64,7 +64,12 @@
         { "target": "portable", "arch": ["x64"] }
       ]
     },
-    "mac": { "target": "dmg", "icon": "build/icon.png", "identity": null },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png",
+      "identity": null,
+      "artifactName": "${productName} ${version}.${ext}"
+    },
     "linux": { "target": "AppImage", "icon": "build/icon.png" }
   }
 }
