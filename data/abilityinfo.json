@@ -155,6 +155,36 @@
     "icon": "airrune.webp"
   },
   {
+    "action": "Am-hej",
+    "tag": "jewellery",
+    "icon": "amhej.webp"
+  },
+  {
+    "action": "Amulet of souls",
+    "tag": "jewellery",
+    "icon": "aos.webp"
+  },
+  {
+    "action": "Amulet of souls (or)",
+    "tag": "jewellery",
+    "icon": "aosor.webp"
+  },
+  {
+    "action": "Amulet of souls ornament kit",
+    "tag": "jewellery",
+    "icon": "aoskit.webp"
+  },
+  {
+    "action": "Amulet of the forsaken",
+    "tag": "jewellery",
+    "icon": "amuletoftheforsaken.webp"
+  },
+  {
+    "action": "Amulet of zealots",
+    "tag": "jewellery",
+    "icon": "zealots.webp"
+  },
+  {
     "action": "Ancient ceremonial boots",
     "tag": "magic-gear",
     "icon": "ceremonialboots.webp"
@@ -285,6 +315,11 @@
     "icon": "arcanespiritshield.webp"
   },
   {
+    "action": "Archers' ring",
+    "tag": "jewellery",
+    "icon": "archerring.webp"
+  },
+  {
     "action": "Armadyl battlestaff",
     "tag": "magic-gear",
     "icon": "armadylbattlestaff.webp"
@@ -358,6 +393,11 @@
     "action": "Astral rune",
     "tag": "magic-gear",
     "icon": "astralrune.webp"
+  },
+  {
+    "action": "Asylum surgeon's ring",
+    "tag": "jewellery",
+    "icon": "asr.webp"
   },
   {
     "action": "Attack",
@@ -495,6 +535,16 @@
     "icon": "bash.webp"
   },
   {
+    "action": "Berserk",
+    "tag": "melee",
+    "icon": "berserk.webp"
+  },
+  {
+    "action": "Berserker ring",
+    "tag": "jewellery",
+    "icon": "berserkerring.webp"
+  },
+  {
     "action": "Binding shot",
     "tag": "ranged",
     "icon": "bindingshot.webp"
@@ -585,6 +635,11 @@
     "icon": "bloodsiphon.webp"
   },
   {
+    "action": "Blood amulet of fury",
+    "tag": "jewellery",
+    "icon": "bloodfury.webp"
+  },
+  {
     "action": "Blood rune",
     "tag": "magic-gear",
     "icon": "bloodrune.webp"
@@ -643,6 +698,11 @@
     "action": "Brawler's blood necklace",
     "tag": "melee-gear",
     "icon": "brawlersbloodnecklace.webp"
+  },
+  {
+    "action": "Brooch of the Gods",
+    "tag": "jewellery",
+    "icon": "broochofthegods.webp"
   },
   {
     "action": "Bulwark",
@@ -708,6 +768,16 @@
     "action": "Chain (caroming)",
     "tag": "magic",
     "icon": "chaincaroming.webp"
+  },
+  {
+    "action": "Champion's ring",
+    "tag": "jewellery",
+    "icon": "championring.webp"
+  },
+  {
+    "action": "Channeller's ring",
+    "tag": "jewellery",
+    "icon": "channellersring.webp"
   },
   {
     "action": "Chaos Roar ability codex",
@@ -808,6 +878,11 @@
     "action": "Conjure Vengeful Ghost",
     "tag": "necromancy",
     "icon": "conjureghost.webp"
+  },
+  {
+    "action": "Conjurer's raising amulet",
+    "tag": "jewellery",
+    "icon": "conjuresamulet.webp"
   },
   {
     "action": "Consecrated keris",
@@ -935,6 +1010,11 @@
     "icon": "dbow.webp"
   },
   {
+    "action": "Dark bow EoF",
+    "tag": "jewellery",
+    "icon": "eofyellowu.webp"
+  },
+  {
     "action": "Dark ice shard",
     "tag": "melee-gear",
     "icon": "darkiceshard.webp"
@@ -1050,6 +1130,11 @@
     "icon": "deathsporearrows.webp"
   },
   {
+    "action": "Deathtouched bracelet",
+    "tag": "jewellery",
+    "icon": "dtb.webp"
+  },
+  {
     "action": "Deathwarden Nexus",
     "tag": "necromancy-gear",
     "icon": "deathwardennexus.webp"
@@ -1115,9 +1200,19 @@
     "icon": "decay.webp"
   },
   {
+    "action": "Decimate",
+    "tag": "necromancy",
+    "icon": "decimate.webp"
+  },
+  {
     "action": "Decimation",
     "tag": "ranged-gear",
     "icon": "decimation.webp"
+  },
+  {
+    "action": "Decimation EoF",
+    "tag": "jewellery",
+    "icon": "eofpurpleu.webp"
   },
   {
     "action": "Deep impact",
@@ -1145,6 +1240,11 @@
     "icon": "demonslayercodex.webp"
   },
   {
+    "action": "Demon horn necklace",
+    "tag": "jewellery",
+    "icon": "demonhornnecklace.webp"
+  },
+  {
     "action": "Demon slayer (perk)",
     "tag": "perk",
     "icon": "demonslayerperk.webp"
@@ -1158,6 +1258,11 @@
     "action": "Demoralise",
     "tag": "ranged",
     "icon": "demoralise.webp"
+  },
+  {
+    "action": "Desert amulet 4",
+    "tag": "jewellery",
+    "icon": "desertamulet4.webp"
   },
   {
     "action": "Destroy",
@@ -1610,6 +1715,41 @@
     "icon": "eofspec.webp"
   },
   {
+    "action": "Essence of Finality (blue)",
+    "tag": "jewellery",
+    "icon": "eofblueu.webp"
+  },
+  {
+    "action": "Essence of Finality (green)",
+    "tag": "jewellery",
+    "icon": "eofgreenu.webp"
+  },
+  {
+    "action": "Essence of Finality (pink)",
+    "tag": "jewellery",
+    "icon": "eofpinku.webp"
+  },
+  {
+    "action": "Essence of Finality amulet",
+    "tag": "jewellery",
+    "icon": "eofu.webp"
+  },
+  {
+    "action": "Essence of Finality amulet (or)",
+    "tag": "jewellery",
+    "icon": "eof.webp"
+  },
+  {
+    "action": "Essence of Finality amulet (red)",
+    "tag": "jewellery",
+    "icon": "eofredu.webp"
+  },
+  {
+    "action": "Essence of finality ornament kit",
+    "tag": "jewellery",
+    "icon": "eofkit.webp"
+  },
+  {
     "action": "Exsanguinate",
     "tag": "magic",
     "icon": "exsanguinate.webp"
@@ -1768,6 +1908,11 @@
     "action": "Gown of Subjugation",
     "tag": "magic-gear",
     "icon": "gownofsubjugation.webp"
+  },
+  {
+    "action": "Grace of the elves",
+    "tag": "jewellery",
+    "icon": "gote.webp"
   },
   {
     "action": "Granite maul",
@@ -1983,6 +2128,11 @@
     "action": "Havoc (Gloves of passage)",
     "tag": "melee",
     "icon": "havocgop.webp"
+  },
+  {
+    "action": "Hazelmere's Signet Ring",
+    "tag": "jewellery",
+    "icon": "hsr.webp"
   },
   {
     "action": "Heal Group",
@@ -2230,6 +2380,11 @@
     "icon": "keris.webp"
   },
   {
+    "action": "Kethsi ring",
+    "tag": "jewellery",
+    "icon": "kethsiring.webp"
+  },
+  {
     "action": "Khopesh of elidinis",
     "tag": "melee-gear",
     "icon": "khopeshoh.webp"
@@ -2368,6 +2523,11 @@
     "action": "Living Death",
     "tag": "necromancy",
     "icon": "livingdeath.webp"
+  },
+  {
+    "action": "Luck of the dwarves",
+    "tag": "jewellery",
+    "icon": "lotd.webp"
   },
   {
     "action": "Lucky2",
@@ -2608,6 +2768,11 @@
     "action": "Nature rune",
     "tag": "magic-gear",
     "icon": "naturerune.webp"
+  },
+  {
+    "action": "Necklace of Salamancy",
+    "tag": "jewellery",
+    "icon": "necklaceofsalamancy.webp"
   },
   {
     "action": "Necromancy",
@@ -3035,6 +3200,11 @@
     "icon": "pernixsquiveryellow.webp"
   },
   {
+    "action": "Phoenix Necklace",
+    "tag": "jewellery",
+    "icon": "phoenixnecklace.webp"
+  },
+  {
     "action": "Planted Feet perk",
     "tag": "perk",
     "icon": "pf.webp"
@@ -3048,6 +3218,11 @@
     "action": "Polypore staff",
     "tag": "magic-gear",
     "icon": "polyporestaff.webp"
+  },
+  {
+    "action": "Pontifex shadow ring",
+    "tag": "jewellery",
+    "icon": "pontifexshadowring.webp"
   },
   {
     "action": "Praesul codex",
@@ -3155,6 +3330,21 @@
     "icon": "razorback.webp"
   },
   {
+    "action": "Reaper necklace (or)",
+    "tag": "jewellery",
+    "icon": "reaperor.webp"
+  },
+  {
+    "action": "Reaper necklace ornament kit",
+    "tag": "jewellery",
+    "icon": "reaperorkit.webp"
+  },
+  {
+    "action": "Reaver's ring",
+    "tag": "jewellery",
+    "icon": "reaverring.webp"
+  },
+  {
     "action": "Red chinchompa",
     "tag": "ranged-gear",
     "icon": "redchin.webp"
@@ -3223,6 +3413,31 @@
     "action": "Ricochet (caroming)",
     "tag": "ranged",
     "icon": "ricochetcaroming.webp"
+  },
+  {
+    "action": "Ring of Whispers",
+    "tag": "jewellery",
+    "icon": "ringofwhispers.webp"
+  },
+  {
+    "action": "Ring of death",
+    "tag": "jewellery",
+    "icon": "rod.webp"
+  },
+  {
+    "action": "Ring of retribution",
+    "tag": "jewellery",
+    "icon": "ringofretribution.webp"
+  },
+  {
+    "action": "Ring of stone",
+    "tag": "jewellery",
+    "icon": "ringofstone.webp"
+  },
+  {
+    "action": "Ring of vigour",
+    "tag": "jewellery",
+    "icon": "rov.webp"
   },
   {
     "action": "Ripper claw",
@@ -3400,6 +3615,11 @@
     "icon": "seercull.webp"
   },
   {
+    "action": "Seers' ring",
+    "tag": "jewellery",
+    "icon": "seersring.webp"
+  },
+  {
     "action": "Seismic singularity",
     "tag": "magic-gear",
     "icon": "sing.webp"
@@ -3463,6 +3683,11 @@
     "action": "Sirenic mask",
     "tag": "ranged-gear",
     "icon": "sirenicmask.webp"
+  },
+  {
+    "action": "Sixth-Age circuit",
+    "tag": "jewellery",
+    "icon": "sixthagecircuit.webp"
   },
   {
     "action": "Skull lantern (tier 60)",
@@ -3690,9 +3915,19 @@
     "icon": "stagger.webp"
   },
   {
+    "action": "Stalker's ring",
+    "tag": "jewellery",
+    "icon": "stalkerring.webp"
+  },
+  {
     "action": "Statius's platebody",
     "tag": "melee-gear",
     "icon": "statiusbody.webp"
+  },
+  {
+    "action": "Statius's warhammer EoF",
+    "tag": "jewellery",
+    "icon": "eofblacku.webp"
   },
   {
     "action": "Steam rune",
@@ -4010,6 +4245,11 @@
     "icon": "kilnranged.webp"
   },
   {
+    "action": "TokKul-Zo",
+    "tag": "jewellery",
+    "icon": "tokkulzo.webp"
+  },
+  {
     "action": "Torva full helm",
     "tag": "melee-gear",
     "icon": "torvahelm.webp"
@@ -4140,6 +4380,11 @@
     "icon": "vampyrismgloves.webp"
   },
   {
+    "action": "Vanquish (magic)",
+    "tag": "magic",
+    "icon": "vanquishmagic.webp"
+  },
+  {
     "action": "Vengance Other",
     "tag": "magic",
     "icon": "vengother.webp"
@@ -4250,9 +4495,24 @@
     "icon": "volleyofsouls.webp"
   },
   {
+    "action": "Vulnerability bomb",
+    "tag": "consumable",
+    "icon": "vulnbomb.webp"
+  },
+  {
+    "action": "Vulnerability spell",
+    "tag": "magic",
+    "icon": "vuln.webp"
+  },
+  {
     "action": "Wand of the Praesul",
     "tag": "magic-gear",
     "icon": "praeswand.webp"
+  },
+  {
+    "action": "Warrior ring",
+    "tag": "jewellery",
+    "icon": "warriorring.webp"
   },
   {
     "action": "Water rune",
@@ -4318,6 +4578,11 @@
     "action": "Zemouregal's nexus",
     "tag": "necromancy-gear",
     "icon": "zemouregalsnexus.webp"
+  },
+  {
+    "action": "Zorgoth's soul ring",
+    "tag": "jewellery",
+    "icon": "zorgothsring.webp"
   },
   {
     "action": "Zuriel's robe top",

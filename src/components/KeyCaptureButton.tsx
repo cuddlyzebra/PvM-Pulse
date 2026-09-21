@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { KeyChord } from '../types';
+import { formatKeyLabel, normalizeCapturedKey } from '../keyNormalize';
 
 interface Props {
   value: KeyChord | null;
@@ -28,11 +29,8 @@ export default function KeyCaptureButton({ value, onChange, placeholder }: Props
       e.stopPropagation();
       const rawKey = e.key;
       if (['Shift', 'Control', 'Alt', 'Meta'].includes(rawKey)) return;
-      // Same normalization as KeybindRow's capture - the global key
-      // listener matches uiohook-napi's own key names, which call the
-      // spacebar "Space" rather than the literal " " character the
-      // browser's KeyboardEvent.key reports for it.
-      const key = rawKey === ' ' ? 'space' : rawKey.toLowerCase();
+      // Same normalization as KeybindRow's capture - see keyNormalize.ts.
+      const key = normalizeCapturedKey(rawKey);
       const modifier: KeyChord['modifier'] = e.shiftKey
         ? 'shift'
         : e.ctrlKey
@@ -50,7 +48,7 @@ export default function KeyCaptureButton({ value, onChange, placeholder }: Props
   const label = capturing
     ? 'Press a key…'
     : value
-      ? `${value.modifier ? value.modifier + '+' : ''}${value.key}`
+      ? `${value.modifier ? value.modifier + '+' : ''}${formatKeyLabel(value.key)}`
       : (placeholder ?? 'Press key…');
 
   return (

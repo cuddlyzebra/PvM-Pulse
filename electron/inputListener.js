@@ -32,10 +32,12 @@ function normalizeModifier(name) {
  *
  * STYLE BARS: a profile can define multiple "style bars" (melee/ranged/
  * magic, say), each optionally with a "weapon trigger" keybind - the same
- * key you press in-game to swap gear. Pressing that key here silently
- * switches which bar is "active" (no cast event fires for it - it's a
- * style swap, not an ability) and every subsequent ability lookup resolves
- * against that bar first. A keybind with no styleBarId (or, for profiles
+ * key you press in-game to swap gear. Pressing that key here switches which
+ * bar is "active" and every subsequent ability lookup resolves against that
+ * bar first. If that same key is ALSO bound to an ability/weapon on
+ * whichever bar was active *before* the switch (see WEAPON-SWAP DISPLAY
+ * below), that one still casts - the switch doesn't swallow it. A keybind
+ * with no styleBarId (or, for profiles
  * saved before style bars existed, simply no styleBarId field at all) is
  * "shared" - it resolves no matter which bar is active, so defensives,
  * movement, prayer flicks etc. don't need to be duplicated per bar. If the
@@ -59,6 +61,18 @@ function normalizeModifier(name) {
  * direct switch, same as before this existed. Disabled bars are skipped
  * both here and by the dedicated cycle key, but stay selectable manually
  * and keep their own keybinds intact.
+ *
+ * WEAPON-SWAP DISPLAY: a weapon-trigger key (or the cycle key) can ALSO
+ * have an ordinary ability/weapon keybind on the bar it's switching FROM -
+ * bind e.g. "Fractured staff of Armadyl" under a melee bar's own tab, on
+ * the same key that bar uses as its weapon trigger to a magic bar. Pressing
+ * that key then does both: the icon shows on the overlay (resolved against
+ * the bar that was active when the key was pressed, same as any other
+ * keybind), and the style switch still happens right after - mirroring how
+ * RuneScape's own weapon-swap key both re-equips your weapon and changes
+ * your ability bar for real. Bind something on the bar being switched TO as
+ * well, on the same key, and swapping back the other way shows that one
+ * instead - each side of the swap can show its own icon, or neither.
  */
 class InputListener extends EventEmitter {
   constructor(profile) {
@@ -188,17 +202,36 @@ class InputListener extends EventEmitter {
 
     const bindKey = this._bindKey(keyName, this.activeModifier);
 
+    // Resolve (and fire) any ability bound to this key against whichever
+    // bar is active *right now*, before any style switch below takes
+    // effect - see WEAPON-SWAP DISPLAY above. Most cycle/weapon-trigger
+    // keys won't have anything bound here, in which case this is a no-op,
+    // same as before this existed.
+    const actionName = this._resolveAbility(bindKey);
+    if (actionName) {
+      const info = getAbility(actionName);
+      this.emit('cast', {
+        action: actionName,
+        tag: info?.tag ?? 'misc',
+        // Filename under data/icons/ (e.g. "rend.webp"), resolved once here.
+        // Every ability in data/abilityinfo.json currently has a matching
+        // icon (sourced together from RotationMaster), so this should
+        // rarely be null in practice - it stays optional defensively in
+        // case an ability gets added to the profile without one later.
+        icon: info?.icon ?? null,
+        timestamp: Date.now()
+      });
+    }
+
     if (this.cycleBarBindKey && bindKey === this.cycleBarBindKey) {
       this._cycleStyleBar();
       return;
     }
 
-    // Weapon-swap keys switch styles silently - never fire a cast event
-    // themselves, even if (unusually) the same key also happens to be
-    // bound to an ability somewhere. When more than one enabled bar shares
-    // this key (see TOGGLE KEYS above), advance to whichever of them comes
-    // after the currently active bar, wrapping around; with only one bar
-    // on the key this is just a direct switch, exactly as before.
+    // When more than one enabled bar shares this key (see TOGGLE KEYS
+    // above), advance to whichever of them comes after the currently
+    // active bar, wrapping around; with only one bar on the key this is
+    // just a direct switch.
     const triggerGroup = this.weaponTriggerByBindKey.get(bindKey);
     if (triggerGroup && triggerGroup.length > 0) {
       const currentIndex = triggerGroup.indexOf(this.activeStyleBarId);
@@ -206,27 +239,8 @@ class InputListener extends EventEmitter {
       const nextBarId = triggerGroup[nextIndex];
       if (nextBarId !== this.activeStyleBarId) {
         this.setActiveStyleBar(nextBarId);
-        return;
       }
-      // Already on the (only) target bar for this key - fall through so it
-      // can still resolve as an ordinary ability bind, same as before.
     }
-
-    const actionName = this._resolveAbility(bindKey);
-    if (!actionName) return;
-
-    const info = getAbility(actionName);
-    this.emit('cast', {
-      action: actionName,
-      tag: info?.tag ?? 'misc',
-      // Filename under data/icons/ (e.g. "rend.webp"), resolved once here.
-      // Every ability in data/abilityinfo.json currently has a matching
-      // icon (sourced together from RotationMaster), so this should
-      // rarely be null in practice - it stays optional defensively in
-      // case an ability gets added to the profile without one later.
-      icon: info?.icon ?? null,
-      timestamp: Date.now()
-    });
   }
 
   _onKeyUp(event) {

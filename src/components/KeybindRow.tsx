@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Keybind } from '../types';
 import { iconUrl } from '../iconUrl';
+import { formatKeyLabel, normalizeCapturedKey } from '../keyNormalize';
 
 interface Props {
   keybind: Keybind;
@@ -44,13 +45,12 @@ export default function KeybindRow({
       // on window and this one doesn't otherwise stop the event.
       e.stopPropagation();
       // The global key listener (electron/inputListener.js) matches against
-      // uiohook-napi's own key names, not the browser's - almost all of
-      // them agree once lowercased (letters, digits, F-keys, arrow keys),
-      // but the spacebar doesn't: the browser reports it as a literal " "
-      // character, while uiohook calls it "Space". Without this, binding
-      // spacebar would capture fine and look bound, but the key would never
-      // actually match anything when pressed for real.
-      const key = e.key === ' ' ? 'space' : e.key.toLowerCase();
+      // uiohook-napi's own key names, not the browser's raw event - see
+      // keyNormalize.ts for exactly which keys differ (all punctuation, not
+      // just spacebar) and why. Without this, binding e.g. "/" would
+      // capture fine and look bound, but the key would never actually match
+      // anything when pressed for real.
+      const key = normalizeCapturedKey(e.key);
       if (['shift', 'control', 'alt', 'meta'].includes(key)) return;
       onChange({ key });
       setCapturing(false);
@@ -80,7 +80,7 @@ export default function KeybindRow({
       </select>
 
       <button className={`key-capture-button ${capturing ? 'capturing' : ''}`} onClick={startCapture}>
-        {capturing ? 'Press a key…' : keybind.key ? keybind.key : 'Press key…'}
+        {capturing ? 'Press a key…' : keybind.key ? formatKeyLabel(keybind.key) : 'Press key…'}
       </button>
 
       {showStyleControls && (

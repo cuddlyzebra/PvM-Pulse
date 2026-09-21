@@ -119,13 +119,31 @@ export default function StyleBarPanel({
               onChange={(chord) => onSetWeaponTrigger(bar.id, chord)}
               placeholder="blank"
             />
+            {/* Deliberately set apart from KeyCaptureButton's own small "×"
+                (which just clears the weapon-trigger key) - a divider, extra
+                spacing, a bigger trash icon, and a confirmation prompt below
+                all exist so this can't be mistaken for that one and clicked
+                by accident. Deleting is still undoable via Ctrl+Z right
+                after, but the prompt is worth having anyway since "all this
+                bar's keybinds, gone" isn't obvious from a bare × the way
+                clearing one key is. */}
+            <span className="style-bar-tab-divider" aria-hidden="true" />
             <button
               type="button"
-              className="remove-button"
+              className="remove-bar-button"
               aria-label={`Delete ${bar.name}`}
-              onClick={() => onDeleteBar(bar.id)}
+              title={`Delete "${bar.name}" and all its keybinds`}
+              onClick={() => {
+                if (
+                  window.confirm(
+                    `Delete "${bar.name}" and all its keybinds? (Ctrl+Z undoes this if you change your mind right after.)`
+                  )
+                ) {
+                  onDeleteBar(bar.id);
+                }
+              }}
             >
-              ×
+              🗑
             </button>
           </div>
           );

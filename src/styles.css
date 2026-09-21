@@ -246,6 +246,28 @@ body {
   width: 90px;
 }
 
+.style-bar-tab-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 0 2px;
+}
+
+.remove-bar-button {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+.remove-bar-button:hover {
+  background: rgba(238, 91, 91, 0.14);
+}
+
 .style-bar-add {
   background: transparent;
   border: 1px dashed var(--border);

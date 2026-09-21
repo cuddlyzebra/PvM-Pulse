@@ -21,8 +21,8 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - **Live overlay, not a polled image.** A local WebSocket server pushes
   every cast to the overlay the instant you press the key - no flicker, no
   lag waiting for OBS to notice a changed file.
-- **897+ bindable items**: every current combat ability across all styles,
-  plus weapons, armour, and Invention perks - sourced from
+- **950+ bindable items**: every current combat ability across all styles,
+  plus weapons, armour, jewellery, and Invention perks - sourced from
   [RotationMaster](https://github.com/cuddlyzebra/RotationMaster), which is
   actively maintained and reflects the post-"Combat Style Modernisation"
   (March 2026) roster.
@@ -38,6 +38,10 @@ and an ability/weapon/perk dataset that's actually kept up to date.
   filter for your already-bound keys once your list gets long.
 - **Icon previews everywhere** - in the search list and next to each bound
   key - so you can visually confirm a match before you commit to it.
+- **Undo/redo.** `Ctrl+Z` / `Ctrl+Shift+Z` (or `Ctrl+Y`), plus Undo/Redo
+  buttons in the header, cover keybind edits, style bar changes, and
+  settings - handy for an accidental misclick like ticking a keybind's
+  "shared" checkbox, which instantly moves it to a different tab.
 - **Cross-platform**: Windows, macOS, and Linux (via Electron); packaged
   Windows builds need no Node/npm at all for end users.
 - **Honest about what it does.** See
@@ -84,8 +88,8 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    in-game for it. Pick a modifier (shift/ctrl/alt) from the dropdown if
    your bind uses one.
 3. **That's live immediately** - no save button to remember. (There's
-   still a manual "Save Profile" button if you want one, but the app
-   auto-saves shortly after every change.)
+   still a manual "Save Profile" button next to the profile switcher if you
+   want one, but the app auto-saves shortly after every change.)
 4. **Add the overlay to OBS**: copy the URL shown under "3. Overlay" in
    the app, then in OBS: **Add Source → Browser Source**, paste it in.
    Background is transparent by default.
@@ -128,14 +132,17 @@ own keybinds, and only one is "active" (read by the tracker) at a time.
    whichever bar's tab is currently open.
 4. For keys that should work **no matter which style is active**
    (defensives, movement, prayer flicks), tick the **"shared"** checkbox
-   next to that keybind.
+   next to that keybind - it immediately moves to its own **"Shared
+   abilities"** tab (shown bold, alongside your style bars), separate from
+   each bar's own keybind list. If that was a misclick, `Ctrl+Z` undoes it.
 
 **Switching which bar is active**, three ways (all kept in sync):
 
 - **Automatically** - press a bar's weapon-trigger key (in-game, to swap
-  gear) and the tracker silently switches to that bar too. It doesn't show
-  up on the overlay itself; it just changes what your next ability key
-  resolves to.
+  gear) and the tracker switches to that bar too. By default nothing shows
+  up on the overlay for the switch itself - it just changes what your next
+  ability key resolves to - but see **Showing the weapon on swap** below if
+  you want it to.
 - **Manually** - click a bar's tab in the app, useful for picking a
   starting bar before your first weapon swap of a session.
 - **A cycle key** (optional, once you have more than one bar) - advances
@@ -155,6 +162,16 @@ bars still switched on - flip the checkboxes between fights instead of
 re-entering keybinds. A greyed-out bar keeps everything it's bound to and
 can still be selected manually; it's only left out of automatic switching
 while off.
+
+**Showing the weapon on swap.** A weapon-trigger key (or the cycle key) can
+also have an ordinary keybind of its own, bound on the style bar it's
+switching *from* - e.g. add "Fractured staff of Armadyl" under Melee's tab,
+on the same key Melee uses to trigger-switch to Magic. Pressing that key
+then shows that icon on the overlay *and* switches styles, the same way
+RuneScape's own weapon-swap key both re-equips your weapon and changes your
+abilities. Bind something on the Magic side too, on the same key, and
+swapping back the other way shows that one instead - each direction can
+show its own icon, or neither, independently.
 
 **If you only ever play one style**, none of this needs any attention -
 with no style bars added, keybinds work exactly like a single flat list.
@@ -196,24 +213,29 @@ was actually pressed doesn't claim an accuracy the app can't back up.
 
 ## Ability, weapon & perk data
 
-`data/abilityinfo.json` (897 items) and `data/icons/` are both built from
+`data/abilityinfo.json` (950 items) and `data/icons/` are both built from
 [RotationMaster](https://github.com/cuddlyzebra/RotationMaster)'s bundled
 icon library via `scripts/build-ability-data.py`. Every entry - ability,
-weapon, or perk - is treated the same way by the app: a name, a category
-tag, an icon, bindable to any key.
+weapon, jewellery, or perk - is treated the same way by the app: a name, a
+category tag, an icon, bindable to any key.
 
 | Tag | Count | What |
 |---|---|---|
-| `melee` / `ranged` / `magic` / `necromancy` / `defence` / `unlockable` | 338 | Combat abilities |
+| `melee` / `ranged` / `magic` / `necromancy` / `defence` / `unlockable` | 342 | Combat abilities |
 | `melee-gear` / `ranged-gear` / `magic-gear` / `necromancy-gear` | 489 | Weapons & armour (undyed base items) |
+| `jewellery` | 48 | Rings, amulets & necklaces (Reaver's/Stalker's/Champion's ring, Essence of Finality, Am-hej, etc.) |
 | `perk` | 70 | Invention perks |
+| `consumable` | 1 | Combat-support consumables (currently just Vulnerability bomb - see [Roadmap](#roadmap--not-built-yet)) |
 
 RotationMaster is actively maintained and already reflects RuneScape's
 March 2026 "Combat Style Modernisation" rework (many old abilities removed,
 new ones like Rend and Adaptive Strike added) - a more reliable source than
 hand-transcribing wiki pages, and since name + icon come from the same
-place, there's no separate matching step to get wrong. Coverage on the 338
-combat abilities is 100%.
+place, there's no separate matching step to get wrong. Coverage on the 342
+combat abilities is 100% - including a handful RotationMaster itself leaves
+uncategorised (Berserk, Decimate, Vanquish (magic), Vulnerability spell,
+Channeller's ring, and both Essence of Finality amulet entries), recovered
+via `scripts/ability-category-overrides.json` rather than silently dropped.
 
 To rebuild after RotationMaster's data changes (e.g. a future combat
 rework):
@@ -307,6 +329,22 @@ Community-requested features, roughly in priority order:
 - **Perk "modifier" display** - perks are bindable/searchable now, but
   shown as plain entries rather than composited as a small badge on a
   weapon's icon, the way in-game gizmo perks visually attach to gear.
+- **A second Vulnerability bomb** - RotationMaster's source data only has
+  one `Vulnerability bomb` entry; if there's a distinctly-named
+  higher-tier version in-game, it needs its own icon/entry added upstream
+  or via `scripts/ability-category-overrides.json` once confirmed.
+- **Three Essence of Finality colour variants have odd display names** -
+  `Decimation EoF`, `Dark bow EoF`, and `Statius's warhammer EoF` are
+  RotationMaster's own (Discord-emote-derived) names for what are likely
+  the purple/yellow/black amulet colours, inconsistent with the other four
+  (`Essence of Finality (blue/green/pink)`, `... amulet (red)`) - worth
+  relabelling for consistency once someone can confirm the actual in-game
+  colour each one is.
+- **`consumable` tag is sparse** - only `Vulnerability bomb` so far
+  (RotationMaster's much larger "Consumables, Currencies, and Combat
+  Support Items" category isn't pulled in wholesale, since most of it -
+  potions, currency - isn't really a "press key, cast it" item); extend
+  `scripts/ability-category-overrides.json` per-item as more are wanted.
 
 Have an idea, or want to pick one of these up? Open an issue or a PR - see
 [Contributing](#contributing--building-from-source) below.
@@ -343,7 +381,7 @@ scripts/              build-ability-data.py, fetch-dyed-icons.js, and their supp
 ### Building the starter profile
 
 New installs currently open to a totally empty keybind list, which is a lot
-to face before you've bound a single key - search-and-add 338 abilities one
+to face before you've bound a single key - search-and-add 342 abilities one
 at a time with nothing pre-filled. `electron/profileStore.js` supports
 shipping a **starter profile** to soften that: `data/starter-profile.json`,
 if present, is what a brand-new install loads instead of an empty profile

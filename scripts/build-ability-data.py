@@ -49,6 +49,7 @@ CATEGORY_TAGS = {
     "Magic Gear": "magic-gear",
     "Necromancy Gear": "necromancy-gear",
     "Invention Perks": "perk",
+    "Jewellery": "jewellery",
 }
 
 # A handful of entries RotationMaster only has under a garbled auto-generated
@@ -57,6 +58,16 @@ CATEGORY_TAGS = {
 # found - it's a normal JSON object, e.g. {"shadowkhopeshoh": "Khopesh of
 # Elidinis (shadow)"}.
 ALIASES_PATH = Path(__file__).parent / "dye-name-aliases.json"
+
+# RotationMaster occasionally lands a real, current combat ability under
+# "Uncategorised"/"uncategorized" instead of one of the tagged categories
+# above - e.g. Berserk, Decimate, and Vanquish (magic) all showed up there
+# rather than under "Melee abilities" etc. This maps such an ability's exact
+# display name (its "Emoji" field upstream) to the tag it should actually
+# have, so it isn't silently dropped just because RotationMaster's own
+# categorization missed it. Extend this file as more are noticed - a normal
+# JSON object, e.g. {"Some New Ultimate": "necromancy"}.
+CATEGORY_OVERRIDES_PATH = Path(__file__).parent / "ability-category-overrides.json"
 
 # Garbled auto-generated names look like a single lowercase/numeral run with
 # no spaces or punctuation (e.g. "shadowkhopeshoh", "3akhopeshmh"). This
@@ -84,14 +95,22 @@ def main():
     if ALIASES_PATH.exists():
         aliases = json.loads(ALIASES_PATH.read_text())
 
+    category_overrides = {}
+    if CATEGORY_OVERRIDES_PATH.exists():
+        category_overrides = json.loads(CATEGORY_OVERRIDES_PATH.read_text())
+
     items = {}
     skipped_garbled = []
+    recovered_overrides = []
     for entry in rm_entries:
         category = entry.get("Category")
+        raw_name = entry.get("Emoji")
         tag = CATEGORY_TAGS.get(category)
+        if tag is None and raw_name in category_overrides:
+            tag = category_overrides[raw_name]
+            recovered_overrides.append(raw_name)
         if tag is None:
             continue
-        raw_name = entry.get("Emoji")
         if not raw_name:
             continue
 
@@ -123,6 +142,11 @@ def main():
         by_tag[a["tag"]] = by_tag.get(a["tag"], 0) + 1
     for tag, count in sorted(by_tag.items()):
         print(f"  {tag}: {count}")
+
+    if recovered_overrides:
+        print(f"\n{len(recovered_overrides)} entries recovered via "
+              f"{CATEGORY_OVERRIDES_PATH.name} (RotationMaster had them "
+              f"uncategorised): {', '.join(recovered_overrides)}")
 
     if skipped_garbled:
         print(f"\n{len(skipped_garbled)} entries skipped (garbled auto-generated name, "
