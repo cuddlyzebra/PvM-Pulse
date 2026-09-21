@@ -14,6 +14,31 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 ---
 
+## Contents
+
+- [Features](#features)
+- [Installing (no coding required)](#installing-no-coding-required)
+  - [Windows](#windows)
+  - [macOS](#macos)
+- [Quick start](#quick-start)
+- [Using the app](#using-the-app)
+  - [The three panels](#the-three-panels)
+  - [Keyboard shortcuts](#keyboard-shortcuts)
+  - [Troubleshooting](#troubleshooting)
+- [Style bars](#style-bars)
+- [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)
+- [Ability, weapon & perk data](#ability-weapon--perk-data)
+  - [Dyed weapons & armour](#dyed-weapons--armour)
+- [Roadmap / not built yet](#roadmap--not-built-yet)
+- [Contributing / building from source](#contributing--building-from-source)
+  - [Building the starter profile](#building-the-starter-profile)
+  - [Running from source (Windows)](#running-from-source-windows)
+  - [Building a distributable](#building-a-distributable)
+- [License](#license)
+- [Credits](#credits)
+
+---
+
 ## Features
 
 - **No calibration.** Search for an ability, click "Press key…", press the
@@ -156,6 +181,88 @@ Profile…** (top right) to save the *current* profile to a single file, and
 back in - into whichever profile is active there when you import. To bring
 someone else's export in as a new profile instead of overwriting your
 current one, create a new profile first, then import into that.
+
+## Using the app
+
+A closer look at each part of the setup window, for anything the
+[Quick start](#quick-start) above moved past quickly.
+
+### The three panels
+
+The setup window is three panels side by side (they stack on a narrow
+window):
+
+**1. Find an ability** - search and filter, on the left. Typing filters by
+name; the tag chips (`melee`, `ranged`, `magic`, `gear`, etc.) filter by
+category, and can be combined with a search term or with each other.
+Clicking an entry here is how you *add* something to your keybind list -
+it doesn't bind a key by itself, it just adds a "Press key…" placeholder
+row to panel 2, ready to bind.
+
+**2. Bind a key to it** - your actual keybind list, in the middle. This is
+where the real work happens:
+
+- **Bind the key**: click **"Press key…"** on a row, then press whatever
+  key you use for that ability in-game. It updates instantly - no
+  confirm button.
+- **Add a modifier**: the dropdown next to the key (shift/ctrl/alt), for
+  binds like `Shift+1`.
+- **Reorder**: drag a row by its handle (**⠿**) to move it several spots at
+  once, or use the **▲/▼** buttons for a precise one-step nudge. Either way,
+  this is just for your own tidiness - it has no effect on how anything is
+  matched.
+- **Swap the ability, keep the key**: click a row's **icon** (not its name)
+  to change which ability it points to, without re-binding the key. A
+  banner appears - search for the replacement in panel 1 and click it.
+  Click **Cancel** in the banner to back out without changing anything.
+- **Remove a row**: the **×** on the right. `Ctrl+Z` brings it back if that
+  was a mistake.
+- **Filter a long list**: once you have several binds, a search box appears
+  above the list to filter *your own* keybinds (separate from panel 1's
+  search, which searches *all* abilities).
+- If you've added any [style bars](#style-bars), this panel shows one
+  bar's binds at a time - the heading names which one, and the tabs above
+  both panels switch between them.
+
+**3. Overlay** - on the right: the URL to paste into OBS (with a **Copy**
+button), a live preview of what the overlay currently looks like (so you
+can check it before ever opening OBS), and how many icons it shows at once
+(4-14).
+
+### Keyboard shortcuts
+
+| Shortcut | Does what |
+|---|---|
+| `Ctrl+Z` | Undo the last change (a keybind edit, a deleted style bar, anything) |
+| `Ctrl+Shift+Z` or `Ctrl+Y` | Redo |
+| Double-click a style bar's tab name | Rename that bar |
+| Click **"Press key…"**, then press any key | Bind that key (works for ordinary keybinds, weapon-trigger keys, and the cycle key alike) |
+
+### Troubleshooting
+
+**Nothing shows up on the OBS overlay.** Check, in order: the URL in OBS's
+Browser Source matches exactly what's shown under "3. Overlay" in the app
+(re-copy it if unsure); the Browser Source's width/height in OBS isn't set
+to `0` or something tiny; PvM Pulse is actually still running (check the
+system tray icon - if you chose **quit completely** last time you closed
+it, the overlay goes blank until you reopen the app).
+
+**A keybind isn't triggering.** Check: you're on the right tab for it (a
+bind on "Melee" only fires while Melee's bar is active - see
+[Style bars](#style-bars) if that's unfamiliar); the key shown on the
+button is actually the key you're pressing (click it and re-press to be
+sure); and that RuneScape (or whatever's fullscreen) isn't running in a
+mode that blocks other apps from seeing keypresses, which some games'
+exclusive-fullscreen modes do - try windowed or borderless fullscreen.
+
+**I deleted something by accident.** `Ctrl+Z` immediately - it covers
+keybind edits, deleted style bars, and settings changes alike.
+
+**Switching profiles didn't carry my keybinds over.** That's expected -
+profiles are fully separate on purpose (one per character, one per boss
+loadout). To copy binds across, use **Duplicate** on the profile you want
+to start from, or **Export Profile…** on one and **Import Profile…** into
+the other - see [Quick start](#quick-start) for both.
 
 ## Style bars
 
