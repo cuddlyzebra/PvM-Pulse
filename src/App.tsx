@@ -177,6 +177,39 @@ export default function App() {
     setTimeout(() => setSaveState('idle'), 1200);
   }
 
+  // Export/import move a whole profile (keybinds, style bars, settings)
+  // between machines, or act as a manual backup - useful since the profile
+  // otherwise only lives in a per-OS app-data folder most players never
+  // look in. Both go through a native file dialog in the main process
+  // (electron/main.js); "canceled" just means the person closed that
+  // dialog without picking anything, so it's shown as a neutral status
+  // string, not treated as a failure.
+  const [profileIoStatus, setProfileIoStatus] = useState<string | null>(null);
+
+  async function exportProfile() {
+    const result = await window.tracker.exportProfile();
+    if (result.canceled) return;
+    setProfileIoStatus(result.ok ? `Exported to ${result.path}` : 'Export failed.');
+    setTimeout(() => setProfileIoStatus(null), 4000);
+  }
+
+  async function importProfile() {
+    const result = await window.tracker.importProfile();
+    if (result.canceled) return;
+    if (result.ok && result.profile) {
+      // The main process already saved and applied the imported profile to
+      // the live input listener/overlay - just mirror it into this
+      // window's own state so the UI (keybind list, style bars, search
+      // filters) reflects it immediately instead of waiting for a reload.
+      setProfile(result.profile);
+      isFirstProfileLoad.current = true; // the incoming state isn't a local edit - skip the auto-save debounce for this one swap
+      setProfileIoStatus('Profile imported.');
+    } else {
+      setProfileIoStatus(`Import failed: ${result.error ?? 'unknown error'}`);
+    }
+    setTimeout(() => setProfileIoStatus(null), 4000);
+  }
+
   // Selecting a bar (a tab click, here) is the manual-override switching
   // method - separate from a weapon-trigger keybind or the cycle key, but
   // all three end up calling the same setActiveStyleBar on the backend, so
@@ -273,9 +306,18 @@ export default function App() {
             calibration required.
           </p>
         </div>
-        <button className="save-button" onClick={save} disabled={saveState === 'saving'}>
-          {saveState === 'saved' ? 'Saved ✓' : saveState === 'saving' ? 'Saving…' : 'Save Profile'}
-        </button>
+        <div className="header-actions">
+          {profileIoStatus && <span className="io-status">{profileIoStatus}</span>}
+          <button className="secondary-button" onClick={importProfile} title="Load keybinds, style bars, and settings from a file">
+            Import Profile…
+          </button>
+          <button className="secondary-button" onClick={exportProfile} title="Save your whole setup to a file, e.g. to move to another PC">
+            Export Profile…
+          </button>
+          <button className="save-button" onClick={save} disabled={saveState === 'saving'}>
+            {saveState === 'saved' ? 'Saved ✓' : saveState === 'saving' ? 'Saving…' : 'Save Profile'}
+          </button>
+        </div>
       </header>
 
       <StyleBarPanel

@@ -1,17 +1,43 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs/promises');
 
 const { startOverlayServer } = require('./overlayServer');
 const { InputListener } = require('./inputListener');
-const { loadProfile, saveProfile } = require('./profileStore');
+const { loadProfile, saveProfile, normalizeProfile } = require('./profileStore');
 const { listAbilities } = require('./abilityData');
 
 let mainWindow;
 let tray;
 let overlay;
 let inputListener;
+// Distinguishes "the user chose Quit (or the tray's Quit item, or the OS is
+// shutting the app down)" from "the user clicked the window's close button"
+// - only the latter should show the minimize-or-quit prompt below. Set from
+// 'before-quit', which always fires before any window's 'close' event, so
+// by the time that prompt would show, this already reflects whether it's a
+// real quit.
+let isQuitting = false;
 
 const DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL;
+
+// Only one copy should ever be running at once: two would mean two global
+// keyboard hooks double-firing every cast, and two overlay servers fighting
+// over the same port. If another copy is already running, hand off to it
+// (bring its window forward) and quit this one immediately rather than
+// letting both run.
+const gotSingleInstanceLock = app.requestSingleInstanceLock();
+if (!gotSingleInstanceLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      if (!mainWindow.isVisible()) mainWindow.show();
+      mainWindow.focus();
+    }
+  });
+}
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -39,6 +65,36 @@ function createMainWindow() {
     mainWindow.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
   }
 
+  // The overlay and keybind tracking are meant to keep running in the
+  // background for OBS even when the setup window itself isn't open (that's
+  // the whole point of the tray icon) - so the window's own close button
+  // shouldn't silently end the session. Ask what the person actually wants
+  // instead of guessing.
+  mainWindow.on('close', (event) => {
+    if (isQuitting) return; // a real quit is already in progress - let it close normally
+    event.preventDefault();
+    const choice = dialog.showMessageBoxSync(mainWindow, {
+      type: 'question',
+      buttons: ['Minimize to tray', 'Quit PvM Pulse', 'Cancel'],
+      defaultId: 0,
+      cancelId: 2,
+      noLink: true,
+      title: 'Close PvM Pulse',
+      message: 'Keep running in the background, or quit completely?',
+      detail:
+        'Minimizing to tray keeps tracking your keybinds and serving the OBS overlay. ' +
+        'Quitting stops both - the overlay will go blank until you reopen the app.'
+    });
+    if (choice === 0) {
+      mainWindow.hide();
+    } else if (choice === 1) {
+      isQuitting = true;
+      app.quit();
+    }
+    // choice === 2 (Cancel, or the dialog dismissed another way): do
+    // nothing - the window stays open exactly as it was.
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -52,10 +108,23 @@ function createTray() {
     tray.setToolTip('PvM Pulse');
     tray.setContextMenu(
       Menu.buildFromTemplate([
-        { label: 'Show', click: () => mainWindow?.show() },
+        {
+          label: 'Show',
+          click: () => {
+            mainWindow?.show();
+            mainWindow?.focus();
+          }
+        },
         { label: 'Quit', click: () => app.quit() }
       ])
     );
+    // Left-click (the common case on Windows) does the same as "Show" -
+    // most tray apps don't make you open a menu just to bring the window
+    // back.
+    tray.on('click', () => {
+      mainWindow?.show();
+      mainWindow?.focus();
+    });
   } catch (err) {
     console.warn('Tray icon not available, skipping tray setup:', err.message);
   }
@@ -97,6 +166,54 @@ async function bootstrap() {
     overlay.broadcastProfileMeta(nextProfile.settings);
     return { ok: true };
   });
+  // Export/import: lets a player move their whole setup (keybinds, style
+  // bars, settings) to another machine, or just keep a backup, without
+  // digging through AppData/Library/.config by hand for profile.json.
+  // Exports whatever's currently live in the app (including unsaved edits,
+  // since the auto-save debounce means "live" and "on disk" are rarely more
+  // than a few hundred ms apart anyway) rather than re-reading from disk.
+  ipcMain.handle('profile:export', async () => {
+    const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
+      title: 'Export PvM Pulse profile',
+      defaultPath: 'pvm-pulse-profile.json',
+      filters: [{ name: 'PvM Pulse profile', extensions: ['json'] }]
+    });
+    if (canceled || !filePath) return { ok: false, canceled: true };
+    await fs.writeFile(filePath, JSON.stringify(profile, null, 2), 'utf-8');
+    return { ok: true, path: filePath };
+  });
+  ipcMain.handle('profile:import', async () => {
+    const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
+      title: 'Import PvM Pulse profile',
+      properties: ['openFile'],
+      filters: [{ name: 'PvM Pulse profile', extensions: ['json'] }]
+    });
+    if (canceled || !filePaths?.[0]) return { ok: false, canceled: true };
+    let imported;
+    try {
+      const raw = await fs.readFile(filePaths[0], 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.keybinds)) {
+        // Catches "picked the wrong file entirely" (not a profile at all)
+        // early with a clear message, rather than the app silently ending
+        // up with a keybind list of undefined further down the line.
+        throw new Error('That file does not look like a PvM Pulse profile (no keybinds array).');
+      }
+      // Same merge as loading a profile from disk - an export made on an
+      // older version of the app is missing newer fields entirely (style
+      // bars, cycleBarKey, etc.), not just empty ones, so this fills them
+      // in with defaults instead of the importing profile ending up with
+      // undefined settings.
+      imported = normalizeProfile(parsed);
+    } catch (err) {
+      return { ok: false, error: err.message };
+    }
+    await saveProfile(imported);
+    profile = imported;
+    inputListener.updateProfile(imported);
+    overlay.broadcastProfileMeta(imported.settings);
+    return { ok: true, profile: imported };
+  });
   ipcMain.handle('overlay:get-url', () => overlay.overlayUrl);
   // Read fresh (not just from the renderer's own build) so dyed items
   // fetched after the app was last built/packaged still show up on next
@@ -128,7 +245,12 @@ async function bootstrap() {
   createTray();
 }
 
-app.whenReady().then(bootstrap);
+// Guarded by the single-instance lock acquired above - a losing second
+// instance already called app.quit() and never reaches this point with a
+// real bootstrap.
+if (gotSingleInstanceLock) {
+  app.whenReady().then(bootstrap);
+}
 
 app.on('window-all-closed', () => {
   // Keep the overlay server + input listener alive even if the setup
@@ -139,6 +261,11 @@ app.on('window-all-closed', () => {
 });
 
 app.on('before-quit', () => {
+  // Always fires before any window's 'close' event during a real quit
+  // (tray "Quit", choosing "Quit PvM Pulse" in the close prompt, Cmd+Q,
+  // OS shutdown/logout, etc.) - set first so the close-prompt handler above
+  // never re-asks during an already-confirmed quit.
+  isQuitting = true;
   inputListener?.stop();
   overlay?.stop();
 });

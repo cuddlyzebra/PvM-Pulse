@@ -17,5 +17,7 @@ contextBridge.exposeInMainWorld('tracker', {
     const listener = (_event, barId) => callback(barId);
     ipcRenderer.on('style-bar-changed', listener);
     return () => ipcRenderer.removeListener('style-bar-changed', listener);
-  }
+  },
+  exportProfile: () => ipcRenderer.invoke('profile:export'),
+  importProfile: () => ipcRenderer.invoke('profile:import')
 });

@@ -33,20 +33,25 @@ function getProfilePath() {
   return path.join(app.getPath('userData'), 'profile.json');
 }
 
+// A shallow {...DEFAULT_PROFILE, ...loaded} would let an old saved
+// profile's `settings` object (saved before cycleBarKey existed) silently
+// wipe out that default by replacing the whole object - merge settings one
+// level deep so new setting fields always have a value. Shared between
+// loadProfile (the on-disk profile) and importing a profile someone
+// exported from another machine, possibly on an older version of the app.
+function normalizeProfile(loaded) {
+  return {
+    ...DEFAULT_PROFILE,
+    ...loaded,
+    settings: { ...DEFAULT_PROFILE.settings, ...(loaded.settings || {}) }
+  };
+}
+
 async function loadProfile() {
   const profilePath = getProfilePath();
   try {
     const raw = await fs.readFile(profilePath, 'utf-8');
-    const loaded = JSON.parse(raw);
-    // A shallow {...DEFAULT_PROFILE, ...loaded} would let an old saved
-    // profile's `settings` object (saved before cycleBarKey existed)
-    // silently wipe out that default by replacing the whole object - merge
-    // settings one level deep so new setting fields always have a value.
-    return {
-      ...DEFAULT_PROFILE,
-      ...loaded,
-      settings: { ...DEFAULT_PROFILE.settings, ...(loaded.settings || {}) }
-    };
+    return normalizeProfile(JSON.parse(raw));
   } catch (err) {
     if (err.code !== 'ENOENT') {
       console.warn('Could not read profile.json, falling back to default:', err.message);
@@ -62,4 +67,4 @@ async function saveProfile(profile) {
   await fs.writeFile(profilePath, JSON.stringify(profile, null, 2), 'utf-8');
 }
 
-module.exports = { loadProfile, saveProfile, DEFAULT_PROFILE };
+module.exports = { loadProfile, saveProfile, normalizeProfile, DEFAULT_PROFILE };

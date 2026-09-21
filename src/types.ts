@@ -87,6 +87,16 @@ declare global {
       onCastEvent: (cb: (event: CastEvent) => void) => () => void;
       setActiveStyleBar: (barId: string | null) => Promise<void>;
       onStyleBarChanged: (cb: (barId: string | null) => void) => () => void;
+      // Both show a native file dialog and report what happened - canceled
+      // is a normal outcome (the user backed out of the picker), not an
+      // error, so callers should treat it separately from `error`.
+      exportProfile: () => Promise<{ ok: boolean; canceled?: boolean; path?: string }>;
+      importProfile: () => Promise<{
+        ok: boolean;
+        canceled?: boolean;
+        error?: string;
+        profile?: Profile;
+      }>;
     };
   }
 }

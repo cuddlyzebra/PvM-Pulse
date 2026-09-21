@@ -65,6 +65,14 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)
    for exactly what it does and doesn't touch.
 4. Open the app. That's it - no accounts, no config files to hand-edit.
+5. Closing the window asks whether to **minimize to the system tray**
+   (keeps tracking keybinds and serving the OBS overlay in the background -
+   the normal choice while streaming) or **quit completely** (stops both;
+   the overlay goes blank until you reopen the app). A tray icon appears
+   either way - right-click it for Show/Quit, or just left-click to bring
+   the window back. Only one copy of PvM Pulse runs at a time; opening it
+   again while it's already running just brings the existing window
+   forward instead of starting a second copy.
 
 ## Quick start
 
@@ -84,6 +92,12 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 5. Press your bound keys in-game (or just at your desk to test) - the
    ability should appear in the live preview inside the app, and on the
    OBS overlay.
+
+**Moving to another PC, or just backing up your setup:** use **Export
+Profile…** (top right) to save everything - keybinds, style bars, settings
+- to a single file, and **Import Profile…** on the other machine (or after
+a reinstall) to load it straight back in. Importing replaces your current
+profile immediately, live, same as any other change.
 
 ## Style bars
 
