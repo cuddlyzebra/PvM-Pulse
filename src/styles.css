@@ -33,6 +33,17 @@ body {
   padding: 24px 32px 48px;
   max-width: 1200px;
   margin: 0 auto;
+  /* A firm height (not just a floor) is what makes the panels below
+     scroll internally on a small window instead of the whole page
+     growing taller than the window and scrolling as one long page. With
+     just min-height, the app was free to grow past the viewport whenever
+     everything didn't fit, so nothing ever actually shrank down to where
+     a panel's own scrollbar (.ability-list/.keybind-list) would kick in.
+     Fixed at 100vh, that slack has nowhere to go but into those panels'
+     own overflow-y: auto - which is exactly the point. */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
@@ -117,6 +128,15 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
+  /* Takes up whatever vertical space is left in the window after the
+     header/profile switcher/style bar tabs above it, so the panels (and
+     their internal scrolling lists) can stretch taller on a bigger window
+     rather than staying a fixed size. min-height: 0 is required alongside
+     flex: 1 here - without it, a grid item inside a flex column refuses to
+     shrink below its content's natural height, which would defeat the
+     internal scrolling below and just make the whole page scroll instead. */
+  flex: 1;
+  min-height: 0;
 }
 
 @media (max-width: 900px) {
@@ -300,7 +320,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 240px;
+  /* Same reasoning as .app-grid above - lets this panel's own list child
+     (.ability-list/.keybind-list) grow to fill it rather than being capped
+     at its content's natural height. The list itself carries its own
+     min-height as a floor for small windows, so this doesn't need one. */
+  min-height: 0;
 }
 
 .panel h2 {
@@ -390,7 +414,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 420px;
+  /* Grows to fill whatever room .panel has (which in turn grows with the
+     window - see .app/.app-grid/.panel above), instead of stopping at a
+     fixed height regardless of how big the window is. min-height is a
+     floor so it doesn't get squashed unusably small on a tiny window. */
+  flex: 1;
+  /* Floor, not a target - small enough that the panel still fits inside
+     the app's smallest allowed window size (see minWidth/minHeight in
+     electron/main.js) without the list refusing to shrink and pushing the
+     panel past the bottom of the window. */
+  min-height: 140px;
   overflow-y: auto;
 }
 
@@ -445,7 +478,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 420px;
+  /* See .ability-list above - same reasoning, grows with the window and
+     has the same small floor rather than a fixed target. */
+  flex: 1;
+  min-height: 140px;
   overflow-y: auto;
 }
 
