@@ -73,6 +73,16 @@ function normalizeModifier(name) {
  * your ability bar for real. Bind something on the bar being switched TO as
  * well, on the same key, and swapping back the other way shows that one
  * instead - each side of the swap can show its own icon, or neither.
+ *
+ * SPAM COLLAPSING: mashing (or key-repeating on) the same bound key over
+ * and over only emits one 'cast' - lastCastAction tracks whichever ability
+ * was cast most recently, and a repeat of exactly that one is silently
+ * dropped instead of flooding the overlay with N copies of the same icon.
+ * Casting anything else in between (a different ability, a different
+ * style's ability after switching) clears the streak, so this only
+ * collapses genuine back-to-back repeats, not "the same ability again
+ * later." Pausing/resuming and switching style bars both reset it too, so
+ * a repeat right after either of those always shows fresh.
  */
 class InputListener extends EventEmitter {
   constructor(profile) {
@@ -80,6 +90,8 @@ class InputListener extends EventEmitter {
     this.paused = false;
     this.activeModifier = null;
     this.activeStyleBarId = profile.activeStyleBarId ?? null;
+    // See SPAM COLLAPSING in the class doc comment above.
+    this.lastCastAction = null;
     this.setProfile(profile);
   }
 
@@ -137,12 +149,19 @@ class InputListener extends EventEmitter {
 
   setPaused(paused) {
     this.paused = paused;
+    // A repeat right after pausing/resuming (e.g. to type a password mid-
+    // fight, then get straight back into it) should always show, not get
+    // silently eaten as a "duplicate" of whatever was cast before the
+    // pause - see SPAM COLLAPSING above.
+    this.lastCastAction = null;
   }
 
   // Manual override from the setup UI (clicking a bar directly), separate
   // from weapon-trigger auto-detection and the cycle key.
   setActiveStyleBar(barId) {
     this.activeStyleBarId = barId;
+    // A fresh style means a fresh dedup streak - see SPAM COLLAPSING above.
+    this.lastCastAction = null;
     this.emit('style-bar-changed', barId);
   }
 
@@ -208,7 +227,11 @@ class InputListener extends EventEmitter {
     // keys won't have anything bound here, in which case this is a no-op,
     // same as before this existed.
     const actionName = this._resolveAbility(bindKey);
-    if (actionName) {
+    // See SPAM COLLAPSING above - a bound key that resolves to the exact
+    // same ability as last time is a repeat, not a new event, so it's
+    // dropped here rather than sent on to the overlay/preview at all.
+    if (actionName && actionName !== this.lastCastAction) {
+      this.lastCastAction = actionName;
       const info = getAbility(actionName);
       this.emit('cast', {
         action: actionName,

@@ -120,6 +120,11 @@
     "icon": "aegis.webp"
   },
   {
+    "action": "Affliction",
+    "tag": "defence",
+    "icon": "affliction.webp"
+  },
+  {
     "action": "Aftershock1",
     "tag": "perk",
     "icon": "as1.webp"
@@ -228,6 +233,11 @@
     "action": "Ancient repriser",
     "tag": "ranged-gear",
     "icon": "ancientrepriser.webp"
+  },
+  {
+    "action": "Anguish",
+    "tag": "defence",
+    "icon": "anguish.webp"
   },
   {
     "action": "Anima core body of Seren",
@@ -445,6 +455,11 @@
     "icon": "torvaplatebody.webp"
   },
   {
+    "action": "Augury",
+    "tag": "defence",
+    "icon": "augury.webp"
+  },
+  {
     "action": "Backhand",
     "tag": "melee",
     "icon": "backhand.webp"
@@ -543,6 +558,11 @@
     "action": "Berserk",
     "tag": "melee",
     "icon": "berserk.webp"
+  },
+  {
+    "action": "Berserker (prayer)",
+    "tag": "defence",
+    "icon": "berserkerprayer.webp"
   },
   {
     "action": "Berserker blood essence",
@@ -1070,6 +1090,11 @@
     "icon": "eofyellowu.webp"
   },
   {
+    "action": "Dark form",
+    "tag": "defence",
+    "icon": "darkform.webp"
+  },
+  {
     "action": "Dark ice shard",
     "tag": "melee-gear",
     "icon": "darkiceshard.webp"
@@ -1290,6 +1315,21 @@
     "icon": "deflectnecromancy.webp"
   },
   {
+    "action": "Deflect magic",
+    "tag": "defence",
+    "icon": "deflectmage.webp"
+  },
+  {
+    "action": "Deflect melee",
+    "tag": "defence",
+    "icon": "deflectmelee.webp"
+  },
+  {
+    "action": "Deflect missiles",
+    "tag": "defence",
+    "icon": "deflectrange.webp"
+  },
+  {
     "action": "Demon Slayer ability codex",
     "tag": "unlockable",
     "icon": "demonslayercodex.webp"
@@ -1318,6 +1358,11 @@
     "action": "Desert amulet 4",
     "tag": "jewellery",
     "icon": "desertamulet4.webp"
+  },
+  {
+    "action": "Desolation",
+    "tag": "defence",
+    "icon": "desolation.webp"
   },
   {
     "action": "Destroy",
@@ -1388,6 +1433,11 @@
     "action": "Divert codex",
     "tag": "unlockable",
     "icon": "divertcodex.webp"
+  },
+  {
+    "action": "Divine Rage",
+    "tag": "defence",
+    "icon": "divinerage.webp"
   },
   {
     "action": "Divine Rage prayer codex",
@@ -1525,6 +1575,11 @@
     "icon": "dustrune.webp"
   },
   {
+    "action": "Eagle Eye",
+    "tag": "defence",
+    "icon": "eagleeye.webp"
+  },
+  {
     "action": "Earth rune",
     "tag": "magic-gear",
     "icon": "earthrune.webp"
@@ -1533,6 +1588,11 @@
     "action": "Eat Food",
     "tag": "defence",
     "icon": "eatfood.webp"
+  },
+  {
+    "action": "Eclipsed Soul",
+    "tag": "defence",
+    "icon": "eclipsedsoul.webp"
   },
   {
     "action": "Ectoplasm",
@@ -1883,6 +1943,11 @@
     "action": "Forceful backhand flank",
     "tag": "melee",
     "icon": "fbackhandflank.webp"
+  },
+  {
+    "action": "Fortitude",
+    "tag": "defence",
+    "icon": "fortitude.webp"
   },
   {
     "action": "Fractured Staff of Armadyl",
@@ -2325,6 +2390,11 @@
     "icon": "incitefear.webp"
   },
   {
+    "action": "Incredible Reflexes",
+    "tag": "defence",
+    "icon": "incrediblereflexes.webp"
+  },
+  {
     "action": "Ingenuity of the Humans",
     "tag": "defence",
     "icon": "ingen.webp"
@@ -2545,6 +2615,26 @@
     "icon": "lawrune.webp"
   },
   {
+    "action": "Leech Magic Strength",
+    "tag": "defence",
+    "icon": "leechmagicstrength.webp"
+  },
+  {
+    "action": "Leech Melee Strength",
+    "tag": "defence",
+    "icon": "leechmeleestrength.webp"
+  },
+  {
+    "action": "Leech Necromancy Strength",
+    "tag": "defence",
+    "icon": "leechnecromancystrength.webp"
+  },
+  {
+    "action": "Leech Ranged Strength",
+    "tag": "defence",
+    "icon": "leechrangedstrength.webp"
+  },
+  {
     "action": "Legatus's Emberstaff",
     "tag": "magic-gear",
     "icon": "legatusemberstaff.webp"
@@ -2578,6 +2668,11 @@
     "action": "Life Transfer",
     "tag": "necromancy",
     "icon": "lifetransfer.webp"
+  },
+  {
+    "action": "Light Form",
+    "tag": "defence",
+    "icon": "lightform.webp"
   },
   {
     "action": "Limitless",
@@ -2653,6 +2748,11 @@
     "action": "Mahjarrat aura",
     "tag": "pocket",
     "icon": "mahj.webp"
+  },
+  {
+    "action": "Malevolence",
+    "tag": "defence",
+    "icon": "malevolence.webp"
   },
   {
     "action": "Malevolent cuirass",
@@ -2838,6 +2938,11 @@
     "action": "Mud rune",
     "tag": "magic-gear",
     "icon": "mudrune.webp"
+  },
+  {
+    "action": "Mystic Might",
+    "tag": "defence",
+    "icon": "mysticmight.webp"
   },
   {
     "action": "NPC Contact",
@@ -3200,6 +3305,11 @@
     "icon": "onsl.webp"
   },
   {
+    "action": "Overcharge",
+    "tag": "defence",
+    "icon": "overcharge.webp"
+  },
+  {
     "action": "Overpower",
     "tag": "melee",
     "icon": "overpower.webp"
@@ -3208,6 +3318,11 @@
     "action": "Overpower igneous",
     "tag": "melee",
     "icon": "overpowerigneous.webp"
+  },
+  {
+    "action": "Overpowering Force",
+    "tag": "defence",
+    "icon": "overpoweringforce.webp"
   },
   {
     "action": "Pantheon aura",
@@ -3300,6 +3415,11 @@
     "icon": "phoenixnecklace.webp"
   },
   {
+    "action": "Piety",
+    "tag": "defence",
+    "icon": "piety.webp"
+  },
+  {
     "action": "Planted Feet perk",
     "tag": "perk",
     "icon": "pf.webp"
@@ -3385,9 +3505,29 @@
     "icon": "prismofsalvation.webp"
   },
   {
+    "action": "Protect from Magic",
+    "tag": "defence",
+    "icon": "protectfrommagic.webp"
+  },
+  {
+    "action": "Protect from Melee",
+    "tag": "defence",
+    "icon": "protectfrommelee.webp"
+  },
+  {
+    "action": "Protect from Missiles",
+    "tag": "defence",
+    "icon": "protectfrommissiles.webp"
+  },
+  {
     "action": "Protect from Necromancy",
     "tag": "necromancy",
     "icon": "protectfromnecro.webp"
+  },
+  {
+    "action": "Protect item",
+    "tag": "defence",
+    "icon": "protectitem.webp"
   },
   {
     "action": "Provoke",
@@ -3413,6 +3553,11 @@
     "action": "Ranged",
     "tag": "ranged",
     "icon": "range.webp"
+  },
+  {
+    "action": "Rapid Restore",
+    "tag": "defence",
+    "icon": "rapidrestore.webp"
   },
   {
     "action": "Rapid fire",
@@ -3513,6 +3658,11 @@
     "action": "Ricochet (caroming)",
     "tag": "ranged",
     "icon": "ricochetcaroming.webp"
+  },
+  {
+    "action": "Rigour",
+    "tag": "defence",
+    "icon": "rigour.webp"
   },
   {
     "action": "Ring of Whispers",
@@ -3925,6 +4075,11 @@
     "icon": "sorrow.webp"
   },
   {
+    "action": "Soul Link",
+    "tag": "defence",
+    "icon": "soullink.webp"
+  },
+  {
     "action": "Soul Sap",
     "tag": "necromancy",
     "icon": "soulsap.webp"
@@ -3948,6 +4103,11 @@
     "action": "Soulbound lantern",
     "tag": "necromancy-gear",
     "icon": "soulboundlantern.webp"
+  },
+  {
+    "action": "Soulsplit",
+    "tag": "defence",
+    "icon": "soulsplit.webp"
   },
   {
     "action": "Special attack",
@@ -4078,6 +4238,11 @@
     "action": "Steam rune",
     "tag": "magic-gear",
     "icon": "steamrune.webp"
+  },
+  {
+    "action": "Steel Skin",
+    "tag": "defence",
+    "icon": "steelskin.webp"
   },
   {
     "action": "Stomp",
@@ -4415,6 +4580,11 @@
     "icon": "tokkulzo.webp"
   },
   {
+    "action": "Torment",
+    "tag": "defence",
+    "icon": "torment.webp"
+  },
+  {
     "action": "Torva full helm",
     "tag": "melee-gear",
     "icon": "torvahelm.webp"
@@ -4490,6 +4660,11 @@
     "icon": "tumekenslight.webp"
   },
   {
+    "action": "Turmoil",
+    "tag": "defence",
+    "icon": "turmoil.webp"
+  },
+  {
     "action": "Turtling 3",
     "tag": "perk",
     "icon": "turtling3.webp"
@@ -4503,6 +4678,11 @@
     "action": "Tuskas wrath",
     "tag": "defence",
     "icon": "tuskas.webp"
+  },
+  {
+    "action": "Ultimate Strength",
+    "tag": "defence",
+    "icon": "ultimatestrength.webp"
   },
   {
     "action": "Ultimatums 4",
@@ -4690,6 +4870,11 @@
     "icon": "praeswand.webp"
   },
   {
+    "action": "War's Retreat Teleport",
+    "tag": "teleport",
+    "icon": "warsretreatteleport.webp"
+  },
+  {
     "action": "Warrior ring",
     "tag": "jewellery",
     "icon": "warriorring.webp"
@@ -4718,6 +4903,11 @@
     "action": "Wrack energising",
     "tag": "magic",
     "icon": "wrackenergising.webp"
+  },
+  {
+    "action": "Wrath",
+    "tag": "defence",
+    "icon": "wrath.webp"
   },
   {
     "action": "Wyvern crossbow",

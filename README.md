@@ -29,6 +29,7 @@ and an ability/weapon/perk dataset that's actually kept up to date.
   - [Linux (coding required)](#linux-coding-required)
 - [Quick start](#quick-start)
 - [Using the app](#using-the-app)
+  - [The header](#the-header)
   - [The three panels](#the-three-panels)
   - [Keyboard shortcuts](#keyboard-shortcuts)
   - [Troubleshooting](#troubleshooting)
@@ -53,7 +54,7 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - **Live overlay, not a polled image.** A local WebSocket server pushes
   every cast to the overlay the instant you press the key - no flicker, no
   lag waiting for OBS to notice a changed file.
-- **986+ bindable items**: every current combat ability across all styles,
+- **1024+ bindable items**: every current combat ability across all styles,
   plus weapons, armour, jewellery, book-slot items, and Invention perks -
   sourced from
   [RotationMaster](https://github.com/cuddlyzebra/RotationMaster), which is
@@ -75,6 +76,12 @@ and an ability/weapon/perk dataset that's actually kept up to date.
   buttons in the header, cover keybind edits, style bar changes, and
   settings - handy for an accidental misclick like ticking a keybind's
   "shared" checkbox, which instantly moves it to a different tab.
+- **Pause tracking.** One click freezes the keyboard hook entirely - handy
+  right before typing a password or a private message on stream, so
+  nothing you type shows up on the overlay for a viewer to piece together.
+- **Spam-proof overlay.** Mashing (or holding) the same bound key only
+  shows its icon once - it won't flood the overlay with duplicates until
+  you actually cast something else.
 - **Cross-platform**: Windows, macOS, and Linux (via Electron); packaged
   Windows builds need no Node/npm at all for end users.
 - **Honest about what it does.** See
@@ -249,6 +256,18 @@ current one, create a new profile first, then import into that.
 A closer look at each part of the setup window, for anything the
 [Quick start](#quick-start) above moved past quickly.
 
+### The header
+
+Above the panels: **Pause Tracking** (top left, outlined in red) instantly
+stops the keyboard hook from seeing anything at all - no cast events, no
+style switching, nothing reaches the overlay or the live preview until you
+click it again. It turns solid red while paused, as a clear "nothing's
+being tracked right now" indicator. Use it right before typing a password
+or a private message while streaming, so there's nothing on screen for a
+viewer to read back from your keypresses. To the right of that: Undo/Redo,
+then Import/Export Profile - see [Quick start](#quick-start) for how those
+two differ from the Profile switcher row just below the header.
+
 ### The three panels
 
 The setup window is three panels side by side (they stack on a narrow
@@ -289,12 +308,15 @@ where the real work happens:
 **3. Overlay** - on the right: the URL to paste into OBS (with a **Copy**
 button), a live preview of what the overlay currently looks like (so you
 can check it before ever opening OBS), and how many icons it shows at once
-(4-14).
+(4-14). Mashing the same bound key repeatedly only ever shows one icon for
+it - it won't flood the overlay with duplicates until you cast something
+else.
 
 ### Keyboard shortcuts
 
 | Shortcut | Does what |
 |---|---|
+| **Pause Tracking** button (header, top left) | Freezes the keyboard hook - nothing reaches the overlay until clicked again |
 | `Ctrl+Z` | Undo the last change (a keybind edit, a deleted style bar, anything) |
 | `Ctrl+Shift+Z` or `Ctrl+Y` | Redo |
 | Double-click a style bar's tab name | Rename that bar |
@@ -426,30 +448,33 @@ was actually pressed doesn't claim an accuracy the app can't back up.
 
 ## Ability, weapon & perk data
 
-`data/abilityinfo.json` (986 items) and `data/icons/` are both built from
+`data/abilityinfo.json` (1024 items) and `data/icons/` are both built from
 [RotationMaster](https://github.com/cuddlyzebra/RotationMaster)'s bundled
 icon library via `scripts/build-ability-data.py`. Every entry - ability,
-weapon, jewellery, book, or perk - is treated the same way by the app: a
-name, a category tag, an icon, bindable to any key.
+weapon, jewellery, book, prayer, or perk - is treated the same way by the
+app: a name, a category tag, an icon, bindable to any key.
 
 | Tag | Count | What |
 |---|---|---|
-| `melee` / `ranged` / `magic` / `necromancy` / `defence` / `unlockable` | 342 | Combat abilities |
+| `melee` / `ranged` / `magic` / `necromancy` / `unlockable` | 300 | Combat abilities |
+| `defence` | 79 | Style-agnostic defensives, including all six Protect from/Deflect prayers and curses (melee/ranged/magic), plus Augury, Rigour, Piety, Turmoil, Soulsplit, and the rest of RotationMaster's "Prayers" category |
 | `melee-gear` / `ranged-gear` / `magic-gear` / `necromancy-gear` | 489 | Weapons & armour (undyed base items) |
 | `jewellery` | 48 | Rings, amulets & necklaces (Reaver's/Stalker's/Champion's ring, Essence of Finality, Am-hej, etc.) |
 | `pocket` | 33 | Book-slot items, scriptures, scrimshaws, grimoires & auras (Books of Zaros/Death/Guthix/Zamorak/Armadyl/Bandos/Saradomin, Scripture of Ful/Wen/Jas/Bik/Amascut, Erethdor's grimoire, etc.) |
 | `perk` | 70 | Invention perks |
 | `consumable` | 4 | Combat-support consumables & single-button actions (Vulnerability bomb, Saradomin brew, Super saradomin Brew, the generic Summoning special-attack trigger - see [Roadmap](#roadmap--not-built-yet)) |
+| `teleport` | 1 | War's Retreat Teleport - RS3's community "PvM hub"; a hand-picked start, not all of RotationMaster's much larger "Teleports" category (lodestones etc.) - extend `scripts/ability-category-overrides.json` per-item as more are wanted |
 
 RotationMaster is actively maintained and already reflects RuneScape's
 March 2026 "Combat Style Modernisation" rework (many old abilities removed,
 new ones like Rend and Adaptive Strike added) - a more reliable source than
 hand-transcribing wiki pages, and since name + icon come from the same
-place, there's no separate matching step to get wrong. Coverage on the 342
-combat abilities is 100% - including a handful RotationMaster itself leaves
-uncategorised (Berserk, Decimate, Vanquish (magic), Vulnerability spell,
-Channeller's ring, and both Essence of Finality amulet entries), recovered
-via `scripts/ability-category-overrides.json` rather than silently dropped.
+place, there's no separate matching step to get wrong. Coverage on the 379
+combat abilities and defensives is 100% - including a handful RotationMaster
+itself leaves uncategorised (Berserk, Decimate, Vanquish (magic),
+Vulnerability spell, Channeller's ring, both Essence of Finality amulet
+entries, and War's Retreat Teleport), recovered via
+`scripts/ability-category-overrides.json` rather than silently dropped.
 
 To rebuild after RotationMaster's data changes (e.g. a future combat
 rework):
@@ -573,7 +598,7 @@ scripts/              build-ability-data.py, fetch-dyed-icons.js, and their supp
 ### Building the starter profile
 
 New installs currently open to a totally empty keybind list, which is a lot
-to face before you've bound a single key - search-and-add 342 abilities one
+to face before you've bound a single key - search-and-add 379 abilities one
 at a time with nothing pre-filled. `electron/profileStore.js` supports
 shipping a **starter profile** to soften that: `data/starter-profile.json`,
 if present, is what a brand-new install loads instead of an empty profile

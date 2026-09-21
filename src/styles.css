@@ -83,6 +83,34 @@ body {
   white-space: nowrap;
 }
 
+.pause-button {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pause-button:hover {
+  background: rgba(238, 91, 91, 0.1);
+}
+
+/* Actively paused - a solid, unmissable red rather than just an outline,
+   so a glance at the header confirms it's safe to type before doing so. */
+.pause-button.paused {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: white;
+}
+
+.pause-button.paused:hover {
+  background: #d64747;
+}
+
 .secondary-button {
   background: transparent;
   border: 1px solid var(--border);

@@ -52,6 +52,24 @@ export default function App() {
   // above, which holds the currently active one's actual content.
   const [savedProfiles, setSavedProfiles] = useState<SavedProfileSummary[]>([]);
   const [activeProfileId, setActiveProfileId] = useState<string | null>(null);
+  // Lets a player instantly stop the global keyboard hook from seeing
+  // anything - e.g. before typing a password or a private message on
+  // stream, without a viewer being able to work out what was typed from
+  // the (now frozen) overlay. electron/inputListener.js already had
+  // pause/resume plumbing wired up for this from early on; this is what
+  // actually exposes it as a button, rather than requiring a restart to
+  // get keys seen again.
+  const [paused, setPausedState] = useState(false);
+
+  async function togglePause() {
+    if (paused) {
+      await window.tracker.resume();
+      setPausedState(false);
+    } else {
+      await window.tracker.pause();
+      setPausedState(true);
+    }
+  }
 
   useEffect(() => {
     window.tracker.getProfile().then(setProfile);
@@ -622,6 +640,18 @@ export default function App() {
         </div>
         <div className="header-actions">
           {profileIoStatus && <span className="io-status">{profileIoStatus}</span>}
+          <button
+            type="button"
+            className={`pause-button ${paused ? 'paused' : ''}`}
+            onClick={togglePause}
+            title={
+              paused
+                ? 'Tracking is paused - keypresses are ignored and nothing reaches the overlay. Click to resume.'
+                : 'Pause tracking - e.g. before typing a password or a private message on stream, so nothing you type shows up on the overlay.'
+            }
+          >
+            {paused ? '⏸ Paused - Click to Resume' : '⏸ Pause Tracking'}
+          </button>
           <button
             className="secondary-button"
             onClick={undo}

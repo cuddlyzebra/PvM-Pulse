@@ -51,6 +51,12 @@ CATEGORY_TAGS = {
     "Invention Perks": "perk",
     "Jewellery": "jewellery",
     "Auras and Pocket slot": "pocket",
+    # Prayers/curses - style-agnostic (usable regardless of combat style,
+    # same as the "Defence and Constitution Abilities" category above), so
+    # they share that tag rather than getting a new one of their own. This
+    # covers all six Protect from/Deflect prayers and curses along with the
+    # rest (Augury, Rigour, Piety, Turmoil, Soulsplit, etc.).
+    "Prayers": "defence",
 }
 
 # A handful of entries RotationMaster only has under a garbled auto-generated
