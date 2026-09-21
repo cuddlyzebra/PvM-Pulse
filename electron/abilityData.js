@@ -21,7 +21,23 @@ function loadAbilityData() {
   if (cache) return cache;
 
   const basePath = path.join(__dirname, '..', 'data', 'abilityinfo.json');
-  const base = JSON.parse(fs.readFileSync(basePath, 'utf-8'));
+  let base;
+  try {
+    base = JSON.parse(fs.readFileSync(basePath, 'utf-8'));
+  } catch (err) {
+    // Previously this read wasn't wrapped at all - a missing/corrupt base
+    // file would throw with no context, and (since nothing between here and
+    // the renderer catches it either) the ability list would just silently
+    // stay empty with no clue why. Failing loudly with the actual path is
+    // worth the extra noise if this ever happens again.
+    throw new Error(`Failed to load base ability data from ${basePath}: ${err.message}`);
+  }
+  if (!Array.isArray(base) || base.length === 0) {
+    console.warn(
+      `${basePath} loaded but has ${Array.isArray(base) ? 'zero' : 'no'} items - ` +
+        'the search list will be missing every combat ability and undyed weapon/armour entry.'
+    );
+  }
 
   const map = new Map(base.map((entry) => [entry.action, entry]));
 

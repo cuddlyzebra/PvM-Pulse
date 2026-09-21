@@ -24,11 +24,20 @@ export default function App() {
   // fetched via scripts/fetch-dyed-icons.js shows up here automatically,
   // even after the rest of the app gets updated. No import to keep in sync.
   const [abilities, setAbilities] = useState<AbilityInfo[]>([]);
+  // Set only if listAbilities() itself rejects (a base-data load failure in
+  // the main process) - not for an empty-but-successful result, which is a
+  // normal state (e.g. no keybinds yet). Surfaced in the UI because this
+  // used to fail as a silent, unhandled promise rejection - the search
+  // panel would just stay empty forever with nothing in view to explain why.
+  const [abilitiesError, setAbilitiesError] = useState<string | null>(null);
 
   useEffect(() => {
     window.tracker.getProfile().then(setProfile);
     window.tracker.getOverlayUrl().then(setOverlayUrl);
-    window.tracker.listAbilities().then(setAbilities);
+    window.tracker.listAbilities().then(setAbilities).catch((err) => {
+      console.error('Failed to load ability list:', err);
+      setAbilitiesError(err?.message ?? String(err));
+    });
     const unsubscribeCasts = window.tracker.onCastEvent((event) => {
       setRecentCasts((prev) => [event, ...prev].slice(0, 8));
     });
@@ -185,7 +194,8 @@ export default function App() {
     const bar: StyleBar = {
       id: makeStyleBarId(),
       name: `Style ${profile.styleBars.length + 1}`,
-      weaponTrigger: null
+      weaponTrigger: null,
+      enabled: true
     };
     const nextBars = [...profile.styleBars, bar];
     const nextActiveId = profile.activeStyleBarId ?? bar.id;
@@ -233,6 +243,18 @@ export default function App() {
     setProfile({ ...profile, settings: { ...profile.settings, cycleBarKey: chord } });
   }
 
+  // Excludes a bar from weapon-trigger/cycle-key switching without
+  // touching its keybinds - see the toggle-key note in StyleBarPanel. Does
+  // NOT deselect it if it's currently active; only the switching logic
+  // (electron/inputListener.js) skips disabled bars.
+  function toggleStyleBarEnabled(id: string, enabled: boolean) {
+    if (!profile) return;
+    setProfile({
+      ...profile,
+      styleBars: profile.styleBars.map((b) => (b.id === id ? { ...b, enabled } : b))
+    });
+  }
+
   if (!profile) {
     return (
       <div className="app-loading">
@@ -264,6 +286,7 @@ export default function App() {
         onRenameBar={renameStyleBar}
         onDeleteBar={deleteStyleBar}
         onSetWeaponTrigger={setBarWeaponTrigger}
+        onToggleBarEnabled={toggleStyleBarEnabled}
         cycleBarKey={profile.settings.cycleBarKey}
         onSetCycleBarKey={setCycleBarKey}
       />
@@ -271,6 +294,12 @@ export default function App() {
       <div className="app-grid">
         <section className="panel">
           <h2>1. Find an ability</h2>
+          {abilitiesError && (
+            <p className="error-banner">
+              Couldn't load the ability list ({abilitiesError}). Try restarting the app - if this
+              keeps happening, please report it as a bug.
+            </p>
+          )}
           <input
             className="search-input"
             placeholder="Search abilities, weapons, perks…"

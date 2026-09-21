@@ -115,6 +115,15 @@ body {
   border-color: var(--accent);
 }
 
+.style-bar-tab.disabled {
+  opacity: 0.45;
+}
+
+.style-bar-enabled-toggle {
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
 .style-bar-tab-name {
   background: transparent;
   border: none;
@@ -357,6 +366,16 @@ body {
   font-size: 16px;
   cursor: pointer;
   line-height: 1;
+}
+
+.error-banner {
+  margin: 0;
+  background: rgba(238, 91, 91, 0.12);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
 }
 
 .empty-state {

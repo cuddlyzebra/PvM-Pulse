@@ -45,6 +45,20 @@ function normalizeModifier(name) {
  * *different*, inactive bar (not shared, not the active bar), it resolves
  * to nothing while that other bar is active, rather than firing the wrong
  * style's ability.
+ *
+ * TOGGLE KEYS: more than one *enabled* bar can share the same weapon
+ * trigger key - this is deliberate, not a conflict. RS3's built-in gear
+ * swap is often a single physical key that toggles between exactly two
+ * loadouts, and which two styles that represents changes per fight (e.g.
+ * melee/magic one fight, melee/ranged the next). A bar that isn't relevant
+ * this session gets disabled (StyleBar.enabled = false) rather than having
+ * its trigger key removed, which excludes it from this entirely. Pressing
+ * a trigger key shared by N enabled bars advances to the next of those N
+ * bars after whichever is currently active (wrapping around) - with
+ * exactly one enabled bar on that key (the common case), that's just a
+ * direct switch, same as before this existed. Disabled bars are skipped
+ * both here and by the dedicated cycle key, but stay selectable manually
+ * and keep their own keybinds intact.
  */
 class InputListener extends EventEmitter {
   constructor(profile) {
@@ -83,13 +97,18 @@ class InputListener extends EventEmitter {
       this.keybindsByBindKey.get(k).push(bind);
     }
 
-    // bindKey -> style bar id, for weapon-swap keys that trigger a silent
-    // bar switch.
+    // bindKey -> style bar id[], for weapon-swap keys that trigger a silent
+    // bar switch. Usually one bar per key, but see the TOGGLE KEYS note
+    // above the class - several enabled bars can share a key, in which
+    // case pressing it cycles through just that group. Disabled bars are
+    // left out entirely, both as a trigger and as a switch target.
     this.weaponTriggerByBindKey = new Map();
     for (const bar of this.profile.styleBars || []) {
+      if (bar.enabled === false) continue;
       if (bar.weaponTrigger?.key) {
         const k = this._bindKey(bar.weaponTrigger.key, bar.weaponTrigger.modifier);
-        this.weaponTriggerByBindKey.set(k, bar.id);
+        if (!this.weaponTriggerByBindKey.has(k)) this.weaponTriggerByBindKey.set(k, []);
+        this.weaponTriggerByBindKey.get(k).push(bar.id);
       }
     }
 
@@ -114,7 +133,10 @@ class InputListener extends EventEmitter {
   }
 
   _cycleStyleBar() {
-    const bars = this.profile.styleBars || [];
+    // Disabled bars are sat out of the manual cycle key too, same as
+    // weapon-trigger switching - they stay configured, just not part of
+    // the active rotation.
+    const bars = (this.profile.styleBars || []).filter((b) => b.enabled !== false);
     if (bars.length === 0) return;
     const currentIndex = bars.findIndex((b) => b.id === this.activeStyleBarId);
     const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % bars.length;
@@ -173,11 +195,21 @@ class InputListener extends EventEmitter {
 
     // Weapon-swap keys switch styles silently - never fire a cast event
     // themselves, even if (unusually) the same key also happens to be
-    // bound to an ability somewhere.
-    const triggeredBarId = this.weaponTriggerByBindKey.get(bindKey);
-    if (triggeredBarId && triggeredBarId !== this.activeStyleBarId) {
-      this.setActiveStyleBar(triggeredBarId);
-      return;
+    // bound to an ability somewhere. When more than one enabled bar shares
+    // this key (see TOGGLE KEYS above), advance to whichever of them comes
+    // after the currently active bar, wrapping around; with only one bar
+    // on the key this is just a direct switch, exactly as before.
+    const triggerGroup = this.weaponTriggerByBindKey.get(bindKey);
+    if (triggerGroup && triggerGroup.length > 0) {
+      const currentIndex = triggerGroup.indexOf(this.activeStyleBarId);
+      const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % triggerGroup.length;
+      const nextBarId = triggerGroup[nextIndex];
+      if (nextBarId !== this.activeStyleBarId) {
+        this.setActiveStyleBar(nextBarId);
+        return;
+      }
+      // Already on the (only) target bar for this key - fall through so it
+      // can still resolve as an ordinary ability bind, same as before.
     }
 
     const actionName = this._resolveAbility(bindKey);

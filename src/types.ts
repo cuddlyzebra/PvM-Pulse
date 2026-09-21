@@ -30,6 +30,18 @@ export interface StyleBar {
   // silently switches which bar's keybinds are "live" - it never itself
   // shows up on the overlay (see electron/inputListener.js).
   weaponTrigger: KeyChord | null;
+  // Whether this bar takes part in weapon-trigger/cycle-key switching right
+  // now. Lets a player keep a bar's keybinds configured but temporarily
+  // exclude it - e.g. some in-game weapon-swap keybinds are a single
+  // physical key that toggles between exactly two loadouts (RS3's built-in
+  // gear-swap), and which two styles that represents changes fight to
+  // fight. Disabling the style you're not using that session, while
+  // leaving the other two sharing the same weaponTrigger key, turns that
+  // one key into a toggle between just those two. Missing/undefined means
+  // enabled, so profiles saved before this existed keep working unchanged.
+  // A disabled bar can still be selected manually and edited - disabling
+  // only removes it from automatic switching.
+  enabled?: boolean;
 }
 
 export interface ProfileSettings {

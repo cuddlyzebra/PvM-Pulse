@@ -102,7 +102,19 @@ async function bootstrap() {
   // fetched after the app was last built/packaged still show up on next
   // launch - see electron/abilityData.js for why this is split from the
   // base data file.
-  ipcMain.handle('abilities:list', () => listAbilities());
+  ipcMain.handle('abilities:list', () => {
+    try {
+      return listAbilities();
+    } catch (err) {
+      // Log with the full stack in the main process's own console/log file
+      // (visible via --enable-logging or the packaged app's log, unlike a
+      // renderer console that most users never open) before letting the
+      // rejection continue to the renderer, so a failure here is never
+      // silent on either side.
+      console.error('abilities:list failed:', err);
+      throw err;
+    }
+  });
   ipcMain.handle('tracker:pause', () => inputListener.setPaused(true));
   ipcMain.handle('tracker:resume', () => inputListener.setPaused(false));
   // Manual style-bar switch from the setup window - same code path as a

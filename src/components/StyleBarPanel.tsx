@@ -10,6 +10,7 @@ interface Props {
   onRenameBar: (id: string, name: string) => void;
   onDeleteBar: (id: string) => void;
   onSetWeaponTrigger: (id: string, chord: KeyChord | null) => void;
+  onToggleBarEnabled: (id: string, enabled: boolean) => void;
   cycleBarKey: KeyChord | null;
   onSetCycleBarKey: (chord: KeyChord | null) => void;
 }
@@ -23,6 +24,15 @@ interface Props {
  *
  * If you don't use multiple styles, none of this needs to exist - with no
  * bars added, keybinds work exactly like a single flat list always did.
+ *
+ * The on/off checkbox per bar handles a specific case: RS3's built-in
+ * weapon swap is often a single key toggling between exactly two loadouts,
+ * and which two styles that represents changes fight to fight (melee+magic
+ * one boss, melee+ranged the next). Give two or three bars the SAME
+ * weapon-trigger key and turn off whichever one isn't in play this session
+ * - the shared key then toggles only between the bars still switched on.
+ * A greyed-out bar keeps its keybinds and can still be picked manually;
+ * it's just left out of automatic switching until turned back on.
  */
 export default function StyleBarPanel({
   bars,
@@ -32,6 +42,7 @@ export default function StyleBarPanel({
   onRenameBar,
   onDeleteBar,
   onSetWeaponTrigger,
+  onToggleBarEnabled,
   cycleBarKey,
   onSetCycleBarKey
 }: Props) {
@@ -40,8 +51,20 @@ export default function StyleBarPanel({
   return (
     <div className="style-bar-panel">
       <div className="style-bar-tabs">
-        {bars.map((bar) => (
-          <div key={bar.id} className={`style-bar-tab ${bar.id === activeBarId ? 'active' : ''}`}>
+        {bars.map((bar) => {
+          const enabled = bar.enabled !== false;
+          return (
+          <div
+            key={bar.id}
+            className={`style-bar-tab ${bar.id === activeBarId ? 'active' : ''} ${enabled ? '' : 'disabled'}`}
+          >
+            <input
+              type="checkbox"
+              className="style-bar-enabled-toggle"
+              checked={enabled}
+              onChange={(e) => onToggleBarEnabled(bar.id, e.target.checked)}
+              title={enabled ? 'On - included in weapon-trigger/cycle switching' : 'Off - skipped by weapon-trigger/cycle switching'}
+            />
             {renamingId === bar.id ? (
               <input
                 className="style-bar-rename-input"
@@ -80,7 +103,8 @@ export default function StyleBarPanel({
               ×
             </button>
           </div>
-        ))}
+          );
+        })}
         <button type="button" className="style-bar-add" onClick={onAddBar}>
           + Add style bar
         </button>
