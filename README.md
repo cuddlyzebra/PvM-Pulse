@@ -52,6 +52,8 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 ## Installing (no coding required)
 
+### Windows
+
 1. Grab **`PvM Pulse <version>.exe`** from the
    [latest release](../../releases/latest) - it's portable, so there's no
    install step, just download and double-click.
@@ -69,14 +71,38 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    or hotkey utility), not something to be alarmed by - see
    [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)
    for exactly what it does and doesn't touch.
-4. Open the app. That's it - no accounts, no config files to hand-edit.
-5. Closing the window asks whether to **minimize to the system tray**
+
+### macOS
+
+1. Grab **`PvM Pulse <version>.dmg`** from the
+   [latest release](../../releases/latest), open it, and drag **PvM Pulse**
+   into your **Applications** folder.
+2. macOS will refuse to open it the normal way and say it's "damaged" or
+   from an "unidentified developer" - it isn't damaged, it's just not
+   signed with a paid Apple Developer certificate (same reasoning as the
+   Windows SmartScreen warning above). To open it anyway: right-click (or
+   Control-click) **PvM Pulse.app** in Applications, choose **Open**, then
+   confirm **Open** in the dialog that appears. You only need to do this
+   once - after that it opens normally.
+   - If macOS still refuses, open **Terminal** and run
+     `xattr -cr /Applications/PvM\ Pulse.app`, then try opening it again.
+3. macOS will also ask for **Accessibility** permission the first time -
+   this is what lets it detect your keypresses to trigger the overlay (the
+   same reason the Windows build trips antivirus software - see
+   [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)).
+   Grant it in **System Settings → Privacy & Security → Accessibility**,
+   then restart the app.
+
+### Both platforms
+
+1. Open the app. That's it - no accounts, no config files to hand-edit.
+2. Closing the window asks whether to **minimize to the system tray**
    (keeps tracking keybinds and serving the OBS overlay in the background -
    the normal choice while streaming) or **quit completely** (stops both;
    the overlay goes blank until you reopen the app). A tray icon appears
    either way - right-click it for Show/Quit, or just left-click to bring
    the window back. Only one copy of PvM Pulse runs at a time; opening it
-   again while it's already running (e.g. double-clicking the .exe a second
+   again while it's already running (e.g. double-clicking the app a second
    time) shows a prompt asking whether to bring the existing window forward,
    instead of silently starting - or silently refusing to start - a second
    copy.
@@ -468,6 +494,21 @@ once that's diagnosed.)
 The first run takes longer than `npm install`, since `electron-builder`
 downloads its own packaging tools - needs internet access, no further
 input required.
+
+**macOS builds don't run this locally** - Apple only allows building/
+signing a `.app`/`.dmg` on a real Mac, and this project isn't developed on
+one. Instead, `.github/workflows/build-mac.yml` builds it on GitHub's own
+macOS runners:
+
+- Push a tag like `v1.0.2-beta.2` and it builds the `.dmg` and attaches it
+  straight onto the matching GitHub Release automatically.
+- Or trigger it by hand from the **Actions** tab (**Build macOS app → Run
+  workflow**) to get it as a downloadable build artifact on that run
+  instead, without needing a tag/release to already exist.
+
+It's unsigned (no paid Apple Developer account behind this project), so
+macOS shows an "unidentified developer" warning on first open - see
+[Installing → macOS](#macos) for how to get past that.
 
 ## License
 

@@ -1,0 +1,48 @@
+name: Build macOS app
+
+# Electron apps for macOS can only be built on a real Mac (Apple's own
+# packaging tools don't run anywhere else) - since nobody on this project
+# has a Mac, this workflow uses GitHub's own macOS runners to do it instead.
+# Trigger it either by pushing a tag like "v1.0.2-beta.2" (it'll attach the
+# .dmg straight onto the matching GitHub Release), or by hand from the
+# Actions tab (Actions -> Build macOS app -> Run workflow), which just
+# leaves the .dmg as a downloadable build artifact on the run instead.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the renderer
+        run: npm run build:renderer
+
+      - name: Build the macOS app (unsigned - no Apple Developer account)
+        run: npx electron-builder --mac --publish never
+
+      - name: Attach to the matching GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*.dmg
+
+      - name: Also keep it as a downloadable build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PvM-Pulse-macOS
+          path: release/*.dmg
