@@ -20,6 +20,7 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - [Installing (no coding required)](#installing-no-coding-required)
   - [Windows](#windows)
   - [macOS](#macos)
+  - [Linux (coding required)](#linux-coding-required)
 - [Quick start](#quick-start)
 - [Using the app](#using-the-app)
   - [The three panels](#the-three-panels)
@@ -124,6 +125,61 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)).
    Grant it in **System Settings → Privacy & Security → Accessibility**,
    then restart the app.
+
+### Linux (coding required)
+
+There's no pre-built Linux download yet - getting it running means building
+it yourself from a terminal. It's not complicated, just more steps than
+double-clicking a download; roughly 10 minutes even if you haven't done
+this before.
+
+1. **Install prerequisites** (once per machine):
+   - **Node.js** (LTS) - via your distro's package manager, [nodejs.org](https://nodejs.org),
+     or [nvm](https://github.com/nvm-sh/nvm).
+   - **Build tools**, needed to compile the keyboard-hook module on some
+     setups:
+     - Debian/Ubuntu and derivatives (Mint, Pop!_OS, etc.):
+       `sudo apt install build-essential python3 libx11-dev libxtst-dev libxkbcommon-dev`
+     - Fedora:
+       `sudo dnf install gcc-c++ make python3 libX11-devel libXtst-devel libxkbcommon-devel`
+     - Arch/Manjaro:
+       `sudo pacman -S base-devel python libx11 libxtst libxkbcommon`
+     - Other distros: the equivalent packages for a C compiler, `make`,
+       `python3`, and the X11/XTest/xkbcommon development headers.
+2. **Get the code**:
+   ```bash
+   git clone https://github.com/cuddlyzebra/PvM-Pulse.git
+   cd PvM-Pulse
+   ```
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+   If npm warns about install scripts pending approval for `electron`,
+   `uiohook-napi`, or `esbuild`, approve them (see
+   [Running from source](#running-from-source-windows) for why that's
+   expected) and run `npm install` again.
+4. **Run it**: `npm run dev` - opens the setup window directly, no
+   packaging needed just to try it.
+5. **Or build a portable AppImage** to keep around:
+   ```bash
+   npm run package
+   ```
+   Produces `release/PvM Pulse-<version>.AppImage`. Make it executable
+   once (`chmod +x "release/PvM Pulse-<version>.AppImage"`), then just run
+   it directly - no install step, no root needed.
+
+**Wayland heads-up**: the global keyboard hook this app relies on to
+detect your keybinds only works properly under an **X11** session. Most
+distros now default to **Wayland**, which blocks apps from seeing
+keypresses outside their own window for security reasons - so keybinds may
+silently just not register. If that happens, log out and pick an
+"X11"/"Xorg" session at the login screen (usually a small gear/settings
+icon next to your username before you sign in), then try again.
+
+This build path isn't tested end-to-end by the project maintainer (Linux
+isn't their daily driver) - reports and PRs from Linux users are very
+welcome if something above doesn't quite work on your distro.
 
 ### Both platforms
 
@@ -478,32 +534,6 @@ Community-requested features, roughly in priority order:
   version of the original tracker's screen-region picker.
 - **APM counter / extension system** - the original tracker's second
   "extension"; not ported yet.
-- **Perk "modifier" display** - perks are bindable/searchable now, but
-  shown as plain entries rather than composited as a small badge on a
-  weapon's icon, the way in-game gizmo perks visually attach to gear.
-- **A second Vulnerability bomb** - RotationMaster's source data only has
-  one `Vulnerability bomb` entry; if there's a distinctly-named
-  higher-tier version in-game, it needs its own icon/entry added upstream
-  or via `scripts/ability-category-overrides.json` once confirmed.
-- **Three Essence of Finality colour variants have odd display names** -
-  `Decimation EoF`, `Dark bow EoF`, and `Statius's warhammer EoF` are
-  RotationMaster's own (Discord-emote-derived) names for what are likely
-  the purple/yellow/black amulet colours, inconsistent with the other four
-  (`Essence of Finality (blue/green/pink)`, `... amulet (red)`) - worth
-  relabelling for consistency once someone can confirm the actual in-game
-  colour each one is.
-- **`consumable` tag is a hand-picked shortlist** - Vulnerability bomb,
-  Saradomin brew, Super saradomin Brew, and the generic Summoning
-  special-attack trigger so far (RotationMaster's much larger
-  "Consumables, Currencies, and Combat Support Items" and "Summoning"
-  categories aren't pulled in wholesale, since most of that - regular
-  potions, currency, familiar pouches/scrolls themselves - isn't really a
-  "press key mid-fight, see it on the overlay" item the way these are);
-  extend `scripts/ability-category-overrides.json` per-item as more are
-  wanted.
-
-Have an idea, or want to pick one of these up? Open an issue or a PR - see
-[Contributing](#contributing--building-from-source) below.
 
 ## Contributing / building from source
 
