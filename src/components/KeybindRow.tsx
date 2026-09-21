@@ -97,7 +97,12 @@ export default function KeybindRow({
       className={`keybind-row ${draggedOver ? 'drag-over' : ''}`}
       data-keybind-index={rowIndex}
       onDragOver={(e) => {
+        // Chromium only treats an element as a valid drop target once
+        // dragover has preventDefault() called on it - without this, drop
+        // never fires at all, which is why dragging previously looked like
+        // it did nothing.
         e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
         onDragEnter();
       }}
       onDrop={(e) => {
@@ -108,7 +113,14 @@ export default function KeybindRow({
       <span
         className="keybind-drag-handle"
         draggable
-        onDragStart={onDragStart}
+        onDragStart={(e) => {
+          // Some Chromium builds silently drop the whole drag gesture
+          // (dragover/drop never fire on any target) unless dataTransfer
+          // actually carries data - this is what was missing before.
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', String(rowIndex));
+          onDragStart();
+        }}
         onDragEnd={onDragEnd}
         title="Drag to move this row a long way - or use ▲▼ for one step at a time"
         aria-hidden="true"

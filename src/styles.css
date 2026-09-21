@@ -468,10 +468,17 @@ body {
 .keybind-drag-handle {
   cursor: grab;
   color: var(--text-dim);
-  font-size: 14px;
-  padding: 0 2px;
+  font-size: 16px;
+  padding: 6px 6px;
   line-height: 1;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keybind-drag-handle:hover {
+  color: var(--text);
 }
 
 .keybind-drag-handle:active {
