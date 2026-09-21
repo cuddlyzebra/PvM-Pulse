@@ -93,11 +93,21 @@ and an ability/weapon/perk dataset that's actually kept up to date.
    ability should appear in the live preview inside the app, and on the
    OBS overlay.
 
+**Multiple saved profiles.** The **Profile:** dropdown (below the header)
+holds several named profiles you can switch between without leaving the
+app - one per character, one per boss loadout, whatever suits you.
+**+ New** starts a blank one, **Duplicate** copies the current one under a
+new name (handy for "same as my main setup but tweak a few keys"),
+**Rename** and **Delete** do what they say (there's always at least one
+profile left - the last one can't be deleted). Switching is immediate and
+live, same as everything else here.
+
 **Moving to another PC, or just backing up your setup:** use **Export
-Profile…** (top right) to save everything - keybinds, style bars, settings
-- to a single file, and **Import Profile…** on the other machine (or after
-a reinstall) to load it straight back in. Importing replaces your current
-profile immediately, live, same as any other change.
+Profile…** (top right) to save the *current* profile to a single file, and
+**Import Profile…** on the other machine (or after a reinstall) to load it
+back in - into whichever profile is active there when you import. To bring
+someone else's export in as a new profile instead of overwriting your
+current one, create a new profile first, then import into that.
 
 ## Style bars
 
@@ -280,6 +290,10 @@ output for an `abilities:list failed` line) would help narrow it down.
 
 Community-requested features, roughly in priority order:
 
+- **Starter profile** - the mechanism exists (see
+  [Building the starter profile](#building-the-starter-profile)) but
+  `data/starter-profile.json` itself hasn't been built yet, so new installs
+  still open empty for now.
 - **Custom icon overrides** - pick your own image for any ability, weapon,
   or perk, overriding the bundled icon (or filling a gap where there isn't
   one, e.g. an uncovered dye colour).
@@ -312,7 +326,7 @@ electron/            Main process (Node) - runs outside the browser sandbox
   preload.js          Safe bridge exposing window.tracker to the UI
   inputListener.js     Global keyboard hook (uiohook-napi) -> resolves keybinds -> ability casts
   overlayServer.js     Local HTTP+WebSocket server for the OBS overlay page
-  profileStore.js      Loads/saves the user's keybind profile (cross-platform paths)
+  profileStore.js      Loads/saves the user's saved profiles (cross-platform paths, multiple named profiles)
   abilityData.js        Loads + merges data/abilityinfo.json with data/dyed-abilityinfo.json
 
 overlay/              What OBS's Browser Source actually loads
@@ -325,6 +339,35 @@ src/                  The setup UI (React, runs in the Electron window)
 data/                 Ability/weapon/perk data + icons, built from RotationMaster (see above)
 scripts/              build-ability-data.py, fetch-dyed-icons.js, and their supporting files
 ```
+
+### Building the starter profile
+
+New installs currently open to a totally empty keybind list, which is a lot
+to face before you've bound a single key - search-and-add 338 abilities one
+at a time with nothing pre-filled. `electron/profileStore.js` supports
+shipping a **starter profile** to soften that: `data/starter-profile.json`,
+if present, is what a brand-new install loads instead of an empty profile
+(nothing changes if it's absent - this is purely additive).
+
+This isn't auto-generated from `data/abilityinfo.json`, deliberately - that
+data (sourced from RotationMaster) mixes real, current abilities with
+deprecated `OLD...`-prefixed entries, internal `snake_case` duplicate IDs,
+and placeholder entries (`Melee`, `Attack`, `Necromancy (Auto)`, etc.), so
+dumping "every melee-tagged item" onto a page would hand new players a
+list that's just as confusing as an empty one, in a different way. Building
+it needs an actual current-meta player's judgement call on which abilities
+belong.
+
+To build one: open the app, add a style bar per combat style you want to
+pre-fill (Melee/Ranged/Magic/Necromancy, say), search-and-add the real
+abilities that belong on each - **without pressing a key for any of
+them**, so they show up as "Press key…" placeholders rather than presets
+that might not match how the next person actually plays - then use
+**Export Profile…** and save the result as `data/starter-profile.json` in
+the repo. Anything genuinely style-agnostic (defensives, movement) can go
+on the "Shared" tab the same way. Since `data/**/*` is already bundled by
+`electron-builder` (see `package.json`'s `build.files`), no packaging
+config changes are needed once the file exists - it just starts working.
 
 ### Running from source (Windows)
 

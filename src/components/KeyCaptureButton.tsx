@@ -23,6 +23,9 @@ export default function KeyCaptureButton({ value, onChange, placeholder }: Props
     setCapturing(true);
     function handler(e: KeyboardEvent) {
       e.preventDefault();
+      // See the matching note in KeybindRow.tsx - stops this capture from
+      // also being read by the global undo/redo shortcut.
+      e.stopPropagation();
       const rawKey = e.key;
       if (['Shift', 'Control', 'Alt', 'Meta'].includes(rawKey)) return;
       // Same normalization as KeybindRow's capture - the global key

@@ -5,7 +5,9 @@ import KeyCaptureButton from './KeyCaptureButton';
 interface Props {
   bars: StyleBar[];
   activeBarId: string | null;
+  viewingShared: boolean;
   onSelectBar: (id: string) => void;
+  onSelectShared: () => void;
   onAddBar: () => void;
   onRenameBar: (id: string, name: string) => void;
   onDeleteBar: (id: string) => void;
@@ -33,11 +35,22 @@ interface Props {
  * - the shared key then toggles only between the bars still switched on.
  * A greyed-out bar keeps its keybinds and can still be picked manually;
  * it's just left out of automatic switching until turned back on.
+ *
+ * The "Shared" pill (once any bar exists) is a fourth, always-present tab
+ * that isn't a real style bar - it can't be switched to at runtime, deleted,
+ * given a weapon trigger, or turned off, since shared keybinds are already
+ * live no matter which real bar is active. It exists purely so the keybind
+ * list (App.tsx) can show just the shared keybinds on their own instead of
+ * always mixed in with whichever bar's specific ones - otherwise there's no
+ * way to look at (or add to) just the universal set once a profile has a
+ * lot of both.
  */
 export default function StyleBarPanel({
   bars,
   activeBarId,
+  viewingShared,
   onSelectBar,
+  onSelectShared,
   onAddBar,
   onRenameBar,
   onDeleteBar,
@@ -51,12 +64,24 @@ export default function StyleBarPanel({
   return (
     <div className="style-bar-panel">
       <div className="style-bar-tabs">
+        {bars.length > 0 && (
+          <button
+            type="button"
+            className={`style-bar-tab shared-tab ${viewingShared ? 'active' : ''}`}
+            onClick={onSelectShared}
+            title="View and add keybinds that apply no matter which style is active"
+          >
+            Shared abilities
+          </button>
+        )}
         {bars.map((bar) => {
           const enabled = bar.enabled !== false;
           return (
           <div
             key={bar.id}
-            className={`style-bar-tab ${bar.id === activeBarId ? 'active' : ''} ${enabled ? '' : 'disabled'}`}
+            className={`style-bar-tab ${
+              !viewingShared && bar.id === activeBarId ? 'active' : ''
+            } ${enabled ? '' : 'disabled'}`}
           >
             <input
               type="checkbox"
@@ -92,7 +117,7 @@ export default function StyleBarPanel({
             <KeyCaptureButton
               value={bar.weaponTrigger}
               onChange={(chord) => onSetWeaponTrigger(bar.id, chord)}
-              placeholder="weapon key…"
+              placeholder="blank"
             />
             <button
               type="button"

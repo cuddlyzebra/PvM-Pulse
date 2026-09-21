@@ -38,6 +38,11 @@ export default function KeybindRow({
     setCapturing(true);
     function handler(e: KeyboardEvent) {
       e.preventDefault();
+      // Stop this from also being seen by the global Ctrl+Z/Ctrl+Y undo
+      // shortcut (App.tsx) - without this, capturing Ctrl+Z as an ability's
+      // key would simultaneously trigger an undo, since both listeners are
+      // on window and this one doesn't otherwise stop the event.
+      e.stopPropagation();
       // The global key listener (electron/inputListener.js) matches against
       // uiohook-napi's own key names, not the browser's - almost all of
       // them agree once lowercased (letters, digits, F-keys, arrow keys),
@@ -79,7 +84,10 @@ export default function KeybindRow({
       </button>
 
       {showStyleControls && (
-        <label className="shared-toggle" title="Active no matter which style bar is live">
+        <label
+          className="shared-toggle"
+          title="Active no matter which style bar is live - moves this row to the Shared tab"
+        >
           <input
             type="checkbox"
             checked={!keybind.styleBarId}

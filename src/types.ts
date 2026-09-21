@@ -63,6 +63,19 @@ export interface Profile {
   activeStyleBarId: string | null;
 }
 
+// A saved profile's entry in the switcher list - just enough to render it
+// and pick it, not its actual keybind content (see SavedProfileCreated
+// below for what switching/creating actually returns).
+export interface SavedProfileSummary {
+  id: string;
+  name: string;
+}
+
+export interface SavedProfileCreated {
+  id: string;
+  profile: Profile;
+}
+
 export interface CastEvent {
   action: string;
   tag: string;
@@ -97,6 +110,23 @@ declare global {
         error?: string;
         profile?: Profile;
       }>;
+      // Multiple named saved profiles, switchable from inside the app -
+      // distinct from exportProfile/importProfile above, which move a
+      // profile to/from a file rather than switching between ones already
+      // saved locally.
+      listSavedProfiles: () => Promise<{
+        activeProfileId: string;
+        profiles: SavedProfileSummary[];
+      }>;
+      switchSavedProfile: (id: string) => Promise<Profile>;
+      createSavedProfile: (name: string) => Promise<SavedProfileCreated>;
+      duplicateSavedProfile: (id: string, name: string) => Promise<SavedProfileCreated>;
+      renameSavedProfile: (id: string, name: string) => Promise<{ ok: boolean }>;
+      // null means the deleted profile wasn't the active one, so nothing
+      // else needs to change; otherwise this is the profile that's now
+      // active instead (deleting the active profile always switches to
+      // another - there's always at least one saved profile).
+      deleteSavedProfile: (id: string) => Promise<SavedProfileCreated | null>;
     };
   }
 }

@@ -1,8 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { AbilityInfo, CastEvent, KeyChord, Keybind, Profile, StyleBar } from './types';
+import type {
+  AbilityInfo,
+  CastEvent,
+  KeyChord,
+  Keybind,
+  Profile,
+  SavedProfileSummary,
+  StyleBar
+} from './types';
 import KeybindRow from './components/KeybindRow';
 import LivePreview from './components/LivePreview';
 import OverlayLinkPanel from './components/OverlayLinkPanel';
+import ProfileSwitcher from './components/ProfileSwitcher';
 import StyleBarPanel from './components/StyleBarPanel';
 import { iconUrl } from './iconUrl';
 
@@ -30,6 +39,11 @@ export default function App() {
   // used to fail as a silent, unhandled promise rejection - the search
   // panel would just stay empty forever with nothing in view to explain why.
   const [abilitiesError, setAbilitiesError] = useState<string | null>(null);
+  // Saved profiles you can switch between from inside the app (see
+  // ProfileSwitcher / electron/profileStore.js) - separate from `profile`
+  // above, which holds the currently active one's actual content.
+  const [savedProfiles, setSavedProfiles] = useState<SavedProfileSummary[]>([]);
+  const [activeProfileId, setActiveProfileId] = useState<string | null>(null);
 
   useEffect(() => {
     window.tracker.getProfile().then(setProfile);
@@ -37,6 +51,10 @@ export default function App() {
     window.tracker.listAbilities().then(setAbilities).catch((err) => {
       console.error('Failed to load ability list:', err);
       setAbilitiesError(err?.message ?? String(err));
+    });
+    window.tracker.listSavedProfiles().then(({ activeProfileId: id, profiles }) => {
+      setActiveProfileId(id);
+      setSavedProfiles(profiles);
     });
     const unsubscribeCasts = window.tracker.onCastEvent((event) => {
       setRecentCasts((prev) => [event, ...prev].slice(0, 8));
@@ -77,6 +95,79 @@ export default function App() {
       setTimeout(() => setSaveState('idle'), 900);
     }, 400);
     return () => clearTimeout(timeout);
+  }, [profile]);
+
+  // Undo/redo for profile edits (keybinds, style bars, settings) - added
+  // because a misclick that's easy to make without noticing, like ticking
+  // a keybind's "shared" checkbox, immediately moves that row to a
+  // different tab rather than just changing something in place, so it can
+  // look like the keybind vanished. Ctrl+Z / Ctrl+Shift+Z (or Ctrl+Y) undo
+  // and redo the last edit; the buttons in the header do the same thing.
+  // Only routes edits made *through this UI* onto the stack (see
+  // applyProfileChange below) - loading a different saved profile entirely
+  // (switching, importing, creating) resets the history instead, since
+  // undoing past that point would mean undoing into a different profile's
+  // keybinds, which isn't what anyone pressing Ctrl+Z would expect.
+  const undoStackRef = useRef<Profile[]>([]);
+  const redoStackRef = useRef<Profile[]>([]);
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
+
+  function syncUndoRedoAvailability() {
+    setCanUndo(undoStackRef.current.length > 0);
+    setCanRedo(redoStackRef.current.length > 0);
+  }
+
+  function resetUndoHistory() {
+    undoStackRef.current = [];
+    redoStackRef.current = [];
+    syncUndoRedoAvailability();
+  }
+
+  // Use this (not setProfile directly) for anything the user did through
+  // the UI that they'd expect Ctrl+Z to reverse - adding/removing/editing
+  // a keybind, managing style bars, changing settings.
+  function applyProfileChange(next: Profile) {
+    if (profile) undoStackRef.current.push(profile);
+    redoStackRef.current = [];
+    syncUndoRedoAvailability();
+    setProfile(next);
+  }
+
+  function undo() {
+    if (!profile || undoStackRef.current.length === 0) return;
+    const previous = undoStackRef.current.pop()!;
+    redoStackRef.current.push(profile);
+    syncUndoRedoAvailability();
+    setProfile(previous);
+  }
+
+  function redo() {
+    if (!profile || redoStackRef.current.length === 0) return;
+    const next = redoStackRef.current.pop()!;
+    undoStackRef.current.push(profile);
+    syncUndoRedoAvailability();
+    setProfile(next);
+  }
+
+  // Global Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y shortcut. Re-subscribed on every
+  // profile change so the listener always closes over the current
+  // undo()/redo() (and therefore the current `profile`), rather than a
+  // stale one from whenever the effect first ran.
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      const key = e.key.toLowerCase();
+      if (key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      } else if ((key === 'z' && e.shiftKey) || key === 'y') {
+        e.preventDefault();
+        redo();
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [profile]);
 
   // Looked up once so KeybindRow doesn't need its own copy of the full
@@ -127,46 +218,66 @@ export default function App() {
     return list;
   }, [abilities, search, activeTags]);
 
+  // Whether the keybind list is showing the "Shared" pseudo-tab rather than
+  // a real style bar. This is purely a view/editing filter, separate from
+  // profile.activeStyleBarId (which bar is actually "live" for the input
+  // listener) - shared keybinds are always live regardless of which bar is
+  // active, so looking at them here doesn't change anything at runtime.
+  // Exists because otherwise shared and bar-specific keybinds are mixed
+  // together in every bar's view with no way to see just one or the other,
+  // which gets hard to keep organized once a profile has many of both.
+  const [viewingShared, setViewingShared] = useState(false);
+
   const filteredKeybinds = useMemo(() => {
     if (!profile) return [];
     const withIndex = profile.keybinds.map((kb, index) => ({ kb, index }));
-    // Once style bars exist, only show keybinds relevant to whichever bar
-    // is currently active: that bar's own keybinds, plus every "shared"
-    // one (no styleBarId) - a keybind belonging to a *different*, inactive
-    // bar is hidden here rather than cluttering the list (it still exists,
-    // it's just not what you're looking at right now).
-    const barFiltered =
-      profile.styleBars.length > 0
-        ? withIndex.filter(({ kb }) => !kb.styleBarId || kb.styleBarId === profile.activeStyleBarId)
-        : withIndex;
+    // Once style bars exist, each tab shows ONLY its own keybinds - a real
+    // bar's tab shows just that bar's specific keybinds, and the "Shared"
+    // tab shows just the shared ones, fully separated for readability.
+    // This is purely a display/editing split: at runtime (see
+    // electron/inputListener.js), shared keybinds are still live no matter
+    // which bar is active - hiding them from a bar's list here doesn't
+    // change what's actually being tracked, only what you're looking at.
+    let barFiltered = withIndex;
+    if (profile.styleBars.length > 0) {
+      barFiltered = viewingShared
+        ? withIndex.filter(({ kb }) => !kb.styleBarId)
+        : withIndex.filter(({ kb }) => kb.styleBarId === profile.activeStyleBarId);
+    }
     const q = keybindSearch.trim().toLowerCase();
     if (!q) return barFiltered;
     return barFiltered.filter(
       ({ kb }) => kb.ability.toLowerCase().includes(q) || kb.key.toLowerCase().includes(q)
     );
-  }, [profile, keybindSearch]);
+  }, [profile, keybindSearch, viewingShared]);
 
   function addKeybind(ability: string) {
     if (!profile) return;
     const nextKeybinds: Keybind[] = [
       ...profile.keybinds,
-      // New keybinds default to whichever bar is currently selected (or
-      // shared/no bar, if style bars aren't in use) - matches what you'd
-      // see and expect given the tab you're looking at.
-      { key: '', modifier: null, ability, styleBarId: profile.activeStyleBarId }
+      // New keybinds default to whichever bar is currently selected - or
+      // explicitly shared, if that's the tab being viewed, or if style bars
+      // aren't in use at all - matching what you'd see and expect given
+      // the tab you're looking at.
+      {
+        key: '',
+        modifier: null,
+        ability,
+        styleBarId: viewingShared ? null : profile.activeStyleBarId
+      }
     ];
-    setProfile({ ...profile, keybinds: nextKeybinds });
+    applyProfileChange({ ...profile, keybinds: nextKeybinds });
   }
 
   function updateKeybind(index: number, patch: Partial<Keybind>) {
     if (!profile) return;
     const nextKeybinds = profile.keybinds.map((kb, i) => (i === index ? { ...kb, ...patch } : kb));
-    setProfile({ ...profile, keybinds: nextKeybinds });
+    applyProfileChange({ ...profile, keybinds: nextKeybinds });
   }
 
   function removeKeybind(index: number) {
     if (!profile) return;
-    setProfile({ ...profile, keybinds: profile.keybinds.filter((_, i) => i !== index) });
+    applyProfileChange({ ...profile, keybinds: profile.keybinds.filter((_, i) => i !== index) });
   }
 
   async function save() {
@@ -203,11 +314,73 @@ export default function App() {
       // filters) reflects it immediately instead of waiting for a reload.
       setProfile(result.profile);
       isFirstProfileLoad.current = true; // the incoming state isn't a local edit - skip the auto-save debounce for this one swap
+      resetUndoHistory(); // undoing past an import would mean undoing into whatever was there before it
       setProfileIoStatus('Profile imported.');
     } else {
       setProfileIoStatus(`Import failed: ${result.error ?? 'unknown error'}`);
     }
     setTimeout(() => setProfileIoStatus(null), 4000);
+  }
+
+  // Switching between saved profiles reuses the same "this isn't a local
+  // edit" trick as importProfile above - the incoming content came from
+  // disk (or was just created there), so it shouldn't immediately trigger
+  // the debounced auto-save right back onto itself.
+  async function switchSavedProfile(id: string) {
+    if (id === activeProfileId) return;
+    const nextProfile = await window.tracker.switchSavedProfile(id);
+    isFirstProfileLoad.current = true;
+    resetUndoHistory(); // a different profile's edit history doesn't apply here
+    setProfile(nextProfile);
+    setActiveProfileId(id);
+  }
+
+  // Takes the name directly (from ProfileSwitcher's own inline input) rather
+  // than calling window.prompt() here - Electron doesn't implement
+  // window.prompt at all, so it used to just silently do nothing when
+  // clicked, with no error and no dialog ever appearing.
+  async function createSavedProfile(name: string) {
+    const { id, profile: created } = await window.tracker.createSavedProfile(name);
+    setSavedProfiles((prev) => [...prev, { id, name }]);
+    isFirstProfileLoad.current = true;
+    resetUndoHistory();
+    setProfile(created);
+    setActiveProfileId(id);
+  }
+
+  async function duplicateSavedProfile(name: string) {
+    if (!activeProfileId) return;
+    const { id, profile: duplicated } = await window.tracker.duplicateSavedProfile(
+      activeProfileId,
+      name
+    );
+    setSavedProfiles((prev) => [...prev, { id, name }]);
+    isFirstProfileLoad.current = true;
+    resetUndoHistory();
+    setProfile(duplicated);
+    setActiveProfileId(id);
+  }
+
+  async function renameSavedProfile(name: string) {
+    if (!activeProfileId || !name.trim()) return;
+    const trimmed = name.trim();
+    await window.tracker.renameSavedProfile(activeProfileId, trimmed);
+    setSavedProfiles((prev) =>
+      prev.map((p) => (p.id === activeProfileId ? { ...p, name: trimmed } : p))
+    );
+  }
+
+  async function deleteSavedProfile() {
+    if (!activeProfileId || savedProfiles.length <= 1) return;
+    const currentName = savedProfiles.find((p) => p.id === activeProfileId)?.name ?? 'this profile';
+    if (!window.confirm(`Delete "${currentName}"? This can't be undone.`)) return;
+    const switched = await window.tracker.deleteSavedProfile(activeProfileId);
+    setSavedProfiles((prev) => prev.filter((p) => p.id !== activeProfileId));
+    if (switched) {
+      isFirstProfileLoad.current = true;
+      setProfile(switched.profile);
+      setActiveProfileId(switched.id);
+    }
   }
 
   // Selecting a bar (a tab click, here) is the manual-override switching
@@ -218,6 +391,7 @@ export default function App() {
   // feels instant rather than waiting ~400ms.
   function selectStyleBar(barId: string) {
     if (!profile) return;
+    setViewingShared(false);
     setProfile({ ...profile, activeStyleBarId: barId });
     window.tracker.setActiveStyleBar(barId);
   }
@@ -232,13 +406,13 @@ export default function App() {
     };
     const nextBars = [...profile.styleBars, bar];
     const nextActiveId = profile.activeStyleBarId ?? bar.id;
-    setProfile({ ...profile, styleBars: nextBars, activeStyleBarId: nextActiveId });
+    applyProfileChange({ ...profile, styleBars: nextBars, activeStyleBarId: nextActiveId });
     if (!profile.activeStyleBarId) window.tracker.setActiveStyleBar(bar.id);
   }
 
   function renameStyleBar(id: string, name: string) {
     if (!profile) return;
-    setProfile({
+    applyProfileChange({
       ...profile,
       styleBars: profile.styleBars.map((b) => (b.id === id ? { ...b, name } : b))
     });
@@ -254,7 +428,7 @@ export default function App() {
     );
     const nextActiveId =
       profile.activeStyleBarId === id ? (nextBars[0]?.id ?? null) : profile.activeStyleBarId;
-    setProfile({
+    applyProfileChange({
       ...profile,
       styleBars: nextBars,
       keybinds: nextKeybinds,
@@ -265,7 +439,7 @@ export default function App() {
 
   function setBarWeaponTrigger(id: string, chord: KeyChord | null) {
     if (!profile) return;
-    setProfile({
+    applyProfileChange({
       ...profile,
       styleBars: profile.styleBars.map((b) => (b.id === id ? { ...b, weaponTrigger: chord } : b))
     });
@@ -273,7 +447,7 @@ export default function App() {
 
   function setCycleBarKey(chord: KeyChord | null) {
     if (!profile) return;
-    setProfile({ ...profile, settings: { ...profile.settings, cycleBarKey: chord } });
+    applyProfileChange({ ...profile, settings: { ...profile.settings, cycleBarKey: chord } });
   }
 
   // Excludes a bar from weapon-trigger/cycle-key switching without
@@ -282,7 +456,7 @@ export default function App() {
   // (electron/inputListener.js) skips disabled bars.
   function toggleStyleBarEnabled(id: string, enabled: boolean) {
     if (!profile) return;
-    setProfile({
+    applyProfileChange({
       ...profile,
       styleBars: profile.styleBars.map((b) => (b.id === id ? { ...b, enabled } : b))
     });
@@ -308,22 +482,49 @@ export default function App() {
         </div>
         <div className="header-actions">
           {profileIoStatus && <span className="io-status">{profileIoStatus}</span>}
+          <button
+            className="secondary-button"
+            onClick={undo}
+            disabled={!canUndo}
+            title="Undo the last edit (Ctrl+Z)"
+          >
+            ↶ Undo
+          </button>
+          <button
+            className="secondary-button"
+            onClick={redo}
+            disabled={!canRedo}
+            title="Redo the last undone edit (Ctrl+Shift+Z / Ctrl+Y)"
+          >
+            ↷ Redo
+          </button>
           <button className="secondary-button" onClick={importProfile} title="Load keybinds, style bars, and settings from a file">
             Import Profile…
           </button>
           <button className="secondary-button" onClick={exportProfile} title="Save your whole setup to a file, e.g. to move to another PC">
             Export Profile…
           </button>
-          <button className="save-button" onClick={save} disabled={saveState === 'saving'}>
-            {saveState === 'saved' ? 'Saved ✓' : saveState === 'saving' ? 'Saving…' : 'Save Profile'}
-          </button>
         </div>
       </header>
+
+      <ProfileSwitcher
+        profiles={savedProfiles}
+        activeProfileId={activeProfileId}
+        onSwitch={switchSavedProfile}
+        onCreate={createSavedProfile}
+        onDuplicate={duplicateSavedProfile}
+        onRename={renameSavedProfile}
+        onDelete={deleteSavedProfile}
+        onSave={save}
+        saveState={saveState}
+      />
 
       <StyleBarPanel
         bars={profile.styleBars}
         activeBarId={profile.activeStyleBarId}
+        viewingShared={viewingShared}
         onSelectBar={selectStyleBar}
+        onSelectShared={() => setViewingShared(true)}
         onAddBar={addStyleBar}
         onRenameBar={renameStyleBar}
         onDeleteBar={deleteStyleBar}
@@ -379,7 +580,18 @@ export default function App() {
         </section>
 
         <section className="panel">
-          <h2>2. Bind a key to it</h2>
+          <h2>
+            2. Bind a key to it
+            {profile.styleBars.length > 0 && (
+              <span className="panel-subheading">
+                {' '}
+                — viewing{' '}
+                {viewingShared
+                  ? 'Shared abilities'
+                  : (profile.styleBars.find((b) => b.id === profile.activeStyleBarId)?.name ?? 'this bar')}
+              </span>
+            )}
+          </h2>
           <p className="hint">Click "Press key…" then hit the key on your keyboard. That's it.</p>
           {profile.keybinds.length > 0 && (
             <input
@@ -397,7 +609,9 @@ export default function App() {
               <p className="empty-state">
                 {keybindSearch
                   ? `No bound keys match "${keybindSearch}".`
-                  : 'Nothing bound to this style bar yet - add an ability, or mark an existing keybind "shared".'}
+                  : viewingShared
+                    ? 'No shared keybinds yet - add an ability here, or switch to a style bar and tick "shared" on an existing keybind to move it over.'
+                    : 'Nothing bound to this style bar yet - add an ability on the left to get started.'}
               </p>
             )}
             {filteredKeybinds.map(({ kb, index }) => (
@@ -427,7 +641,7 @@ export default function App() {
               value={profile.settings.iconCount}
               onChange={(e) => {
                 const clamped = Math.min(14, Math.max(4, Number(e.target.value) || 4));
-                setProfile({
+                applyProfileChange({
                   ...profile,
                   settings: { ...profile.settings, iconCount: clamped }
                 });

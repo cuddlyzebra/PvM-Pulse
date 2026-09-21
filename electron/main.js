@@ -4,7 +4,17 @@ const fs = require('fs/promises');
 
 const { startOverlayServer } = require('./overlayServer');
 const { InputListener } = require('./inputListener');
-const { loadProfile, saveProfile, normalizeProfile } = require('./profileStore');
+const {
+  loadActiveProfile,
+  saveActiveProfile,
+  normalizeProfile,
+  listProfiles,
+  switchActiveProfile,
+  createProfile,
+  duplicateProfile,
+  renameProfile,
+  deleteProfile
+} = require('./profileStore');
 const { listAbilities } = require('./abilityData');
 
 let mainWindow;
@@ -131,7 +141,13 @@ function createTray() {
 }
 
 async function bootstrap() {
-  let profile = await loadProfile();
+  // activeProfileId identifies which *saved* profile (see
+  // electron/profileStore.js) is currently loaded - separate from `profile`
+  // itself, which is that profile's actual keybind/style-bar content.
+  // Switching, creating, duplicating, or deleting a saved profile below
+  // always keeps both of these in sync with each other and with the
+  // running InputListener/overlay.
+  let { id: activeProfileId, profile } = await loadActiveProfile();
 
   overlay = startOverlayServer({ port: 5859 });
   overlay.broadcastProfileMeta(profile.settings);
@@ -147,7 +163,7 @@ async function bootstrap() {
   // setup window update its "active style" indicator.
   inputListener.on('style-bar-changed', (barId) => {
     profile.activeStyleBarId = barId;
-    saveProfile(profile).catch((err) =>
+    saveActiveProfile(activeProfileId, profile).catch((err) =>
       console.warn('Could not persist active style bar:', err.message)
     );
     mainWindow?.webContents.send('style-bar-changed', barId);
@@ -156,7 +172,7 @@ async function bootstrap() {
 
   ipcMain.handle('profile:get', () => profile);
   ipcMain.handle('profile:save', async (_event, nextProfile) => {
-    await saveProfile(nextProfile);
+    await saveActiveProfile(activeProfileId, nextProfile);
     // Keep the outer `profile` reference in sync too - style-bar-changed
     // events mutate `profile.activeStyleBarId` directly (see above), which
     // would otherwise be mutating a stale object once the renderer has
@@ -166,12 +182,15 @@ async function bootstrap() {
     overlay.broadcastProfileMeta(nextProfile.settings);
     return { ok: true };
   });
-  // Export/import: lets a player move their whole setup (keybinds, style
-  // bars, settings) to another machine, or just keep a backup, without
-  // digging through AppData/Library/.config by hand for profile.json.
-  // Exports whatever's currently live in the app (including unsaved edits,
-  // since the auto-save debounce means "live" and "on disk" are rarely more
-  // than a few hundred ms apart anyway) rather than re-reading from disk.
+  // Export/import: lets a player move a profile to another machine, or
+  // just keep a backup, without digging through AppData/Library/.config by
+  // hand. Exports whatever's currently live in the app (including unsaved
+  // edits, since the auto-save debounce means "live" and "on disk" are
+  // rarely more than a few hundred ms apart anyway) rather than re-reading
+  // from disk. Import replaces the content of whichever saved profile is
+  // currently active (same slot, same id) - to bring in someone else's
+  // export as a new, separate saved profile instead of overwriting the
+  // active one, create a new profile first, then import into that.
   ipcMain.handle('profile:export', async () => {
     const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
       title: 'Export PvM Pulse profile',
@@ -208,11 +227,61 @@ async function bootstrap() {
     } catch (err) {
       return { ok: false, error: err.message };
     }
-    await saveProfile(imported);
+    await saveActiveProfile(activeProfileId, imported);
     profile = imported;
     inputListener.updateProfile(imported);
     overlay.broadcastProfileMeta(imported.settings);
     return { ok: true, profile: imported };
+  });
+  // In-app saved-profile management (separate from the file-based
+  // export/import above): lets a player keep several named profiles - one
+  // per character, one per boss loadout, whatever - and switch between
+  // them from inside the app itself. Every handler here keeps
+  // activeProfileId, `profile`, the live InputListener, and the overlay's
+  // broadcast metadata all in sync with each other, the same as
+  // profile:save above.
+  ipcMain.handle('profiles:list', () => listProfiles());
+  ipcMain.handle('profiles:switch', async (_event, id) => {
+    if (id === activeProfileId) return profile; // already active - no-op
+    profile = await switchActiveProfile(id);
+    activeProfileId = id;
+    inputListener.updateProfile(profile);
+    overlay.broadcastProfileMeta(profile.settings);
+    return profile;
+  });
+  ipcMain.handle('profiles:create', async (_event, name) => {
+    const created = await createProfile(name);
+    activeProfileId = created.id;
+    profile = created.profile;
+    inputListener.updateProfile(profile);
+    overlay.broadcastProfileMeta(profile.settings);
+    return created;
+  });
+  ipcMain.handle('profiles:duplicate', async (_event, { id, name }) => {
+    const created = await duplicateProfile(id, name);
+    activeProfileId = created.id;
+    profile = created.profile;
+    inputListener.updateProfile(profile);
+    overlay.broadcastProfileMeta(profile.settings);
+    return created;
+  });
+  ipcMain.handle('profiles:rename', async (_event, { id, name }) => {
+    await renameProfile(id, name);
+    return { ok: true };
+  });
+  ipcMain.handle('profiles:delete', async (_event, id) => {
+    // Only non-null if the deleted profile was the active one, in which
+    // case deleteProfile already picked another to switch to (it refuses
+    // to delete the last remaining profile in the first place, so there's
+    // always one left to fall back to).
+    const switched = await deleteProfile(id);
+    if (switched) {
+      activeProfileId = switched.id;
+      profile = switched.profile;
+      inputListener.updateProfile(profile);
+      overlay.broadcastProfileMeta(profile.settings);
+    }
+    return switched;
   });
   ipcMain.handle('overlay:get-url', () => overlay.overlayUrl);
   // Read fresh (not just from the renderer's own build) so dyed items
