@@ -12,6 +12,12 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 **[⬇ Download the latest release](../../releases/latest)**
 
+> **This app is in beta.** It's actively used and maintained, but still
+> young - please expect the occasional bug or rough edge. If you run into
+> one, or anything is confusing, [open an issue](../../issues) - feedback
+> (bug reports, feature requests, or just "this was confusing") is
+> genuinely welcome and helps get it to a stable release faster.
+
 ---
 
 ## Contents
