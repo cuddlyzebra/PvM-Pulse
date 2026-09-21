@@ -359,7 +359,11 @@ own keybinds, and only one is "active" (read by the tracker) at a time.
 **Setup:**
 
 1. Click **"+ Add style bar"** once per style you use (e.g. "Melee",
-   "Ranged", "Magic").
+   "Ranged", "Magic"). Already have one bar set up the way you like and
+   want a variant of it (same keys, different boss) instead of starting
+   from scratch? Click the **⧉** button next to its name to duplicate it -
+   name, weapon-trigger key, and every keybind on it all get copied onto
+   the new bar, ready to tweak.
 2. Optionally, give each bar a **weapon-trigger key** - the same key you
    already press in-game to equip that weapon/style. Click the small key
    button next to the bar's name and press it.

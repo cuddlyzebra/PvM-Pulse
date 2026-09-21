@@ -10,6 +10,7 @@ interface Props {
   onSelectShared: () => void;
   onAddBar: () => void;
   onRenameBar: (id: string, name: string) => void;
+  onDuplicateBar: (id: string) => void;
   onDeleteBar: (id: string) => void;
   onSetWeaponTrigger: (id: string, chord: KeyChord | null) => void;
   onToggleBarEnabled: (id: string, enabled: boolean) => void;
@@ -53,6 +54,7 @@ export default function StyleBarPanel({
   onSelectShared,
   onAddBar,
   onRenameBar,
+  onDuplicateBar,
   onDeleteBar,
   onSetWeaponTrigger,
   onToggleBarEnabled,
@@ -119,6 +121,15 @@ export default function StyleBarPanel({
               onChange={(chord) => onSetWeaponTrigger(bar.id, chord)}
               placeholder="blank"
             />
+            <button
+              type="button"
+              className="duplicate-bar-button"
+              aria-label={`Duplicate ${bar.name}`}
+              title={`Duplicate "${bar.name}" and its keybinds as a new bar`}
+              onClick={() => onDuplicateBar(bar.id)}
+            >
+              ⧉
+            </button>
             {/* Deliberately set apart from KeyCaptureButton's own small "×"
                 (which just clears the weapon-trigger key) - a divider, extra
                 spacing, a bigger trash icon, and a confirmation prompt below

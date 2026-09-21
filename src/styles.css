@@ -301,6 +301,22 @@ body {
   margin: 0 2px;
 }
 
+.duplicate-bar-button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+.duplicate-bar-button:hover {
+  color: var(--accent);
+  background: rgba(91, 141, 238, 0.12);
+}
+
 .remove-bar-button {
   background: transparent;
   border: none;

@@ -568,6 +568,31 @@ export default function App() {
     if (!profile.activeStyleBarId) window.tracker.setActiveStyleBar(bar.id);
   }
 
+  // Copies a bar - its name (with " copy" appended, same convention as
+  // Duplicate Profile), weapon trigger, enabled state, and every keybind
+  // that belongs to it specifically (shared keybinds aren't touched - they
+  // already apply to every bar, including the new one, without copying).
+  // Handy as a starting point for "same as Melee but a couple of keys
+  // different" instead of rebuilding a whole bar from scratch.
+  function duplicateStyleBar(id: string) {
+    if (!profile) return;
+    const source = profile.styleBars.find((b) => b.id === id);
+    if (!source) return;
+    const newBar: StyleBar = {
+      ...source,
+      id: makeStyleBarId(),
+      name: `${source.name} copy`
+    };
+    const copiedKeybinds: Keybind[] = profile.keybinds
+      .filter((kb) => kb.styleBarId === id)
+      .map((kb) => ({ ...kb, styleBarId: newBar.id }));
+    applyProfileChange({
+      ...profile,
+      styleBars: [...profile.styleBars, newBar],
+      keybinds: [...profile.keybinds, ...copiedKeybinds]
+    });
+  }
+
   function renameStyleBar(id: string, name: string) {
     if (!profile) return;
     applyProfileChange({
@@ -697,6 +722,7 @@ export default function App() {
         onSelectShared={() => setViewingShared(true)}
         onAddBar={addStyleBar}
         onRenameBar={renameStyleBar}
+        onDuplicateBar={duplicateStyleBar}
         onDeleteBar={deleteStyleBar}
         onSetWeaponTrigger={setBarWeaponTrigger}
         onToggleBarEnabled={toggleStyleBarEnabled}
