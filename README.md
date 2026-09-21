@@ -10,7 +10,7 @@ same goal (show viewers your rotation), but built as its own project with a
 much simpler setup flow, a real push-based overlay instead of file polling,
 and an ability/weapon/perk dataset that's actually kept up to date.
 
-**[⬇ Download the latest release (v1.0.0-beta.1)](https://github.com/cuddlyzebra/PvM-Pulse/releases/tag/v1.0.0-beta.1)**
+**[⬇ Download the latest release](../../releases/latest)**
 
 ---
 
@@ -48,8 +48,8 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 ## Installing (no coding required)
 
 1. Grab **`PvM Pulse <version>.exe`** from the
-   [Releases page](../../releases) - it's portable, so there's no install
-   step, just download and double-click.
+   [latest release](../../releases/latest) - it's portable, so there's no
+   install step, just download and double-click.
    (An earlier beta also shipped an installer build alongside the portable
    one, but it had a packaging bug where the combat-ability list didn't
    load correctly, while the portable build was unaffected - so for now
