@@ -23,6 +23,29 @@ export interface Keybind extends KeyChord {
   styleBarId?: string | null;
 }
 
+// A mouse-click binding, tied to a screen position rather than a key -
+// "advanced"/experimental, unlike keybinds, because it depends on your
+// in-game ability bar staying in the same screen position: move it,
+// resize it, or change your UI scale afterward, and every zone bound near
+// it needs re-picking. See electron/inputListener.js's _resolveClickZone
+// for exactly how a click is matched to one of these.
+export interface ClickZone {
+  id: string;
+  ability: string;
+  // Absolute screen coordinates (not window-relative - the game is a
+  // separate window from this app, often a separate monitor), captured by
+  // clicking the ability bar slot once during setup.
+  x: number;
+  y: number;
+  // How close (in pixels) a real click has to land to (x, y) to count as
+  // this zone - a small tolerance rather than requiring a pixel-perfect
+  // click, since ability icons have some real size on screen.
+  radius: number;
+  // Same meaning as Keybind.styleBarId - null/absent means "shared",
+  // active no matter which style bar is live.
+  styleBarId?: string | null;
+}
+
 export interface StyleBar {
   id: string;
   name: string;
@@ -61,6 +84,10 @@ export interface Profile {
   // Which style bar is "live" right now. Persisted so restarting the app
   // mid-session doesn't reset you back to the first bar.
   activeStyleBarId: string | null;
+  // Mouse-click bindings - see ClickZone above. Missing/undefined on a
+  // profile saved before this existed is equivalent to an empty list, same
+  // pattern as Keybind.styleBarId - no migration step needed.
+  clickZones?: ClickZone[];
 }
 
 // A saved profile's entry in the switcher list - just enough to render it
@@ -85,6 +112,25 @@ export interface CastEvent {
   timestamp: number;
 }
 
+// What electron/updateChecker.js's checkForUpdate() resolves with - see
+// there for exactly how `updateAvailable` is decided. `ok: false` means the
+// check itself failed (offline, GitHub unreachable, no releases published
+// yet) rather than "no update available", so the UI can stay silent about
+// it either way.
+export interface UpdateCheckResult {
+  ok: boolean;
+  updateAvailable: boolean;
+  currentVersion: string;
+  latestVersion?: string;
+  tagName?: string;
+  releaseUrl?: string;
+  downloadUrl?: string | null;
+  notes?: string;
+  error?: string;
+  skippedVersion?: string | null;
+  fromCache?: boolean;
+}
+
 // The preload script exposes this on window; declared here so the
 // renderer gets type-checking without pulling Electron types into the
 // browser bundle.
@@ -103,6 +149,15 @@ declare global {
       onCastEvent: (cb: (event: CastEvent) => void) => () => void;
       setActiveStyleBar: (barId: string | null) => Promise<void>;
       onStyleBarChanged: (cb: (barId: string | null) => void) => () => void;
+      // Waits for the next real mouse click anywhere on screen (even
+      // outside this app's own window - the game is a separate window)
+      // and resolves with where it landed, for recording a click zone's
+      // position. That click is consumed - it does NOT also trigger a
+      // cast, even if it happens to land inside an existing zone.
+      // Resolves to null if cancelCaptureClickZone() is called first, or
+      // if a new capture is started before this one lands a click.
+      captureClickZone: () => Promise<{ x: number; y: number } | null>;
+      cancelCaptureClickZone: () => Promise<void>;
       // Both show a native file dialog and report what happened - canceled
       // is a normal outcome (the user backed out of the picker), not an
       // error, so callers should treat it separately from `error`.
@@ -130,6 +185,12 @@ declare global {
       // active instead (deleting the active profile always switches to
       // another - there's always at least one saved profile).
       deleteSavedProfile: (id: string) => Promise<SavedProfileCreated | null>;
+    };
+    updates: {
+      check: (options?: { force?: boolean }) => Promise<UpdateCheckResult>;
+      skipVersion: (version: string) => Promise<void>;
+      openUrl: (url: string) => Promise<void>;
+      onUpdateAvailable: (cb: (result: UpdateCheckResult) => void) => () => void;
     };
   }
 }

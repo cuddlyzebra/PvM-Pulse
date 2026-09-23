@@ -46,6 +46,107 @@ body {
   flex-direction: column;
 }
 
+.update-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(91, 141, 238, 0.12);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.update-banner-text {
+  color: var(--text);
+}
+
+.update-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.update-banner-view {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.update-banner-view:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.update-banner-skip {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.update-banner-skip:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.update-banner-dismiss {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.update-banner-dismiss:hover {
+  color: var(--text);
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  color: var(--text-dim);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+}
+
+.link-button:hover:not(:disabled) {
+  color: var(--accent-hover);
+}
+
+.link-button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
 .app-header {
   display: flex;
   align-items: flex-start;
@@ -543,6 +644,110 @@ body {
 
 .keybind-row.drag-over {
   border-top-color: var(--accent);
+}
+
+/* Click zones now share the drag handle + ▲▼ reorder + icon-button columns
+   with a keybind row, but have no modifier <select> and a differently-sized
+   "Re-pick location" button instead of the key-capture one - overriding the
+   column template (rather than reusing .keybind-row's as-is) keeps those
+   out of an extra auto column that would otherwise leave a gap. Column
+   order: drag handle, ▲▼, icon, ability name (flexible), radius, re-pick
+   button, [shared checkbox], remove. */
+.click-zone-row {
+  grid-template-columns: auto auto auto 1fr auto auto auto auto;
+}
+
+.click-zone-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.click-zone-section .secondary-button {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.advanced-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.click-zone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  /* Same grow-with-the-window/scroll-when-small behavior as .keybind-list -
+     each tab's content should fill panel 2 the same way regardless of
+     which one is currently showing. */
+  flex: 1;
+  min-height: 140px;
+  overflow-y: auto;
+}
+
+/* Switches panel 2 between the keybind list and the click-zone list -
+   split into tabs (rather than always showing both, stacked) because a
+   player who mostly or entirely uses one of the two would otherwise have
+   to scroll past a whole list of the other to reach it. */
+.binding-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.binding-tab {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.binding-tab:hover {
+  border-color: var(--accent);
+}
+
+.binding-tab.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(91, 141, 238, 0.12);
+}
+
+.click-zone-radius {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.click-zone-radius input {
+  width: 48px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.keybind-icon-static {
+  display: inline-flex;
+  line-height: 0;
 }
 
 .keybind-drag-handle {

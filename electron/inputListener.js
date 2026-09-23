@@ -9,6 +9,14 @@ const KEYCODE_TO_NAME = Object.fromEntries(
   Object.entries(UiohookKey).map(([name, code]) => [code, name.toLowerCase()])
 );
 
+// How soon a repeat of the exact same ability is treated as spam (key-repeat
+// from holding a key down, or rapid mashing) and dropped rather than shown
+// again - see SPAM COLLAPSING below. A real, deliberate repeat of the same
+// ability - which does happen, e.g. a movement/defensive used twice in a
+// row on purpose - is only this fast in edge cases, so 1s is a reasonable
+// line between "still holding the key" and "pressed it again, later."
+const REPEAT_SUPPRESS_MS = 1000;
+
 function normalizeModifier(name) {
   if (!name) return null;
   if (name.startsWith('shift')) return 'shift';
@@ -74,15 +82,32 @@ function normalizeModifier(name) {
  * well, on the same key, and swapping back the other way shows that one
  * instead - each side of the swap can show its own icon, or neither.
  *
- * SPAM COLLAPSING: mashing (or key-repeating on) the same bound key over
- * and over only emits one 'cast' - lastCastAction tracks whichever ability
- * was cast most recently, and a repeat of exactly that one is silently
- * dropped instead of flooding the overlay with N copies of the same icon.
- * Casting anything else in between (a different ability, a different
- * style's ability after switching) clears the streak, so this only
- * collapses genuine back-to-back repeats, not "the same ability again
- * later." Pausing/resuming and switching style bars both reset it too, so
- * a repeat right after either of those always shows fresh.
+ * SPAM COLLAPSING: mashing (or key-repeating on) the same bound key doesn't
+ * flood the overlay with a fresh icon for every single press - a repeat of
+ * whichever ability was cast most recently (lastCastAction/lastCastAt) is
+ * dropped if it comes in within REPEAT_SUPPRESS_MS of the last one that was
+ * actually shown. This is a cooldown on the REPEAT, not a one-shot "never
+ * show this ability twice in a row" rule - press the same key again after
+ * that window and it shows again completely normally, so an intentional
+ * repeat (a defensive or movement ability used twice on purpose, say) still
+ * comes through fine as long as it's not faster than a human could
+ * plausibly intend. Casting a different ability in between is unaffected
+ * either way, and pausing/resuming or switching style bars both clear the
+ * tracked ability entirely, so a repeat right after either of those always
+ * shows immediately regardless of timing.
+ *
+ * CLICK ZONES (advanced/experimental): alongside keybinds, a profile can
+ * also bind an ability to a screen position (profile.clickZones) - a
+ * global mouse click within `radius` pixels of that position casts it, the
+ * same as a bound key would. This exists for the in-game action bar, which
+ * has no keybind at all for some players' setups. Unlike a keybind, a
+ * click zone only means anything as long as the ability bar stays exactly
+ * where it was when the zone was recorded - move it, resize it, or change
+ * UI scale, and every zone needs re-picking (the setup UI's "re-pick
+ * location" button does this in place, without losing the zone's ability
+ * or style-bar assignment). Style-bar precedence, shared zones, and spam
+ * collapsing all work exactly the same way as for keybinds - see
+ * _resolveClickZone and _tryCast below.
  */
 class InputListener extends EventEmitter {
   constructor(profile) {
@@ -92,6 +117,7 @@ class InputListener extends EventEmitter {
     this.activeStyleBarId = profile.activeStyleBarId ?? null;
     // See SPAM COLLAPSING in the class doc comment above.
     this.lastCastAction = null;
+    this.lastCastAt = 0;
     this.setProfile(profile);
   }
 
@@ -154,6 +180,28 @@ class InputListener extends EventEmitter {
     // silently eaten as a "duplicate" of whatever was cast before the
     // pause - see SPAM COLLAPSING above.
     this.lastCastAction = null;
+    this.lastCastAt = 0;
+  }
+
+  // Waits for the next real mouse click anywhere on screen and resolves
+  // with its position, for the setup UI to record a click zone - see
+  // CLICK ZONES above. That click is consumed by _onMouseDown below rather
+  // than also being checked against existing zones/causing a cast. Only
+  // one capture is ever pending at a time; starting a new one (or calling
+  // cancelCaptureClickZone) resolves whichever was already waiting with
+  // null instead of leaving it hanging forever.
+  captureNextClick() {
+    return new Promise((resolve) => {
+      this.cancelCaptureClickZone();
+      this._captureResolve = resolve;
+    });
+  }
+
+  cancelCaptureClickZone() {
+    if (this._captureResolve) {
+      this._captureResolve(null);
+      this._captureResolve = null;
+    }
   }
 
   // Manual override from the setup UI (clicking a bar directly), separate
@@ -162,6 +210,7 @@ class InputListener extends EventEmitter {
     this.activeStyleBarId = barId;
     // A fresh style means a fresh dedup streak - see SPAM COLLAPSING above.
     this.lastCastAction = null;
+    this.lastCastAt = 0;
     this.emit('style-bar-changed', barId);
   }
 
@@ -198,9 +247,59 @@ class InputListener extends EventEmitter {
     return null;
   }
 
+  // Same style-bar precedence as _resolveAbility above, but by screen
+  // position instead of a key: among every zone the click actually falls
+  // within (there's normally just one, but zones can overlap if placed
+  // close together), a zone specific to the active bar wins over a shared
+  // one. A profile with no click zones at all (the common case - see
+  // CLICK ZONES above) skips this with no real cost, since the list is
+  // empty and both passes below are instant no-ops.
+  _resolveClickZone(x, y) {
+    const candidates = (this.profile.clickZones || []).filter((zone) => {
+      const dx = x - zone.x;
+      const dy = y - zone.y;
+      return Math.sqrt(dx * dx + dy * dy) <= (zone.radius ?? 26);
+    });
+    if (candidates.length === 0) return null;
+
+    const specific = candidates.find((z) => z.styleBarId && z.styleBarId === this.activeStyleBarId);
+    if (specific) return specific.ability;
+
+    const shared = candidates.find((z) => !z.styleBarId);
+    if (shared) return shared.ability;
+
+    return null;
+  }
+
+  // Shared by both a resolved keybind and a resolved click zone - see
+  // SPAM COLLAPSING above for what this actually guards against.
+  _tryCast(actionName) {
+    if (!actionName) return;
+    const now = Date.now();
+    const isSpamRepeat =
+      actionName === this.lastCastAction && now - this.lastCastAt < REPEAT_SUPPRESS_MS;
+    if (isSpamRepeat) return;
+
+    this.lastCastAction = actionName;
+    this.lastCastAt = now;
+    const info = getAbility(actionName);
+    this.emit('cast', {
+      action: actionName,
+      tag: info?.tag ?? 'misc',
+      // Filename under data/icons/ (e.g. "rend.webp"), resolved once here.
+      // Every ability in data/abilityinfo.json currently has a matching
+      // icon (sourced together from RotationMaster), so this should
+      // rarely be null in practice - it stays optional defensively in
+      // case an ability gets added to the profile without one later.
+      icon: info?.icon ?? null,
+      timestamp: now
+    });
+  }
+
   start() {
     uIOhook.on('keydown', this._onKeyDown.bind(this));
     uIOhook.on('keyup', this._onKeyUp.bind(this));
+    uIOhook.on('mousedown', this._onMouseDown.bind(this));
     uIOhook.start();
   }
 
@@ -226,25 +325,7 @@ class InputListener extends EventEmitter {
     // effect - see WEAPON-SWAP DISPLAY above. Most cycle/weapon-trigger
     // keys won't have anything bound here, in which case this is a no-op,
     // same as before this existed.
-    const actionName = this._resolveAbility(bindKey);
-    // See SPAM COLLAPSING above - a bound key that resolves to the exact
-    // same ability as last time is a repeat, not a new event, so it's
-    // dropped here rather than sent on to the overlay/preview at all.
-    if (actionName && actionName !== this.lastCastAction) {
-      this.lastCastAction = actionName;
-      const info = getAbility(actionName);
-      this.emit('cast', {
-        action: actionName,
-        tag: info?.tag ?? 'misc',
-        // Filename under data/icons/ (e.g. "rend.webp"), resolved once here.
-        // Every ability in data/abilityinfo.json currently has a matching
-        // icon (sourced together from RotationMaster), so this should
-        // rarely be null in practice - it stays optional defensively in
-        // case an ability gets added to the profile without one later.
-        icon: info?.icon ?? null,
-        timestamp: Date.now()
-      });
-    }
+    this._tryCast(this._resolveAbility(bindKey));
 
     if (this.cycleBarBindKey && bindKey === this.cycleBarBindKey) {
       this._cycleStyleBar();
@@ -271,6 +352,24 @@ class InputListener extends EventEmitter {
     if (normalizeModifier(keyName) === this.activeModifier) {
       this.activeModifier = null;
     }
+  }
+
+  _onMouseDown(event) {
+    // If a click zone is being calibrated right now (see captureNextClick
+    // above), this click is the calibration click itself - hand its
+    // position back to whoever's waiting and stop here. It must NOT also
+    // be treated as a real cast, even if it happens to land inside an
+    // existing zone (e.g. re-picking a zone that's slightly off).
+    if (this._captureResolve) {
+      const resolve = this._captureResolve;
+      this._captureResolve = null;
+      resolve({ x: event.x, y: event.y });
+      return;
+    }
+
+    if (this.paused) return;
+
+    this._tryCast(this._resolveClickZone(event.x, event.y));
   }
 }
 

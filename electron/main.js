@@ -1,9 +1,10 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, dialog, screen } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, dialog, screen, shell } = require('electron');
 const path = require('path');
 const fs = require('fs/promises');
 
 const { startOverlayServer } = require('./overlayServer');
 const { InputListener } = require('./inputListener');
+const { checkForUpdate, skipVersion } = require('./updateChecker');
 const {
   loadActiveProfile,
   saveActiveProfile,
@@ -136,6 +137,46 @@ function createMainWindow() {
   });
 }
 
+// Manual "Check for Updates" (tray menu, and the renderer's own button) -
+// shown via a plain dialog rather than the in-app banner, since this can be
+// triggered from the tray menu even while the setup window is hidden. force
+// is always true here: someone clicking "Check for Updates" on purpose
+// should always hit the network, not silently reuse a cached result from
+// hours ago, and should see a result even if they'd previously skipped that
+// version.
+async function checkForUpdateAndNotify() {
+  const result = await checkForUpdate({ force: true });
+  if (!result.ok) {
+    dialog.showMessageBox(mainWindow ?? undefined, {
+      type: 'info',
+      title: 'Check for Updates',
+      message: "Couldn't check for updates right now.",
+      detail: result.error || 'No further details available.'
+    });
+    return;
+  }
+  if (!result.updateAvailable) {
+    dialog.showMessageBox(mainWindow ?? undefined, {
+      type: 'info',
+      title: 'Check for Updates',
+      message: `You're up to date (v${result.currentVersion}).`
+    });
+    return;
+  }
+  const { response } = await dialog.showMessageBox(mainWindow ?? undefined, {
+    type: 'info',
+    title: 'Update available',
+    buttons: ['View release', 'Not now'],
+    defaultId: 0,
+    cancelId: 1,
+    message: `PvM Pulse v${result.latestVersion} is available (you're on v${result.currentVersion}).`,
+    detail: 'This never installs automatically - opening the release page just lets you grab it yourself, the same way you got this version.'
+  });
+  if (response === 0 && result.releaseUrl) {
+    shell.openExternal(result.downloadUrl || result.releaseUrl);
+  }
+}
+
 function createTray() {
   // Tray icon is optional in dev; guard against a missing asset so the app
   // still runs from source without a packaged icon.
@@ -151,6 +192,7 @@ function createTray() {
             mainWindow?.focus();
           }
         },
+        { label: 'Check for Updates…', click: () => checkForUpdateAndNotify() },
         { label: 'Quit', click: () => app.quit() }
       ])
     );
@@ -387,9 +429,44 @@ async function bootstrap() {
   ipcMain.handle('style-bar:set-active', (_event, barId) => {
     inputListener.setActiveStyleBar(barId);
   });
+  // Click-zone calibration - see InputListener.captureNextClick(). The
+  // setup window awaits this while showing a "click the ability now"
+  // banner; it resolves with the click's screen position, or null if
+  // cancelCaptureClickZone() below fires first (banner dismissed).
+  ipcMain.handle('clickzone:capture', () => inputListener.captureNextClick());
+  ipcMain.handle('clickzone:cancel-capture', () => inputListener.cancelCaptureClickZone());
+
+  // Update checking - see electron/updateChecker.js for how this decides
+  // whether a newer version exists. `force` lets the renderer's own
+  // "Check for updates" button bypass the "already checked recently"
+  // throttle; the silent startup check below never forces, so normal
+  // launches don't hit the GitHub API more than the throttle allows.
+  ipcMain.handle('updates:check', (_event, options) => checkForUpdate(options || {}));
+  ipcMain.handle('updates:skip', (_event, version) => skipVersion(version));
+  ipcMain.handle('updates:open', (_event, url) => {
+    if (url) shell.openExternal(url);
+  });
 
   createMainWindow();
   createTray();
+
+  // Checked once per launch, a few seconds after startup rather than
+  // immediately - so it never competes with the window/overlay/input
+  // listener for startup time, and so a person who force-quits within the
+  // first couple seconds (rare, but this shouldn't be in the way of it)
+  // never even triggers a network request. Silent: only pokes the renderer
+  // if there's actually something new to show, and never if that version
+  // was already dismissed via "skip this version".
+  setTimeout(async () => {
+    try {
+      const result = await checkForUpdate({ force: false });
+      if (result.ok && result.updateAvailable && result.latestVersion !== result.skippedVersion) {
+        mainWindow?.webContents.send('update:available', result);
+      }
+    } catch (err) {
+      console.warn('Startup update check failed:', err.message);
+    }
+  }, 4000);
 }
 
 // Guarded by the single-instance lock acquired above - a losing second
@@ -415,6 +492,13 @@ app.on('before-quit', () => {
   isQuitting = true;
   inputListener?.stop();
   overlay?.stop();
+  // Windows doesn't reliably clean up a tray icon just because the process
+  // that created it exited - without an explicit destroy() here, the icon
+  // can linger in the taskbar as a "ghost" until the user happens to mouse
+  // over that part of the tray, which is what this was reported as
+  // ("lingers after quitting"). Destroying it here removes it immediately,
+  // the moment a real quit is confirmed.
+  tray?.destroy();
 });
 
 app.on('activate', () => {

@@ -31,17 +31,21 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - [Using the app](#using-the-app)
   - [The header](#the-header)
   - [The three panels](#the-three-panels)
+  - [Click zones (advanced)](#click-zones-advanced)
   - [Keyboard shortcuts](#keyboard-shortcuts)
   - [Troubleshooting](#troubleshooting)
 - [Style bars](#style-bars)
+- [Checking for updates](#checking-for-updates)
 - [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do)
 - [Ability, weapon & perk data](#ability-weapon--perk-data)
+  - [Extra consumables](#extra-consumables)
   - [Dyed weapons & armour](#dyed-weapons--armour)
 - [Roadmap / not built yet](#roadmap--not-built-yet)
 - [Contributing / building from source](#contributing--building-from-source)
   - [Building the starter profile](#building-the-starter-profile)
   - [Running from source (Windows)](#running-from-source-windows)
   - [Building a distributable](#building-a-distributable)
+- [Changelog](#changelog)
 - [License](#license)
 - [Credits](#credits)
 
@@ -49,12 +53,14 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 ## Features
 
-- **No calibration.** Search for an ability, click "Press key…", press the
-  key. No screenshot wizards, no typing raw keycodes.
+- **No calibration for keybinds.** Search for an ability, click "Press
+  key…", press the key. No screenshot wizards, no typing raw keycodes.
+  (Click zones are the one exception - see
+  [Click zones (advanced)](#click-zones-advanced).)
 - **Live overlay, not a polled image.** A local WebSocket server pushes
   every cast to the overlay the instant you press the key - no flicker, no
   lag waiting for OBS to notice a changed file.
-- **1024+ bindable items**: every current combat ability across all styles,
+- **1030+ bindable items**: every current combat ability across all styles,
   plus weapons, armour, jewellery, book-slot items, and Invention perks -
   sourced from
   [RotationMaster](https://github.com/cuddlyzebra/RotationMaster), which is
@@ -79,11 +85,21 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 - **Pause tracking.** One click freezes the keyboard hook entirely - handy
   right before typing a password or a private message on stream, so
   nothing you type shows up on the overlay for a viewer to piece together.
-- **Spam-proof overlay.** Mashing (or holding) the same bound key only
-  shows its icon once - it won't flood the overlay with duplicates until
-  you actually cast something else.
+- **Click zones (advanced).** For players who click abilities instead of
+  pressing a key - bind an ability to a spot on screen instead of a key.
+  Experimental and more fragile than a keybind by nature; see
+  [Click zones (advanced)](#click-zones-advanced) below.
+- **Spam-proof overlay.** Mashing (or holding) the same bound key won't
+  flood the overlay with a duplicate icon for every press - repeats of the
+  same ability within about a second of each other are collapsed into one.
+  A genuine repeat after that window (or any different ability at any
+  point) still shows normally.
 - **Cross-platform**: Windows, macOS, and Linux (via Electron); packaged
   Windows builds need no Node/npm at all for end users.
+- **Update checks, never forced.** The app quietly checks GitHub for a
+  newer release and shows a small dismissible banner if one exists - it
+  never downloads or installs anything on its own. See
+  [Checking for updates](#checking-for-updates) below.
 - **Honest about what it does.** See
   [What this tool does (and doesn't do)](#what-this-tool-does-and-doesnt-do).
 
@@ -210,9 +226,9 @@ welcome if something above doesn't quite work on your distro.
 
 ## Quick start
 
-1. **Find an ability.** Type into the search box, or click a tag chip
-   (e.g. `melee`) to narrow the list. Weapons, armour, and perks are
-   searchable the same way as abilities.
+1. **Find something to bind.** Type into the search box, or click a tag
+   chip (e.g. `melee`) to narrow the list. Abilities, weapons, armour,
+   jewellery, perks, and consumables are all searchable the same way.
 2. **Bind a key.** Click the "+" next to an ability to add it to your
    keybind list, then click "Press key…" and press the actual key you use
    in-game for it (any key works now, including symbols like `/`, `;`, `-`,
@@ -273,15 +289,17 @@ two differ from the Profile switcher row just below the header.
 The setup window is three panels side by side (they stack on a narrow
 window):
 
-**1. Find an ability** - search and filter, on the left. Typing filters by
-name; the tag chips (`melee`, `ranged`, `magic`, `gear`, etc.) filter by
-category, and can be combined with a search term or with each other.
-Clicking an entry here is how you *add* something to your keybind list -
-it doesn't bind a key by itself, it just adds a "Press key…" placeholder
-row to panel 2, ready to bind.
+**1. Find something to bind** - search and filter, on the left, covering
+every ability, weapon, armour piece, jewellery item, perk, and consumable
+the app knows about. Typing filters by name; the tag chips (`melee`,
+`ranged`, `magic`, `gear`, `consumable`, etc.) filter by category, and can
+be combined with a search term or with each other. Clicking an entry here
+is how you *add* something to your keybind list - it doesn't bind a key by
+itself, it just adds a "Press key…" placeholder row to panel 2, ready to
+bind.
 
-**2. Bind a key to it** - your actual keybind list, in the middle. This is
-where the real work happens:
+**2. Bind it** - in the middle, split into two tabs: **Keybinds** and
+**Click zones**, so a long list of one doesn't push the other out of view.
 
 - **Bind the key**: click **"Press key…"** on a row, then press whatever
   key you use for that ability in-game. It updates instantly - no
@@ -304,13 +322,54 @@ where the real work happens:
 - If you've added any [style bars](#style-bars), this panel shows one
   bar's binds at a time - the heading names which one, and the tabs above
   both panels switch between them.
+- The **Click zones** tab is separate - see
+  [Click zones (advanced)](#click-zones-advanced) below.
 
 **3. Overlay** - on the right: the URL to paste into OBS (with a **Copy**
 button), a live preview of what the overlay currently looks like (so you
 can check it before ever opening OBS), and how many icons it shows at once
-(4-14). Mashing the same bound key repeatedly only ever shows one icon for
-it - it won't flood the overlay with duplicates until you cast something
-else.
+(4-14). Mashing the same bound key repeatedly only shows one icon per
+second for it - a genuine repeat after that briefly-quiet window (or any
+different ability at any point) still shows normally.
+
+### Click zones (advanced)
+
+For players who *click* their abilities in-game instead of pressing a key
+for some (or all) of them. Panel 2's **Click zones** tab (next to
+**Keybinds**) lets you bind an ability to a spot on your screen instead of
+a keybind:
+
+1. Click **+ Add click zone**, then pick the ability in panel 1, same as
+   adding an ordinary keybind.
+2. A banner tells you to click that ability's slot **in-game**. Do that -
+   wherever you click is recorded as the zone's position.
+3. Done. From then on, a real click landing near that spot casts the
+   ability, exactly like a bound key would - including respecting
+   [style bars](#style-bars) (a zone can be shared or bar-specific, same as
+   a keybind) and the same one-per-second spam guard.
+
+This is genuinely **experimental**, and more fragile than a keybind on
+purpose: a keybind works no matter what's on screen, but a click zone only
+works while your in-game ability bar stays in exactly the same screen
+position. If you move it, resize it, rescale your UI, or switch monitors,
+every zone bound near it stops lining up - click **Re-pick location** on
+that row and click the slot again to fix it. The **±px** field controls how
+close a click has to land to still count, in case your aim (or a slightly
+moved bar) isn't pixel-perfect.
+
+Click zones live alongside keybinds, not instead of them - an ability can
+have a keybind, a click zone, both, or neither.
+
+Like a keybind row, a click zone row can be **reorganized** and have its
+**ability swapped**, both without touching its screen position:
+
+- **Reorder**: drag a row by its handle (**⠿**), or use the **▲/▼** buttons
+  for a one-step nudge. Purely for keeping a long list organized - order
+  has no effect on which zone a real click matches.
+- **Change the ability**: click a row's icon, pick the replacement ability
+  in panel 1 - the zone's position and **±px** radius stay exactly as
+  they were, only the ability (and which icon/overlay entry it produces)
+  changes.
 
 ### Keyboard shortcuts
 
@@ -321,6 +380,7 @@ else.
 | `Ctrl+Shift+Z` or `Ctrl+Y` | Redo |
 | Double-click a style bar's tab name | Rename that bar |
 | Click **"Press key…"**, then press any key | Bind that key (works for ordinary keybinds, weapon-trigger keys, and the cycle key alike) |
+| **+ Add click zone**, then click an ability, then click its slot in-game | Bind that ability to a screen position instead of a key |
 
 ### Troubleshooting
 
@@ -415,6 +475,40 @@ show its own icon, or neither, independently.
 **If you only ever play one style**, none of this needs any attention -
 with no style bars added, keybinds work exactly like a single flat list.
 
+## Checking for updates
+
+A few seconds after launch, the app quietly checks
+[GitHub Releases](../../releases) for a version newer than the one you're
+running. If one exists, a small banner appears at the top of the window:
+
+- **View release** opens the release page (or, if a Windows `.exe`/`.zip`
+  is attached to it, downloads that directly) in your regular browser.
+- **Skip this version** dismisses it for good - it won't come back unless
+  an even newer version is published later.
+- **✕** dismisses it just for this session - it'll show again next launch
+  if you haven't updated yet.
+
+You can also check on demand any time, without waiting for the automatic
+check: **Check for updates** at the bottom of the window, or **Check for
+Updates…** in the tray icon's right-click menu (works even if the setup
+window is closed/minimized to tray).
+
+This never downloads or installs anything by itself - there's no
+auto-updater silently replacing the `.exe` in the background. That's a
+deliberate choice: this app is an unsigned portable build with no
+code-signing certificate, so it has no trustworthy way to verify a
+downloaded update before running it. Grabbing the new version is left to
+you, the same way you got this one. If there's no internet connection, or
+GitHub can't be reached, or no release has been published yet, the check
+just fails silently - it never shows an error or gets in the way of using
+the app.
+
+Update checks only work against
+`https://github.com/cuddlyzebra/pvm-pulse` - a fork running its own
+source needs to change `REPO_OWNER`/`REPO_NAME` in
+`electron/updateChecker.js` (or the checks will just 404 forever, which is
+harmless but pointless) to point at its own GitHub Releases instead.
+
 ## What this tool does (and doesn't do)
 
 This app only listens for keyboard/mouse events at the OS level (via
@@ -466,7 +560,7 @@ app: a name, a category tag, an icon, bindable to any key.
 | `jewellery` | 48 | Rings, amulets & necklaces (Reaver's/Stalker's/Champion's ring, Essence of Finality, Am-hej, etc.) |
 | `pocket` | 33 | Book-slot items, scriptures, scrimshaws, grimoires & auras (Books of Zaros/Death/Guthix/Zamorak/Armadyl/Bandos/Saradomin, Scripture of Ful/Wen/Jas/Bik/Amascut, Erethdor's grimoire, etc.) |
 | `perk` | 70 | Invention perks |
-| `consumable` | 4 | Combat-support consumables & single-button actions (Vulnerability bomb, Saradomin brew, Super saradomin Brew, the generic Summoning special-attack trigger - see [Roadmap](#roadmap--not-built-yet)) |
+| `consumable` | 10 | Combat-support consumables & single-button actions: Vulnerability bomb, Saradomin brew, Super saradomin Brew, the generic Summoning special-attack trigger (from RotationMaster), plus Prayer potion, Prayer flask, Super restore potion, Super restore flask, Spiritual prayer potion & Blessed flask (hand-added - see [Extra consumables](#extra-consumables) below) |
 | `teleport` | 1 | War's Retreat Teleport - RS3's community "PvM hub"; a hand-picked start, not all of RotationMaster's much larger "Teleports" category (lodestones etc.) - extend `scripts/ability-category-overrides.json` per-item as more are wanted |
 
 RotationMaster is actively maintained and already reflects RuneScape's
@@ -486,6 +580,28 @@ rework):
 ```bash
 python3 scripts/build-ability-data.py /path/to/RotationMaster/src/assets/abilities.json
 ```
+
+### Extra consumables
+
+Six utility potions/flasks - **Prayer potion**, **Prayer flask**, **Super
+restore potion**, **Super restore flask**, **Spiritual prayer potion**, and
+**Blessed flask** - aren't in RotationMaster's data at all, so they live in
+their own file, `data/extra-abilityinfo.json`, merged into the ability list
+live by `electron/abilityData.js` (same pattern as the dyed items below,
+and for the same reason: a future `build-ability-data.py` rebuild
+overwrites `data/abilityinfo.json` wholesale, and hand-added entries baked
+directly into that file would get silently wiped out by that).
+
+**If you just downloaded a release, there's nothing to do** - same as dyed
+items, this is already bundled in.
+
+Their icons (`data/icons/prayerpot.webp` and friends) are the real RS3
+wiki art, cropped and scaled down to match the other small potion icons
+(e.g. `brew.webp`) already in that folder.
+
+To add another hand-picked item the same way, add an entry to
+`data/extra-abilityinfo.json` (`action`, `tag`, `icon` - matching
+`data/abilityinfo.json`'s shape) and drop its icon file into `data/icons/`.
 
 ### Dyed weapons & armour
 
@@ -532,8 +648,12 @@ elsewhere:
   come from runescape.wiki (Weird Gloop) - not bundled by this repo, only
   downloaded locally by the script above unless a maintainer chooses to
   commit them.
-- Both ultimately trace back to RuneScape 3 game assets (Jagex's IP),
-  which sit outside any of these repos' licenses entirely.
+- The extra-consumables icons (`data/icons/prayerpot.webp` and friends)
+  also come from runescape.wiki (Weird Gloop), cropped/scaled down by hand
+  rather than by the fetch script above - same sourcing as the dyed-weapon
+  icons, just bundled directly rather than fetched on demand.
+- All of the above ultimately trace back to RuneScape 3 game assets
+  (Jagex's IP), which sit outside any of these repos' licenses entirely.
 
 Not a lawyer, so treat this as a heads-up rather than legal advice - worth
 a quick check with the relevant maintainers, or Jagex's asset-use policy,
@@ -562,11 +682,6 @@ Community-requested features, roughly in priority order:
 - **Custom icon overrides** - pick your own image for any ability, weapon,
   or perk, overriding the bundled icon (or filling a gap where there isn't
   one, e.g. an uncovered dye colour).
-- **Update notifications** - check this repo's releases on startup and
-  notify if a newer version is available.
-- **Mouse-click (action bar slot) bindings** - this app currently focuses
-  on keyboard bindings; mouse-click zones would need a lighter-weight
-  version of the original tracker's screen-region picker.
 - **APM counter / extension system** - the original tracker's second
   "extension"; not ported yet.
 
@@ -679,7 +794,7 @@ signing a `.app`/`.dmg` on a real Mac, and this project isn't developed on
 one. Instead, `.github/workflows/build-mac.yml` builds it on GitHub's own
 macOS runners:
 
-- Push a tag like `v1.0.2-beta.2` and it builds the `.dmg` and attaches it
+- Push a tag like `v1.1.0-beta.1` and it builds the `.dmg` and attaches it
   straight onto the matching GitHub Release automatically.
 - Or trigger it by hand from the **Actions** tab (**Build macOS app → Run
   workflow**) to get it as a downloadable build artifact on that run
@@ -688,6 +803,54 @@ macOS runners:
 It's unsigned (no paid Apple Developer account behind this project), so
 macOS shows an "unidentified developer" warning on first open - see
 [Installing → macOS](#macos) for how to get past that.
+
+## Changelog
+
+### 1.1.0-beta.1
+
+- Reordering keybinds is back to drag-and-drop, refined to fix a direction
+  bug (it previously needed a second, opposite drag to land correctly) -
+  the ▲/▼ buttons stay too, for one-step nudges.
+- Fixed drag-and-drop not registering at all in some cases (an Electron/
+  Chromium quirk).
+- The **Save Profile** button no longer flickers/resizes on every autosave
+  - it's silent now.
+- You can change a keybind's ability without losing its key: click the
+  icon on a bound row, search for the replacement, click it.
+- A newly added keybind scrolls into view automatically instead of getting
+  lost below the fold.
+- The "Find an ability" and "Bind a key" panels now grow to use extra
+  space on a maximized/fullscreened window, and get their own scrollbar
+  (instead of the whole app scrolling) on a smaller window.
+- Added Protect from/Deflect prayers and curses (melee/ranged/magic), plus
+  the rest of RotationMaster's Prayers category (Augury, Rigour, Piety,
+  Turmoil, Soulsplit, etc.), and War's Retreat Teleport (the PvM hub) -
+  total is now 1024 bindable items, up from 986.
+- New: **Pause Tracking** button (top left of the header, red) - instantly
+  freezes the keyboard hook so nothing reaches the overlay, e.g. before
+  typing a password or a private message on stream.
+- Mashing or holding the same bound key now only shows its icon once on
+  the overlay, instead of flooding it with duplicates.
+- Style bars can now be duplicated (**⧉** button next to a bar's name) -
+  copies its name, weapon-trigger key, and all its keybinds onto a new
+  bar, handy as a starting point for a variant.
+- New: **macOS support** - see [Installing → macOS](#macos).
+- New: **Linux** build-from-source instructions - see
+  [Installing → Linux](#linux-coding-required).
+- New: **update checks** - see
+  [Checking for updates](#checking-for-updates).
+- Click zones now support the same **drag-and-drop/▲▼ reordering** and
+  **change-ability-without-losing-position** that keybinds already had -
+  see [Click zones (advanced)](#click-zones-advanced).
+- Added 6 utility consumables: Prayer potion, Prayer flask, Super restore
+  potion, Super restore flask, Spiritual prayer potion, and Blessed flask -
+  see [Extra consumables](#extra-consumables). Total is now 1030 bindable
+  items, up from 1024.
+- Panel 1's heading is now "Find something to bind" (covering abilities,
+  weapons, armour, jewellery, perks, and consumables alike, without
+  listing them all out), and the header's "no calibration required" line
+  now calls out click zones as the one exception (they do need a one-time
+  screen-position pick).
 
 ## License
 

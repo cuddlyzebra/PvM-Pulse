@@ -1,0 +1,32 @@
+[
+  {
+    "action": "Prayer potion",
+    "tag": "consumable",
+    "icon": "prayerpot.webp"
+  },
+  {
+    "action": "Prayer flask",
+    "tag": "consumable",
+    "icon": "prayerflask.webp"
+  },
+  {
+    "action": "Super restore potion",
+    "tag": "consumable",
+    "icon": "restorepot.webp"
+  },
+  {
+    "action": "Super restore flask",
+    "tag": "consumable",
+    "icon": "restoreflask.webp"
+  },
+  {
+    "action": "Spiritual prayer potion",
+    "tag": "consumable",
+    "icon": "spiritprayerpot.webp"
+  },
+  {
+    "action": "Blessed flask",
+    "tag": "consumable",
+    "icon": "blessedflask.webp"
+  }
+]

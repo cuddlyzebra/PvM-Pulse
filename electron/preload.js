@@ -23,6 +23,8 @@ contextBridge.exposeInMainWorld('tracker', {
     ipcRenderer.on('style-bar-changed', listener);
     return () => ipcRenderer.removeListener('style-bar-changed', listener);
   },
+  captureClickZone: () => ipcRenderer.invoke('clickzone:capture'),
+  cancelCaptureClickZone: () => ipcRenderer.invoke('clickzone:cancel-capture'),
   exportProfile: () => ipcRenderer.invoke('profile:export'),
   importProfile: () => ipcRenderer.invoke('profile:import'),
   // Multiple named saved profiles, switchable from inside the app - see the
@@ -35,4 +37,21 @@ contextBridge.exposeInMainWorld('tracker', {
   duplicateSavedProfile: (id, name) => ipcRenderer.invoke('profiles:duplicate', { id, name }),
   renameSavedProfile: (id, name) => ipcRenderer.invoke('profiles:rename', { id, name }),
   deleteSavedProfile: (id) => ipcRenderer.invoke('profiles:delete', id)
+});
+
+contextBridge.exposeInMainWorld('updates', {
+  // options: { force?: boolean } - force bypasses the "checked recently"
+  // throttle and any previously-skipped version; see
+  // electron/updateChecker.js.
+  check: (options) => ipcRenderer.invoke('updates:check', options),
+  skipVersion: (version) => ipcRenderer.invoke('updates:skip', version),
+  openUrl: (url) => ipcRenderer.invoke('updates:open', url),
+  // Fired at most once per app launch, only when a newer version is
+  // actually available and hasn't already been skipped - see the startup
+  // check in electron/main.js's bootstrap().
+  onUpdateAvailable: (callback) => {
+    const listener = (_event, result) => callback(result);
+    ipcRenderer.on('update:available', listener);
+    return () => ipcRenderer.removeListener('update:available', listener);
+  }
 });

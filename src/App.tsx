@@ -2,21 +2,29 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   AbilityInfo,
   CastEvent,
+  ClickZone,
   KeyChord,
   Keybind,
   Profile,
   SavedProfileSummary,
-  StyleBar
+  StyleBar,
+  UpdateCheckResult
 } from './types';
+import ClickZoneRow from './components/ClickZoneRow';
 import KeybindRow from './components/KeybindRow';
 import LivePreview from './components/LivePreview';
 import OverlayLinkPanel from './components/OverlayLinkPanel';
 import ProfileSwitcher from './components/ProfileSwitcher';
 import StyleBarPanel from './components/StyleBarPanel';
+import UpdateBanner from './components/UpdateBanner';
 import { iconUrl } from './iconUrl';
 
 function makeStyleBarId() {
   return `bar-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+}
+
+function makeClickZoneId() {
+  return `zone-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
 // Upper bound of the "icons shown on overlay" setting (see the icon-count
@@ -60,6 +68,16 @@ export default function App() {
   // actually exposes it as a button, rather than requiring a restart to
   // get keys seen again.
   const [paused, setPausedState] = useState(false);
+  // Update-available banner - see electron/updateChecker.js. Only ever set
+  // to a result where updateAvailable is true; a check that finds nothing
+  // new (or fails - no internet, GitHub unreachable, etc.) just leaves this
+  // null, silently. bannerDismissed is session-only ("not now" - it'll show
+  // again next launch); "Skip this version" instead persists via
+  // window.updates.skipVersion so it stays gone until a newer version ships.
+  const [updateResult, setUpdateResult] = useState<UpdateCheckResult | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [checkingForUpdate, setCheckingForUpdate] = useState(false);
+  const [appVersion, setAppVersion] = useState('');
 
   async function togglePause() {
     if (paused) {
@@ -82,6 +100,18 @@ export default function App() {
       setActiveProfileId(id);
       setSavedProfiles(profiles);
     });
+    // Unforced - respects the "checked recently" throttle in
+    // electron/updateChecker.js, so this is mainly here to learn the
+    // running version for the footer below; the actual "new version found"
+    // banner mostly arrives via the onUpdateAvailable push a few seconds
+    // after launch instead (this covers it too, in case that already fired
+    // before this listener was attached).
+    window.updates.check({ force: false }).then((result) => {
+      setAppVersion(result.currentVersion);
+      if (result.ok && result.updateAvailable && result.latestVersion !== result.skippedVersion) {
+        setUpdateResult(result);
+      }
+    });
     const unsubscribeCasts = window.tracker.onCastEvent((event) => {
       setRecentCasts((prev) => [event, ...prev].slice(0, MAX_ICON_COUNT));
     });
@@ -93,11 +123,44 @@ export default function App() {
     const unsubscribeStyleBar = window.tracker.onStyleBarChanged((barId) => {
       setProfile((prev) => (prev ? { ...prev, activeStyleBarId: barId } : prev));
     });
+    // Pushed once from the main process a few seconds after launch, only if
+    // there's genuinely something newer that hasn't already been skipped -
+    // see electron/main.js's bootstrap(). This is the passive path; a
+    // person can also trigger checkForUpdates() below on demand.
+    const unsubscribeUpdate = window.updates.onUpdateAvailable((result) => {
+      setUpdateResult(result);
+    });
     return () => {
       unsubscribeCasts();
       unsubscribeStyleBar();
+      unsubscribeUpdate();
     };
   }, []);
+
+  async function checkForUpdates() {
+    setCheckingForUpdate(true);
+    try {
+      const result = await window.updates.check({ force: true });
+      setCheckingForUpdate(false);
+      if (result.ok && result.updateAvailable) {
+        setBannerDismissed(false);
+        setUpdateResult(result);
+      } else if (result.ok) {
+        window.alert(`You're up to date (v${result.currentVersion}).`);
+      } else {
+        window.alert("Couldn't check for updates right now - check your internet connection.");
+      }
+    } catch {
+      setCheckingForUpdate(false);
+      window.alert("Couldn't check for updates right now.");
+    }
+  }
+
+  async function skipUpdateVersion() {
+    if (!updateResult?.latestVersion) return;
+    await window.updates.skipVersion(updateResult.latestVersion);
+    setUpdateResult(null);
+  }
 
   // Auto-saves shortly after any change, rather than requiring the person
   // to remember to click "Save Profile" before a new keybind actually goes
@@ -259,6 +322,12 @@ export default function App() {
   // which gets hard to keep organized once a profile has many of both.
   const [viewingShared, setViewingShared] = useState(false);
 
+  // Which of the two binding types panel 2 is currently showing. Split into
+  // separate tabs (rather than one long stacked list) because a player who
+  // mostly or entirely uses click zones would otherwise have to scroll past
+  // a whole keybind list - often a long one - to reach them, and vice versa.
+  const [bindingTab, setBindingTab] = useState<'keys' | 'clicks'>('keys');
+
   const filteredKeybinds = useMemo(() => {
     if (!profile) return [];
     const withIndex = profile.keybinds.map((kb, index) => ({ kb, index }));
@@ -297,11 +366,131 @@ export default function App() {
   // the render below).
   const [lastAddedKeybindIndex, setLastAddedKeybindIndex] = useState<number | null>(null);
 
+  // Mouse-click ability tracking ("region calibration") - advanced/
+  // experimental, alongside keybinds rather than instead of them (see the
+  // ClickZone doc comment in types.ts for the tradeoff: no UI-position
+  // fragility for a keybind, but a click zone works for players who click
+  // their ability bar instead of pressing a key for some/all abilities).
+  //
+  // true while "+ Add click zone" is active and the panel-1 ability list is
+  // waiting for the NEXT ability click to start calibration, rather than
+  // adding an ordinary keybind - see addKeybind below, which branches on
+  // this the same way it already branches on replacingKeybindIndex.
+  const [addingClickZoneMode, setAddingClickZoneMode] = useState(false);
+  // Non-null while actually waiting on the calibration click itself (i.e.
+  // window.tracker.captureClickZone()'s promise hasn't resolved yet) -
+  // `zoneId: null` means "creating a brand new zone for this ability",
+  // otherwise it's the id of an existing zone having its position re-picked.
+  const [capturingZone, setCapturingZone] = useState<{ ability: string; zoneId: string | null } | null>(
+    null
+  );
+
+  // Same idea as replacingKeybindIndex above, but for a click zone: swaps
+  // which ability a zone points at while leaving its screen position and
+  // radius untouched - tracked by id (not index) since that's how the rest
+  // of the click-zone code already identifies a specific zone.
+  const [replacingClickZoneId, setReplacingClickZoneId] = useState<string | null>(null);
+
+  // Set right after a genuinely new click zone is added, so the list can
+  // scroll it into view - same idea as lastAddedKeybindIndex below, mirrored
+  // for click zones. Stores the zone's index within profile.clickZones (not
+  // the filtered/visible list), matching the data-click-zone-index attribute
+  // ClickZoneRow's row renders.
+  const [lastAddedClickZoneIndex, setLastAddedClickZoneIndex] = useState<number | null>(null);
+
+  function startAddClickZone() {
+    setAddingClickZoneMode(true);
+    setReplacingKeybindIndex(null);
+    setReplacingClickZoneId(null);
+  }
+
+  function cancelAddClickZone() {
+    setAddingClickZoneMode(false);
+  }
+
+  async function beginClickZoneCapture(ability: string, zoneId: string | null) {
+    setAddingClickZoneMode(false);
+    setCapturingZone({ ability, zoneId });
+    const pos = await window.tracker.captureClickZone();
+    setCapturingZone(null);
+    if (!pos || !profile) return;
+    if (zoneId) {
+      applyProfileChange({
+        ...profile,
+        clickZones: (profile.clickZones ?? []).map((z) =>
+          z.id === zoneId ? { ...z, x: pos.x, y: pos.y } : z
+        )
+      });
+      return;
+    }
+    const newZone: ClickZone = {
+      id: makeClickZoneId(),
+      ability,
+      x: pos.x,
+      y: pos.y,
+      // 26px, not the tighter 18px used previously - a real click on an
+      // in-game ability icon rarely lands dead-center, especially at speed,
+      // and RS3's default ability bar icons are roughly 32-36px square, so
+      // this leaves enough margin for normal aim scatter without the zone
+      // ballooning into a neighboring slot. Still adjustable per zone via
+      // the ±px field (ClickZoneRow) if a specific one still gets missed.
+      radius: 26,
+      styleBarId: viewingShared ? null : profile.activeStyleBarId
+    };
+    const newZoneIndex = (profile.clickZones ?? []).length;
+    applyProfileChange({ ...profile, clickZones: [...(profile.clickZones ?? []), newZone] });
+    setLastAddedClickZoneIndex(newZoneIndex);
+  }
+
+  function cancelClickZoneCapture() {
+    window.tracker.cancelCaptureClickZone();
+    setCapturingZone(null);
+  }
+
+  function updateClickZone(id: string, patch: Partial<ClickZone>) {
+    if (!profile) return;
+    applyProfileChange({
+      ...profile,
+      clickZones: (profile.clickZones ?? []).map((z) => (z.id === id ? { ...z, ...patch } : z))
+    });
+  }
+
+  function removeClickZone(id: string) {
+    if (!profile) return;
+    applyProfileChange({ ...profile, clickZones: (profile.clickZones ?? []).filter((z) => z.id !== id) });
+  }
+
+  // Same {item, index} shape as filteredKeybinds above, and for the same
+  // reason: profile.clickZones is one flat array holding every bar's zones
+  // interleaved, so reordering (moveClickZoneInView/reorderClickZoneTo
+  // below) needs each visible row's ORIGINAL index to write the result back
+  // into the right slot, not just its position in this filtered view.
+  const filteredClickZones = useMemo(() => {
+    if (!profile) return [];
+    const withIndex = (profile.clickZones ?? []).map((zone, index) => ({ zone, index }));
+    if (profile.styleBars.length === 0) return withIndex;
+    return viewingShared
+      ? withIndex.filter(({ zone }) => !zone.styleBarId)
+      : withIndex.filter(({ zone }) => zone.styleBarId === profile.activeStyleBarId);
+  }, [profile, viewingShared]);
+
   function addKeybind(ability: string) {
     if (!profile) return;
+    if (addingClickZoneMode) {
+      beginClickZoneCapture(ability, null);
+      return;
+    }
     if (replacingKeybindIndex !== null) {
       updateKeybind(replacingKeybindIndex, { ability });
       setReplacingKeybindIndex(null);
+      return;
+    }
+    if (replacingClickZoneId !== null) {
+      // Unlike the keybind case, this never re-runs the click capture - the
+      // zone's screen position/radius are exactly what's being kept, only
+      // the ability it's labeled/matched as changes.
+      updateClickZone(replacingClickZoneId, { ability });
+      setReplacingClickZoneId(null);
       return;
     }
     const nextKeybinds: Keybind[] = [
@@ -340,11 +529,27 @@ export default function App() {
   // adding a new row.
   function requestChangeAbility(index: number) {
     setReplacingKeybindIndex(index);
+    setReplacingClickZoneId(null);
+    setAddingClickZoneMode(false);
     setKeybindSearch('');
   }
 
   function cancelChangeAbility() {
     setReplacingKeybindIndex(null);
+  }
+
+  // Click-zone equivalent of requestChangeAbility/cancelChangeAbility above -
+  // clicking a click zone row's icon jumps focus to the ability list with a
+  // banner, and the next ability clicked there fills in via addKeybind's
+  // replacingClickZoneId branch instead of starting a new zone capture.
+  function requestChangeClickZoneAbility(id: string) {
+    setReplacingClickZoneId(id);
+    setReplacingKeybindIndex(null);
+    setAddingClickZoneMode(false);
+  }
+
+  function cancelChangeClickZoneAbility() {
+    setReplacingClickZoneId(null);
   }
 
   // Reorder-for-organization within the CURRENTLY VISIBLE list (whichever
@@ -426,6 +631,68 @@ export default function App() {
     applyProfileChange({ ...profile, keybinds: nextKeybinds });
   }
 
+  // Click-zone equivalents of moveKeybindInView/the drag-and-drop trio above
+  // - same reasoning throughout (operate on filteredClickZones' visible
+  // order, write back into profile.clickZones' original slots), just for
+  // clickZones instead of keybinds. Order has no effect on how a click zone
+  // is matched at runtime either (electron/inputListener.js resolves by
+  // screen position, never by list position) - purely for keeping a long
+  // list organized.
+  function moveClickZoneInView(originalIndex: number, direction: -1 | 1) {
+    if (!profile) return;
+    const zones = profile.clickZones ?? [];
+    const order = filteredClickZones.map((f) => f.index);
+    const pos = order.indexOf(originalIndex);
+    const swapWithPos = pos + direction;
+    if (pos === -1 || swapWithPos < 0 || swapWithPos >= order.length) return;
+    const newOrder = [...order];
+    [newOrder[pos], newOrder[swapWithPos]] = [newOrder[swapWithPos], newOrder[pos]];
+    const slots = [...order].sort((a, b) => a - b);
+    const reorderedItems = newOrder.map((i) => zones[i]);
+    const nextZones = [...zones];
+    slots.forEach((slot, i) => {
+      nextZones[slot] = reorderedItems[i];
+    });
+    applyProfileChange({ ...profile, clickZones: nextZones });
+  }
+
+  const dragSourceClickZoneIndexRef = useRef<number | null>(null);
+  const [draggedOverClickZoneIndex, setDraggedOverClickZoneIndex] = useState<number | null>(null);
+
+  function startClickZoneDrag(originalIndex: number) {
+    dragSourceClickZoneIndexRef.current = originalIndex;
+  }
+
+  function endClickZoneDrag() {
+    dragSourceClickZoneIndexRef.current = null;
+    setDraggedOverClickZoneIndex(null);
+  }
+
+  function reorderClickZoneTo(targetOriginalIndex: number) {
+    if (!profile) return;
+    const zones = profile.clickZones ?? [];
+    const fromOriginalIndex = dragSourceClickZoneIndexRef.current;
+    endClickZoneDrag();
+    if (fromOriginalIndex === null || fromOriginalIndex === targetOriginalIndex) return;
+
+    const order = filteredClickZones.map((f) => f.index);
+    const fromPos = order.indexOf(fromOriginalIndex);
+    const toPos = order.indexOf(targetOriginalIndex);
+    if (fromPos === -1 || toPos === -1) return;
+
+    const newOrder = [...order];
+    const [moved] = newOrder.splice(fromPos, 1);
+    newOrder.splice(toPos, 0, moved);
+
+    const slots = [...order].sort((a, b) => a - b);
+    const reorderedItems = newOrder.map((i) => zones[i]);
+    const nextZones = [...zones];
+    slots.forEach((slot, i) => {
+      nextZones[slot] = reorderedItems[i];
+    });
+    applyProfileChange({ ...profile, clickZones: nextZones });
+  }
+
   // Scrolls a just-added keybind row into view - see lastAddedKeybindIndex
   // above. Runs after render (the DOM node only exists once React has
   // committed the new row), and is a no-op if the row isn't actually
@@ -437,6 +704,14 @@ export default function App() {
     row?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     setLastAddedKeybindIndex(null);
   }, [lastAddedKeybindIndex]);
+
+  // Click-zone equivalent of the above.
+  useEffect(() => {
+    if (lastAddedClickZoneIndex === null) return;
+    const row = document.querySelector(`[data-click-zone-index="${lastAddedClickZoneIndex}"]`);
+    row?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setLastAddedClickZoneIndex(null);
+  }, [lastAddedClickZoneIndex]);
 
   async function save() {
     if (!profile) return;
@@ -655,12 +930,21 @@ export default function App() {
 
   return (
     <div className="app">
+      {updateResult?.updateAvailable && !bannerDismissed && (
+        <UpdateBanner
+          result={updateResult}
+          onDismiss={() => setBannerDismissed(true)}
+          onSkip={skipUpdateVersion}
+        />
+      )}
+
       <header className="app-header">
         <div>
           <h1>PvM Pulse</h1>
           <p className="subtitle">
-            Map a keybind to an ability, see it appear on the overlay instantly. No screen
-            calibration required.
+            Map a keybind to an ability, see it appear on the overlay instantly - no screen
+            calibration required. (Click zones, if you use them instead of a key, are the one
+            exception - see the Click zones tab.)
           </p>
         </div>
         <div className="header-actions">
@@ -732,7 +1016,7 @@ export default function App() {
 
       <div className="app-grid">
         <section className="panel">
-          <h2>1. Find an ability</h2>
+          <h2>1. Find something to bind</h2>
           {abilitiesError && (
             <p className="error-banner">
               Couldn't load the ability list ({abilitiesError}). Try restarting the app - if this
@@ -745,6 +1029,38 @@ export default function App() {
               <strong>{profile.keybinds[replacingKeybindIndex]?.ability}</strong> - its key stays
               bound.{' '}
               <button type="button" className="replace-banner-cancel" onClick={cancelChangeAbility}>
+                Cancel
+              </button>
+            </p>
+          )}
+          {addingClickZoneMode && (
+            <p className="replace-banner">
+              Click the ability you want to bind to a screen position - you'll then click its slot
+              in-game to calibrate it.{' '}
+              <button type="button" className="replace-banner-cancel" onClick={cancelAddClickZone}>
+                Cancel
+              </button>
+            </p>
+          )}
+          {replacingClickZoneId !== null && (
+            <p className="replace-banner">
+              Choose a replacement for{' '}
+              <strong>{profile.clickZones?.find((z) => z.id === replacingClickZoneId)?.ability}</strong>{' '}
+              - its screen position stays the same.{' '}
+              <button
+                type="button"
+                className="replace-banner-cancel"
+                onClick={cancelChangeClickZoneAbility}
+              >
+                Cancel
+              </button>
+            </p>
+          )}
+          {capturingZone && (
+            <p className="replace-banner">
+              Now click <strong>{capturingZone.ability}</strong>'s slot in-game to
+              {capturingZone.zoneId ? ' re-record its position' : ' record its position'}.{' '}
+              <button type="button" className="replace-banner-cancel" onClick={cancelClickZoneCapture}>
                 Cancel
               </button>
             </p>
@@ -773,7 +1089,15 @@ export default function App() {
                 <button
                   className="ability-pill"
                   onClick={() => addKeybind(ability.action)}
-                  title={replacingKeybindIndex !== null ? `Use ${ability.action} for this keybind instead` : undefined}
+                  title={
+                    addingClickZoneMode
+                      ? `Bind ${ability.action} to a screen click`
+                      : replacingKeybindIndex !== null
+                        ? `Use ${ability.action} for this keybind instead`
+                        : replacingClickZoneId !== null
+                          ? `Use ${ability.action} for this click zone instead`
+                          : undefined
+                  }
                 >
                   {iconUrl(ability.icon) ? (
                     <img className="ability-icon" src={iconUrl(ability.icon)!} alt="" />
@@ -782,7 +1106,13 @@ export default function App() {
                   )}
                   <span className="ability-tag">{ability.tag}</span>
                   {ability.action}
-                  <span className="ability-add">{replacingKeybindIndex !== null ? '↺' : '+'}</span>
+                  <span className="ability-add">
+                    {addingClickZoneMode
+                      ? '🖱'
+                      : replacingKeybindIndex !== null || replacingClickZoneId !== null
+                        ? '↺'
+                        : '+'}
+                  </span>
                 </button>
               </li>
             ))}
@@ -791,7 +1121,7 @@ export default function App() {
 
         <section className="panel">
           <h2>
-            2. Bind a key to it
+            2. Bind it
             {profile.styleBars.length > 0 && (
               <span className="panel-subheading">
                 {' '}
@@ -802,54 +1132,132 @@ export default function App() {
               </span>
             )}
           </h2>
-          <p className="hint">
-            Click "Press key…" then hit the key on your keyboard. That's it. Click a row's icon to
-            swap its ability without losing the keybind, or use ▲▼ to reorder.
-          </p>
-          {profile.keybinds.length > 0 && (
-            <input
-              className="search-input"
-              placeholder="Filter your bound keys…"
-              value={keybindSearch}
-              onChange={(e) => setKeybindSearch(e.target.value)}
-            />
-          )}
-          <div className="keybind-list">
-            {profile.keybinds.length === 0 && (
-              <p className="empty-state">No keybinds yet — add an ability on the left to start.</p>
-            )}
-            {profile.keybinds.length > 0 && filteredKeybinds.length === 0 && (
-              <p className="empty-state">
-                {keybindSearch
-                  ? `No bound keys match "${keybindSearch}".`
-                  : viewingShared
-                    ? 'No shared keybinds yet - add an ability here, or switch to a style bar and tick "shared" on an existing keybind to move it over.'
-                    : 'Nothing bound to this style bar yet - add an ability on the left to get started.'}
-              </p>
-            )}
-            {filteredKeybinds.map(({ kb, index }, viewPos) => (
-              <KeybindRow
-                key={`${kb.ability}-${index}`}
-                rowIndex={index}
-                keybind={kb}
-                icon={abilityIconByName[kb.ability] ?? null}
-                onChange={(patch) => updateKeybind(index, patch)}
-                onRemove={() => removeKeybind(index)}
-                onRequestChangeAbility={() => requestChangeAbility(index)}
-                showStyleControls={profile.styleBars.length > 0}
-                activeBarId={profile.activeStyleBarId}
-                onMoveUp={() => moveKeybindInView(index, -1)}
-                onMoveDown={() => moveKeybindInView(index, 1)}
-                canMoveUp={viewPos > 0}
-                canMoveDown={viewPos < filteredKeybinds.length - 1}
-                onDragStart={() => startKeybindDrag(index)}
-                onDragEnd={endKeybindDrag}
-                onDragEnter={() => setDraggedOverIndex(index)}
-                onDropOnto={() => reorderKeybindTo(index)}
-                draggedOver={draggedOverIndex === index}
-              />
-            ))}
+
+          <div className="binding-tabs">
+            <button
+              type="button"
+              className={`binding-tab ${bindingTab === 'keys' ? 'active' : ''}`}
+              onClick={() => setBindingTab('keys')}
+            >
+              Keybinds{profile.keybinds.length > 0 ? ` (${profile.keybinds.length})` : ''}
+            </button>
+            <button
+              type="button"
+              className={`binding-tab ${bindingTab === 'clicks' ? 'active' : ''}`}
+              onClick={() => setBindingTab('clicks')}
+            >
+              Click zones{(profile.clickZones?.length ?? 0) > 0 ? ` (${profile.clickZones!.length})` : ''}{' '}
+              <span className="advanced-tag">advanced</span>
+            </button>
           </div>
+
+          {bindingTab === 'keys' && (
+            <>
+              <p className="hint">
+                Click "Press key…" then hit the key on your keyboard. That's it. Click a row's icon
+                to swap its ability without losing the keybind, or use ▲▼ to reorder.
+              </p>
+              {profile.keybinds.length > 0 && (
+                <input
+                  className="search-input"
+                  placeholder="Filter your bound keys…"
+                  value={keybindSearch}
+                  onChange={(e) => setKeybindSearch(e.target.value)}
+                />
+              )}
+              <div className="keybind-list">
+                {profile.keybinds.length === 0 && (
+                  <p className="empty-state">No keybinds yet — add an ability on the left to start.</p>
+                )}
+                {profile.keybinds.length > 0 && filteredKeybinds.length === 0 && (
+                  <p className="empty-state">
+                    {keybindSearch
+                      ? `No bound keys match "${keybindSearch}".`
+                      : viewingShared
+                        ? 'No shared keybinds yet - add an ability here, or switch to a style bar and tick "shared" on an existing keybind to move it over.'
+                        : 'Nothing bound to this style bar yet - add an ability on the left to get started.'}
+                  </p>
+                )}
+                {filteredKeybinds.map(({ kb, index }, viewPos) => (
+                  <KeybindRow
+                    key={`${kb.ability}-${index}`}
+                    rowIndex={index}
+                    keybind={kb}
+                    icon={abilityIconByName[kb.ability] ?? null}
+                    onChange={(patch) => updateKeybind(index, patch)}
+                    onRemove={() => removeKeybind(index)}
+                    onRequestChangeAbility={() => requestChangeAbility(index)}
+                    showStyleControls={profile.styleBars.length > 0}
+                    activeBarId={profile.activeStyleBarId}
+                    onMoveUp={() => moveKeybindInView(index, -1)}
+                    onMoveDown={() => moveKeybindInView(index, 1)}
+                    canMoveUp={viewPos > 0}
+                    canMoveDown={viewPos < filteredKeybinds.length - 1}
+                    onDragStart={() => startKeybindDrag(index)}
+                    onDragEnd={endKeybindDrag}
+                    onDragEnter={() => setDraggedOverIndex(index)}
+                    onDropOnto={() => reorderKeybindTo(index)}
+                    draggedOver={draggedOverIndex === index}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          {bindingTab === 'clicks' && (
+            <div className="click-zone-section">
+              <p className="hint">
+                For players who click abilities instead of pressing a key. Only works while your
+                in-game ability bar stays in the same screen position - if you move it, resize it, or
+                change UI scale, re-pick the zone's location below. Click a row's icon to swap its
+                ability without losing its position, or use ▲▼ to reorder.
+              </p>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={startAddClickZone}
+                disabled={addingClickZoneMode || capturingZone !== null}
+              >
+                + Add click zone
+              </button>
+              <div className="click-zone-list">
+                {filteredClickZones.length === 0 && (
+                  <p className="empty-state">
+                    {viewingShared
+                      ? 'No shared click zones yet - add an ability here, or switch to a style bar and untick "shared" on an existing zone to move it over.'
+                      : 'No click zones yet - click "+ Add click zone" above to bind an ability to a screen position.'}
+                  </p>
+                )}
+                {filteredClickZones.map(({ zone, index }, viewPos) => (
+                  <ClickZoneRow
+                    key={zone.id}
+                    zone={zone}
+                    rowIndex={index}
+                    icon={abilityIconByName[zone.ability] ?? null}
+                    onChangeRadius={(radius) => updateClickZone(zone.id, { radius })}
+                    onRepick={() => beginClickZoneCapture(zone.ability, zone.id)}
+                    onRemove={() => removeClickZone(zone.id)}
+                    onRequestChangeAbility={() => requestChangeClickZoneAbility(zone.id)}
+                    repicking={capturingZone?.zoneId === zone.id}
+                    showStyleControls={profile.styleBars.length > 0}
+                    activeBarId={profile.activeStyleBarId}
+                    onToggleShared={(shared) =>
+                      updateClickZone(zone.id, { styleBarId: shared ? null : profile.activeStyleBarId })
+                    }
+                    onMoveUp={() => moveClickZoneInView(index, -1)}
+                    onMoveDown={() => moveClickZoneInView(index, 1)}
+                    canMoveUp={viewPos > 0}
+                    canMoveDown={viewPos < filteredClickZones.length - 1}
+                    onDragStart={() => startClickZoneDrag(index)}
+                    onDragEnd={endClickZoneDrag}
+                    onDragEnter={() => setDraggedOverClickZoneIndex(index)}
+                    onDropOnto={() => reorderClickZoneTo(index)}
+                    draggedOver={draggedOverClickZoneIndex === index}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         <section className="panel">
@@ -874,6 +1282,13 @@ export default function App() {
           </label>
         </section>
       </div>
+
+      <footer className="app-footer">
+        <span>PvM Pulse {appVersion ? `v${appVersion}` : ''}</span>
+        <button type="button" className="link-button" onClick={checkForUpdates} disabled={checkingForUpdate}>
+          {checkingForUpdate ? 'Checking…' : 'Check for updates'}
+        </button>
+      </footer>
     </div>
   );
 }

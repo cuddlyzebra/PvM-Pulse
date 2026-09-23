@@ -15,6 +15,12 @@ const path = require('path');
 // wipe out dyed items you already fetched. Since this file merges the two
 // live, on every app start, dyed items just keep showing up after any
 // future update - no re-merge step to remember.
+//
+// data/extra-abilityinfo.json is the same idea, for a handful of
+// hand-added, non-combat consumables (potions/flasks) that aren't sourced
+// from RotationMaster at all - same wholesale-overwrite risk as dyed items,
+// same fix (its own file, merged in here, never written by
+// scripts/build-ability-data.py).
 let cache = null;
 
 function loadAbilityData() {
@@ -63,6 +69,18 @@ function loadAbilityData() {
       }
     } catch (err) {
       console.warn(`Could not read ${resolvedDyedPath}, skipping dyed items:`, err.message);
+    }
+  }
+
+  const extraPath = path.join(__dirname, '..', 'data', 'extra-abilityinfo.json');
+  if (fs.existsSync(extraPath)) {
+    try {
+      const extra = JSON.parse(fs.readFileSync(extraPath, 'utf-8'));
+      for (const entry of extra) {
+        map.set(entry.action, entry);
+      }
+    } catch (err) {
+      console.warn(`Could not read ${extraPath}, skipping extra items:`, err.message);
     }
   }
 

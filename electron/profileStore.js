@@ -23,7 +23,8 @@ const DEFAULT_PROFILE = {
   },
   keybinds: [],
   styleBars: [],
-  activeStyleBarId: null
+  activeStyleBarId: null,
+  clickZones: []
 };
 
 // --- Multiple saved profiles -------------------------------------------
