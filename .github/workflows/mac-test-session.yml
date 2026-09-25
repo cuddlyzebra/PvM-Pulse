@@ -1,10 +1,5 @@
 name: Manual macOS Test Session
 
-# Run by hand from the Actions tab whenever you want to poke at a real Mac
-# build interactively - builds the app fresh, then pauses and opens an SSH
-# session into the live runner (real Apple Silicon hardware) so you can
-# launch it and look around. limit-access-to-actor restricts the SSH
-# connection to only your own GitHub account's registered SSH keys.
 on:
   workflow_dispatch: {}
 
@@ -30,10 +25,24 @@ jobs:
       - name: Show what got built
         run: find release -iname "*.app" -o -iname "*.dmg"
 
-      - name: Open SSH debug session
-        uses: mxschmitt/action-tmate@v3
+      - name: Set up SSH access
+        run: |
+          sudo systemsetup -setremotelogin on
+          mkdir -p ~/.ssh
+          curl -s https://github.com/cuddlyzebra.keys >> ~/.ssh/authorized_keys
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/authorized_keys
+
+      - name: Open SSH tunnel via ngrok
         env:
-          HOMEBREW_NO_AUTO_UPDATE: 1
-        with:
-          limit-access-to-actor: true
-        timeout-minutes: 60
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+        run: |
+          brew install ngrok
+          ngrok config add-authtoken "$NGROK_AUTHTOKEN"
+          ngrok tcp 22 --log stdout > /tmp/ngrok.log &
+          sleep 8
+          echo "===================================="
+          curl -s http://localhost:4040/api/tunnels | grep -o '"public_url":"tcp://[^"]*"'
+          echo "Connect with: ssh runner@<host> -p <port>  (host/port from the line above)"
+          echo "===================================="
+          sleep 3600
