@@ -33,6 +33,6 @@ jobs:
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/authorized_keys
 
-      - name: Open SSH tunnel via localhost.run
-        run: ssh -o StrictHostKeyChecking=no -R 0:localhost:22 nokey@localhost.run
+      - name: Open SSH tunnel via serveo
+        run: ssh -o StrictHostKeyChecking=no -R 0:localhost:22 serveo.net
         timeout-minutes: 60
