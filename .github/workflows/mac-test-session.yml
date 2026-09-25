@@ -33,16 +33,6 @@ jobs:
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/authorized_keys
 
-      - name: Open SSH tunnel via ngrok
-        env:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-        run: |
-          brew install ngrok
-          ngrok config add-authtoken "$NGROK_AUTHTOKEN"
-          ngrok tcp 22 --log stdout > /tmp/ngrok.log &
-          sleep 8
-          echo "===================================="
-          curl -s http://localhost:4040/api/tunnels | grep -o '"public_url":"tcp://[^"]*"'
-          echo "Connect with: ssh runner@<host> -p <port>  (host/port from the line above)"
-          echo "===================================="
-          sleep 3600
+      - name: Open SSH tunnel via localhost.run
+        run: ssh -o StrictHostKeyChecking=no -R 0:localhost:22 nokey@localhost.run
+        timeout-minutes: 60
