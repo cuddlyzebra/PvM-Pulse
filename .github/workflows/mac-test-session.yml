@@ -1,0 +1,37 @@
+name: Manual macOS Test Session
+
+# Run by hand from the Actions tab whenever you want to poke at a real Mac
+# build interactively - builds the app fresh, then pauses and opens an SSH
+# session into the live runner (real Apple Silicon hardware) so you can
+# launch it and look around. limit-access-to-actor restricts the SSH
+# connection to only your own GitHub account's registered SSH keys.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  test-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the renderer
+        run: npm run build:renderer
+
+      - name: Build the macOS app (unsigned)
+        run: npx electron-builder --mac --publish never
+
+      - name: Show what got built
+        run: find release -iname "*.app" -o -iname "*.dmg"
+
+      - name: Open SSH debug session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
+        timeout-minutes: 60
