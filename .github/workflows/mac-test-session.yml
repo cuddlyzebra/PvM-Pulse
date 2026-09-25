@@ -31,7 +31,7 @@ jobs:
         run: find release -iname "*.app" -o -iname "*.dmg"
 
       - name: Open SSH debug session
-        uses: mxschmitt/action-tmate@v3
+        uses: canonical/action-tmate@main
         with:
           limit-access-to-actor: true
         timeout-minutes: 60
