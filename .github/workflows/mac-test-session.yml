@@ -31,7 +31,9 @@ jobs:
         run: find release -iname "*.app" -o -iname "*.dmg"
 
       - name: Open SSH debug session
-        uses: canonical/action-tmate@main
+        uses: mxschmitt/action-tmate@v3
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
         with:
           limit-access-to-actor: true
         timeout-minutes: 60
