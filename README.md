@@ -12,7 +12,9 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 **[⬇ Download the latest release](../../releases/latest)**
 
-![PvM Pulse overlay in action during a boss fight](media/demo.gif)
+<video src="https://github.com/user-attachments/assets/a5ba6eb4-c28e-4c28-ad96-c60109eb9e17" controls width="720"></video>
+
+*PvM Pulse's overlay in action during a boss fight.*
 
 **[▶ Watch the full setup walkthrough (4.5 min)](https://youtu.be/2pyNDB3ZvdU)** - style bars,
 keybinds, click zones, and the overlay live in OBS, start to finish.
@@ -291,6 +293,10 @@ viewer to read back from your keypresses. To the right of that: Undo/Redo,
 then Import/Export Profile - see [Quick start](#quick-start) for how those
 two differ from the Profile switcher row just below the header.
 
+<video src="https://github.com/user-attachments/assets/cf682d14-6c1b-4d6b-ae5d-796805a5ef0d" controls width="720"></video>
+
+*Pause Tracking in action - nothing reaches the overlay while paused, even while typing.*
+
 ### The three panels
 
 ![The main PvM Pulse window: search on the left, keybinds/click zones in the middle, live overlay preview and OBS URL on the right](media/main-window.png)
@@ -342,6 +348,10 @@ second for it - a genuine repeat after that briefly-quiet window (or any
 different ability at any point) still shows normally.
 
 ### Click zones (advanced)
+
+<video src="https://github.com/user-attachments/assets/6ae5e139-7000-4d84-bec8-8d6eb247cadc" controls width="720"></video>
+
+*Setting up click zones for a style bar, and for shared abilities.*
 
 For players who *click* their abilities in-game instead of pressing a key
 for some (or all) of them. Panel 2's **Click zones** tab (next to
@@ -424,6 +434,10 @@ melee/magic, etc.) and reuse the same physical keys for different
 abilities per style - "D" being Wild Magic on a magic bar but Greater
 Flurry on a melee bar, say - **style bars** solve that. Each bar has its
 own keybinds, and only one is "active" (read by the tracker) at a time.
+
+<video src="https://github.com/user-attachments/assets/1edd51b4-556d-4e44-a2ce-1e8b1b312e33" controls width="720"></video>
+
+*Setting up a hybrid loadout: two style bars, keybinds on each, and shared abilities.*
 
 **Setup:**
 
