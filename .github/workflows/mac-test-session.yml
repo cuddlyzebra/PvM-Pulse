@@ -1,0 +1,38 @@
+name: Manual macOS Test Session
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  test-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the renderer
+        run: npm run build:renderer
+
+      - name: Build the macOS app (unsigned)
+        run: npx electron-builder --mac --publish never
+
+      - name: Show what got built
+        run: find release -iname "*.app" -o -iname "*.dmg"
+
+      - name: Set up SSH access
+        run: |
+          sudo systemsetup -setremotelogin on
+          mkdir -p ~/.ssh
+          curl -s https://github.com/cuddlyzebra.keys >> ~/.ssh/authorized_keys
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/authorized_keys
+
+      - name: Open SSH tunnel via serveo
+        run: ssh -o StrictHostKeyChecking=no -R 0:localhost:22 serveo.net
+        timeout-minutes: 60
