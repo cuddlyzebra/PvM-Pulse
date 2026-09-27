@@ -16,9 +16,6 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 *PvM Pulse's overlay in action during a boss fight.*
 
-**[▶ Watch the full setup walkthrough (4.5 min)](https://youtu.be/2pyNDB3ZvdU)** - style bars,
-keybinds, click zones, and the overlay live in OBS, start to finish.
-
 > **This app is in beta.** It's actively used and maintained, but still
 > young - please expect the occasional bug or rough edge. If you run into
 > one, or anything is confusing, [open an issue](../../issues) - feedback
