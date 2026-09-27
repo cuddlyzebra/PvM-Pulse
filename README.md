@@ -12,6 +12,11 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 **[⬇ Download the latest release](../../releases/latest)**
 
+![PvM Pulse overlay in action during a boss fight](media/demo.gif)
+
+**[▶ Watch the full setup walkthrough (4.5 min)](https://youtu.be/2pyNDB3ZvdU)** - style bars,
+keybinds, click zones, and the overlay live in OBS, start to finish.
+
 > **This app is in beta.** It's actively used and maintained, but still
 > young - please expect the occasional bug or rough edge. If you run into
 > one, or anything is confusing, [open an issue](../../issues) - feedback
@@ -251,6 +256,8 @@ welcome if something above doesn't quite work on your distro.
    ability should appear in the live preview inside the app, and on the
    OBS overlay.
 
+![OBS previewing the game with the PvM Pulse overlay active](media/obs-preview.png)
+
 **Multiple saved profiles.** The **Profile:** dropdown (below the header)
 holds several named profiles you can switch between without leaving the
 app - one per character, one per boss loadout, whatever suits you.
@@ -285,6 +292,8 @@ then Import/Export Profile - see [Quick start](#quick-start) for how those
 two differ from the Profile switcher row just below the header.
 
 ### The three panels
+
+![The main PvM Pulse window: search on the left, keybinds/click zones in the middle, live overlay preview and OBS URL on the right](media/main-window.png)
 
 The setup window is three panels side by side (they stack on a narrow
 window):
