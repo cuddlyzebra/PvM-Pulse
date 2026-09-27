@@ -12,7 +12,7 @@ and an ability/weapon/perk dataset that's actually kept up to date.
 
 **[⬇ Download the latest release](../../releases/latest)**
 
-<video src="https://github.com/user-attachments/assets/a5ba6eb4-c28e-4c28-ad96-c60109eb9e17" controls width="720"></video>
+<video src="https://github.com/user-attachments/assets/0896f9bc-accb-4e67-bd85-2b65cc61db9a" controls width="720"></video>
 
 *PvM Pulse's overlay in action during a boss fight.*
 
@@ -293,7 +293,7 @@ viewer to read back from your keypresses. To the right of that: Undo/Redo,
 then Import/Export Profile - see [Quick start](#quick-start) for how those
 two differ from the Profile switcher row just below the header.
 
-<video src="https://github.com/user-attachments/assets/cf682d14-6c1b-4d6b-ae5d-796805a5ef0d" controls width="720"></video>
+<video src="https://github.com/user-attachments/assets/4872e718-1b6e-419f-89ec-3302e0d57ea2" controls width="720"></video>
 
 *Pause Tracking in action - nothing reaches the overlay while paused, even while typing.*
 
@@ -349,7 +349,7 @@ different ability at any point) still shows normally.
 
 ### Click zones (advanced)
 
-<video src="https://github.com/user-attachments/assets/6ae5e139-7000-4d84-bec8-8d6eb247cadc" controls width="720"></video>
+<video src="https://github.com/user-attachments/assets/db9528d8-5555-46e8-9c05-f7d6476be2f1" controls width="720"></video>
 
 *Setting up click zones for a style bar, and for shared abilities.*
 
@@ -435,7 +435,7 @@ abilities per style - "D" being Wild Magic on a magic bar but Greater
 Flurry on a melee bar, say - **style bars** solve that. Each bar has its
 own keybinds, and only one is "active" (read by the tracker) at a time.
 
-<video src="https://github.com/user-attachments/assets/1edd51b4-556d-4e44-a2ce-1e8b1b312e33" controls width="720"></video>
+<video src="https://github.com/user-attachments/assets/dc11b3b4-ddb1-40e6-be19-cb3347d75128" controls width="720"></video>
 
 *Setting up a hybrid loadout: two style bars, keybinds on each, and shared abilities.*
 
