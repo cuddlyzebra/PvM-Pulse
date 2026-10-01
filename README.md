@@ -814,7 +814,7 @@ signing a `.app`/`.dmg` on a real Mac, and this project isn't developed on
 one. Instead, `.github/workflows/build-mac.yml` builds it on GitHub's own
 macOS runners:
 
-- Push a tag like `v1.1.0-beta.1` and it builds the `.dmg` and attaches it
+- Push a tag like `v1.1.0-beta.2` and it builds the `.dmg` and attaches it
   straight onto the matching GitHub Release automatically.
 - Or trigger it by hand from the **Actions** tab (**Build macOS app → Run
   workflow**) to get it as a downloadable build artifact on that run
@@ -825,6 +825,19 @@ macOS shows an "unidentified developer" warning on first open - see
 [Installing → macOS](#macos) for how to get past that.
 
 ## Changelog
+
+### 1.1.0-beta.2
+
+- **Fixed: macOS was flagging the app as malware and deleting it on open.**
+  Apple's XProtect scanner added a detection rule that happened to match
+  something inside the exact Electron build (31.7.7) this app was packaged
+  with - not this app's own code, but the stock Electron framework binary
+  itself (another, unrelated Electron app hit the identical issue around
+  the same time, confirming it). Bumped Electron from `^31.0.2` to
+  `^44.0.0` and `electron-builder` from `^24.13.3` to `^26.0.0` to move off
+  the flagged build. Verified on a real Mac runner, with a quarantine flag
+  manually applied (the same flag a real browser download sets), that the
+  app now opens and runs normally instead of being removed.
 
 ### 1.1.0-beta.1
 
