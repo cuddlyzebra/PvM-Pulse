@@ -1,0 +1,51 @@
+name: Build Windows app
+
+# Builds the portable Windows .exe on GitHub's own Windows runners, so the
+# release binary is produced by an automated, auditable pipeline rather
+# than a local build on someone's own machine (this also happens to be
+# what a service like SignPath Foundation requires before it will sign a
+# build: the binary must be traceable straight back to the checked-in
+# source via CI, not hand-assembled and uploaded).
+# Trigger it either by pushing a tag like "v1.1.0-beta.2" (it'll attach the
+# .exe straight onto the matching GitHub Release), or by hand from the
+# Actions tab (Actions -> Build Windows app -> Run workflow), which just
+# leaves the .exe as a downloadable build artifact on the run instead.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the renderer
+        run: npm run build:renderer
+
+      - name: Build the Windows app (unsigned - no code signing certificate yet)
+        run: npx electron-builder --win --publish never
+
+      - name: Attach to the matching GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*.exe
+
+      - name: Also keep it as a downloadable build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PvM-Pulse-Windows
+          path: release/*.exe
