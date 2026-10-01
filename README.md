@@ -837,7 +837,10 @@ macOS shows an "unidentified developer" warning on first open - see
   `^44.0.0` and `electron-builder` from `^24.13.3` to `^26.0.0` to move off
   the flagged build. Verified on a real Mac runner, with a quarantine flag
   manually applied (the same flag a real browser download sets), that the
-  app now opens and runs normally instead of being removed.
+  app now opens and runs normally instead of being removed - and confirmed
+  by two independent testers on their own Macs, who no longer hit the
+  malware block (just the normal unsigned-app prompt, cleared the usual way
+  with right-click → Open or `xattr -cr`).
 
 ### 1.1.0-beta.1
 
